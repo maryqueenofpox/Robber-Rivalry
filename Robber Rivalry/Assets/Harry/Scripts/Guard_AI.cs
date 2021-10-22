@@ -33,6 +33,17 @@ public class Guard_AI : SteeringBehaviour
 	/// </summary>
 	private Vector3 previousTargetPosition;
 
+	/// <summary>
+	/// Distance that guard will see the player from
+	/// </summary>
+	public float VisionDistance = 10.0f;
+
+	/// <summary>
+	/// Player character that guard will chase
+	/// </summary>
+	[SerializeField]
+	protected Transform player;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -46,33 +57,54 @@ public class Guard_AI : SteeringBehaviour
 
 	public override Vector3 UpdateBehaviour(SteeringAgent steeringAgent)
 	{
-		// First get a random position on the circumference of a circle which can be used as a direction
-		Vector3 targetPosition = RandomPointOnUnitCircleCircumference();
+		if (IsPlayerInVisionDistance() == true)
+		{
+			// Get the desired velocity for seek and limit to maxSpeed
+			desiredVelocity = Vector3.Normalize(player.position - transform.position) * steeringAgent.MaxSpeed;
 
-		// Scale the direction by the maximum amount of displacement to get the "small circle"
-		targetPosition *= maxRandomDisplacement;
+			// Calculate steering velocity
+			steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
+			return steeringVelocity;
+		}
+		else
+		{
+			// First get a random position on the circumference of a circle which can be used as a direction
+			Vector3 targetPosition = RandomPointOnUnitCircleCircumference();
 
-		// Add the previous target position to get a displacement from the last target position
-		targetPosition += previousTargetPosition;
+			// Scale the direction by the maximum amount of displacement to get the "small circle"
+			targetPosition *= maxRandomDisplacement;
 
-		// These 2 lines effectly remap the target position to a point on the circumference of the imaginary circle
-		// Get the centre position of the imaginary circle and then calculate the direction to the target position
-		// Normalise to a unit vector so it can be scaled to the size of the imaginary circle and then add on
-		// the position of the circle to get the point back on to the circumference of the circle
-		Vector3 circlePosition = transform.position + (transform.forward * circleDistance);
-		targetPosition = circlePosition + (Vector3.Normalize(targetPosition - circlePosition) * circleRadius);
+			// Add the previous target position to get a displacement from the last target position
+			targetPosition += previousTargetPosition;
 
-		// Update the previous target position with the new position
-		previousTargetPosition = targetPosition;
+			// These 2 lines effectly remap the target position to a point on the circumference of the imaginary circle
+			// Get the centre position of the imaginary circle and then calculate the direction to the target position
+			// Normalise to a unit vector so it can be scaled to the size of the imaginary circle and then add on
+			// the position of the circle to get the point back on to the circumference of the circle
+			Vector3 circlePosition = transform.position + (transform.forward * circleDistance);
+			targetPosition = circlePosition + (Vector3.Normalize(targetPosition - circlePosition) * circleRadius);
 
-		// Get the desired velocity just like seek and limit to maxSpeed
-		desiredVelocity = Vector3.Normalize(targetPosition - transform.position) * steeringAgent.MaxSpeed;
+			// Update the previous target position with the new position
+			previousTargetPosition = targetPosition;
 
-		// Calculate steering velocity
-		steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
-		return steeringVelocity;
+			// Get the desired velocity just like seek and limit to maxSpeed
+			desiredVelocity = Vector3.Normalize(targetPosition - transform.position) * steeringAgent.MaxSpeed;
+
+			// Calculate steering velocity
+			steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
+
+
+			return steeringVelocity;
+		}
 	}
 
+	protected bool IsPlayerInVisionDistance()
+	{
+		float distanceToThief = (player.transform.position - transform.position).magnitude;
+		return distanceToThief <= VisionDistance;
+	}
+
+	//Neutral State Will be general wandering through the map
 	protected static Vector3 RandomPointOnUnitCircleCircumference()
 	{
 		float randomAngle = Random.value * (2.0f * Mathf.PI);
@@ -92,4 +124,5 @@ public class Guard_AI : SteeringBehaviour
 		Vector3 circlePosition = transform.position + (transform.forward * circleDistance);
 		DebugDrawCircle(circlePosition, circleRadius);
 	}
+
 }

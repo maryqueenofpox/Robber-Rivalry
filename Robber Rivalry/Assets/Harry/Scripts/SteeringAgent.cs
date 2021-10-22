@@ -29,6 +29,10 @@ public class SteeringAgent : MonoBehaviour
 	private List<SteeringBehaviour> steeringBehvaiours = new List<SteeringBehaviour>();
 
 	/// <summary>
+	/// The distance the guard can sense the thief in
+	/// </summary>
+
+	/// <summary>
 	/// Called once per frame
 	/// </summary>
 	private void Update()
@@ -118,4 +122,8 @@ public class SteeringAgent : MonoBehaviour
 			transform.forward = Vector3.Normalize(new Vector3(CurrentVelocity.x, 0.0f, CurrentVelocity.z));
 		}
 	}
+	/// Returns if the thief is within the guards vision distance
+	/// </summary>
+	/// <returns>True if the thief is within the guards vision distance, otherwise false is returned</returns>
+
 }
