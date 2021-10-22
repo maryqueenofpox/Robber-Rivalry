@@ -35,10 +35,10 @@ public class SwapParts : MonoBehaviour
 
     void GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isSwapping == false)
+        /*if (Input.GetKeyDown(KeyCode.Space) && isSwapping == false)
         {
             BeginSwap(); // when the key gets called it calls the BeginSwap method
-        }
+        }*/
     }
 
     void BeginSwap()
