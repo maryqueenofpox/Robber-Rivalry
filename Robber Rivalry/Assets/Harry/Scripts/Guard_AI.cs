@@ -34,9 +34,10 @@ public class Guard_AI : SteeringBehaviour
 	private Vector3 previousTargetPosition;
 
 	/// <summary>
-	/// Distance that guard will see the player from
+	/// Distance and angle that guard will see the player from
 	/// </summary>
 	public float VisionDistance = 10.0f;
+	public float VisionAngle = 45.0f;
 
 	/// <summary>
 	/// Player character that guard will chase
@@ -57,7 +58,7 @@ public class Guard_AI : SteeringBehaviour
 
 	public override Vector3 UpdateBehaviour(SteeringAgent steeringAgent)
 	{
-		if (IsPlayerInVisionDistance() == true)
+		if (IsPlayerInVisionDistance() == true && IsPlayerInVisionAngle() == true)
 		{
 			// Get the desired velocity for seek and limit to maxSpeed
 			desiredVelocity = Vector3.Normalize(player.position - transform.position) * steeringAgent.MaxSpeed;
@@ -100,8 +101,18 @@ public class Guard_AI : SteeringBehaviour
 
 	protected bool IsPlayerInVisionDistance()
 	{
-		float distanceToThief = (player.transform.position - transform.position).magnitude;
-		return distanceToThief <= VisionDistance;
+		float distanceToPlayer = (player.transform.position - transform.position).magnitude;
+		return distanceToPlayer <= VisionDistance;
+	}
+
+	protected bool IsPlayerInVisionAngle()
+    {
+		Vector3 playerDirection = player.transform.position - transform.position;
+		playerDirection = playerDirection.normalized;
+
+		float dot = Vector3.Dot(playerDirection, transform.forward);
+		float angleToPlayer = Mathf.Acos(dot) * Mathf.Rad2Deg;
+		return angleToPlayer <= VisionAngle;
 	}
 
 	//Neutral State Will be general wandering through the map
