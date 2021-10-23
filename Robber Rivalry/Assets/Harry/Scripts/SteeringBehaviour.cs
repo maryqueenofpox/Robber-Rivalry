@@ -10,6 +10,7 @@ public abstract class SteeringBehaviour : MonoBehaviour
 	public bool ShowDebugLines { get; protected set; } = true;
 
 	protected Vector3 desiredVelocity;
+	protected Vector3 runningVelocity;
 	protected Vector3 steeringVelocity;
 
 	/// <summary>

@@ -61,7 +61,7 @@ public class Guard_AI : SteeringBehaviour
 		if (IsPlayerInVisionDistance() == true && IsPlayerInVisionAngle() == true)
 		{
 			// Get the desired velocity for seek and limit to maxSpeed
-			desiredVelocity = Vector3.Normalize(player.position - transform.position) * steeringAgent.MaxSpeed;
+			desiredVelocity = Vector3.Normalize(player.position - transform.position) * steeringAgent.RunningSpeed;
 
 			// Calculate steering velocity
 			steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
@@ -89,7 +89,7 @@ public class Guard_AI : SteeringBehaviour
 			previousTargetPosition = targetPosition;
 
 			// Get the desired velocity just like seek and limit to maxSpeed
-			desiredVelocity = Vector3.Normalize(targetPosition - transform.position) * steeringAgent.MaxSpeed;
+			desiredVelocity = Vector3.Normalize(targetPosition - transform.position) * steeringAgent.WalkingSpeed;
 
 			// Calculate steering velocity
 			steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;

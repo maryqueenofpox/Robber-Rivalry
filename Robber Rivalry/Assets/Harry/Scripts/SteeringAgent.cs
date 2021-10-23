@@ -8,7 +8,13 @@ public class SteeringAgent : MonoBehaviour
 	/// NOTE: [field: SerializeField] exposes a C# property to Unity's inspector which is useful to toggle at runtime
 	/// </summary>
 	[field: SerializeField]
-	public float MaxSpeed { get; protected set; } = 400.0f;
+	public float MaxSpeed { get; protected set; } = 500.0f;
+
+	[field: SerializeField]
+	public float WalkingSpeed { get; protected set; } = 300.0f;
+
+	[field: SerializeField]
+	public float RunningSpeed { get; protected set; } = 400.0f;
 
 	/// <summary>
 	/// Returns the maximum steering amount that can be applied

@@ -642,6 +642,7 @@ MonoBehaviour:
   circleDistance: 250
   maxRandomDisplacement: 25
   VisionDistance: 8
+  VisionAngle: 45
   player: {fileID: 1214458204}
 --- !u!114 &1703937962
 MonoBehaviour:
@@ -655,5 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd2622c112abb64c8c52ba0994db883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxSpeed>k__BackingField: 5
+  <MaxSpeed>k__BackingField: 10
+  <WalkingSpeed>k__BackingField: 4.5
+  <RunningSpeed>k__BackingField: 7
   <MaxSteering>k__BackingField: 100
