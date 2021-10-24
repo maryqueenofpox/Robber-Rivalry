@@ -7,17 +7,60 @@ public class PlayerControls : MonoBehaviour
 {
     Rigidbody rb;
     bool grounded;
-    float jumpForce = 1.0f, moveSpeed = 50000.0f;
+    public float jumpForce = 1.0f, moveSpeed = 50.0f;
     Vector2 movementInput;
+    float sprintTime = 10f;
+    float maxSprintTime;
+    bool isSprinting = false;
+    float sprintForce = 2f;
+    float timeUntilRecharge = 2f;
+    float originalRechargeTime;
+
+    [SerializeField] GameObject wetFloorSign;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        maxSprintTime = sprintTime;
+        originalRechargeTime = timeUntilRecharge;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
+        if (isSprinting)
+        {
+            if (!(sprintTime <= 0f))
+            {
+                rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * sprintForce * Time.deltaTime;
+                sprintTime -= Time.deltaTime;
+            }
+            else
+            {
+                sprintTime = 0f;
+                isSprinting = false;
+                timeUntilRecharge = originalRechargeTime;
+            }
+        }
+        else if (!isSprinting)
+        {
+            rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
+            
+            if (timeUntilRecharge > 0f)
+            {
+                timeUntilRecharge -= Time.deltaTime;
+            }
+            else if (timeUntilRecharge <= 0f)
+            {
+                timeUntilRecharge = 0f;
+
+                sprintTime += Time.deltaTime;
+
+                if (sprintTime >= maxSprintTime)
+                    sprintTime = maxSprintTime;
+            }
+        }
+        else
+            Debug.Log("Error, is neither sprinting and not sprinting");
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -33,7 +76,18 @@ public class PlayerControls : MonoBehaviour
 
     public void Ability1(InputAction.CallbackContext ctx)
     {
-        //speed *= 2.4f;
+        if(GameObject.Find("PowerUp").GetComponent<PowerUp>().canUseAbility)
+        {
+            Instantiate(wetFloorSign, transform.position+(transform.forward*2), Quaternion.identity);
+        }
+    }
+
+    public void Sprint(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+            isSprinting = true;
+        else if (ctx.canceled)
+            isSprinting = false;
     }
 
     private void OnCollisionEnter(Collision collision)

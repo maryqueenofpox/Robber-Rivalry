@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0809e2121d4f9304892bf0ebaba7f9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 1
+  moveSpeed: 500
+  wetFloorSign: {fileID: 7843242910152865544, guid: bd6975fb571441f48b0994bab2c686c7, type: 3}
 --- !u!114 &538959827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,10 +142,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0fc3bdd9-142a-4dd4-8ec8-656b12e63695
     m_ActionName: Player/Move[/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c4afdda8-8c4a-4316-8bb9-8e3c1d882d8c
-    m_ActionName: Player/Look[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 734bc919-4c91-49e7-b95d-c199ecf08fe9
@@ -215,6 +214,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a5dc3e21-cbc4-4241-b131-1e4eaa0a79ca
     m_ActionName: Player/Ability1[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8122222668563896476}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: Sprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
+    m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -247,5 +262,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SwapParts : MonoBehaviour
 {
@@ -35,10 +36,10 @@ public class SwapParts : MonoBehaviour
 
     void GetInput()
     {
-        /*if (Input.GetKeyDown(KeyCode.Space) && isSwapping == false)
+        if (Keyboard.current.spaceKey.IsPressed() && isSwapping == false)
         {
             BeginSwap(); // when the key gets called it calls the BeginSwap method
-        }*/
+        }
     }
 
     void BeginSwap()
