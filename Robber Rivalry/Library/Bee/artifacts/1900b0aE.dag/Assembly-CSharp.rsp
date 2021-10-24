@@ -105,7 +105,7 @@
 -define:ENABLE_TERRAIN
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
--define:ENABLE_LEGACY_INPUT_MANAGER
+-define:ENABLE_INPUT_SYSTEM
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"F:/Robber Rivalry/Robber Rivalry/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
@@ -302,6 +302,7 @@
 -r:"F:/Unity 2021.1.18f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Numerics.Vectors.dll"
 -r:"F:/Unity 2021.1.18f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
 -r:"F:/Unity 2021.1.18f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.InputSystem.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.TextMeshPro.Editor.ref.dll"
@@ -324,7 +325,10 @@
 "Assets/Harry/Scripts/SteeringAgent.cs"
 "Assets/Harry/Scripts/SteeringBehaviour.cs"
 "Assets/Joseph/Scriptyboi.cs"
+"Assets/Konrad/InputActions/Robber Rivalry.cs"
 "Assets/Konrad/Scripts/CheckCollision.cs"
+"Assets/Konrad/Scripts/PlayerControls.cs"
+"Assets/Konrad/Scripts/PowerUp.cs"
 "Assets/Konrad/Scripts/SwapParts.cs"
 -langversion:8.0
 
