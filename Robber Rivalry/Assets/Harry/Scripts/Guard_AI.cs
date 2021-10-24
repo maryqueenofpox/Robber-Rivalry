@@ -54,6 +54,7 @@ public class Guard_AI : SteeringBehaviour
 
 		// Set the intial previous target position on the circle as the furtherest point from the agent
 		previousTargetPosition = transform.forward * (circleDistance + circleRadius);
+
 	}
 
 	public override Vector3 UpdateBehaviour(SteeringAgent steeringAgent)
@@ -61,7 +62,7 @@ public class Guard_AI : SteeringBehaviour
 		if (IsPlayerInVisionDistance() == true && IsPlayerInVisionAngle() == true)
 		{
 			// Get the desired velocity for seek and limit to maxSpeed
-			desiredVelocity = Vector3.Normalize(player.position - transform.position) * steeringAgent.RunningSpeed;
+			desiredVelocity = Vector3.Normalize((player.position - transform.position)) * steeringAgent.RunningSpeed;
 
 			// Calculate steering velocity
 			steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
