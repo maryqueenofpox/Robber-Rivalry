@@ -68,6 +68,7 @@ public class Guard_AI : SteeringBehaviour
 		IsWallInVisionDistance();
 		if (IsPlayerInVisionDistance() == true && IsPlayerInVisionAngle() == true && Iswallintheway == false)
 		{
+			IsWallInVisionDistance();
 			// Get the desired velocity for seek and limit to maxSpeed
 			desiredVelocity = Vector3.Normalize((player.position - transform.position)) * steeringAgent.RunningSpeed;
 
