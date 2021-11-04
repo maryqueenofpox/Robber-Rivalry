@@ -61,6 +61,10 @@ public class Guard_AI : SteeringBehaviour
 	{
 		if (IsPlayerInVisionDistance() == true && IsPlayerInVisionAngle() == true)
 		{
+<<<<<<< HEAD
+=======
+			IsWallInVisionDistance();
+>>>>>>> parent of 0fd4abcf (Minor Changes)
 			// Get the desired velocity for seek and limit to maxSpeed
 			desiredVelocity = Vector3.Normalize((player.position - transform.position)) * steeringAgent.RunningSpeed;
 
@@ -106,6 +110,35 @@ public class Guard_AI : SteeringBehaviour
 		return distanceToPlayer <= VisionDistance;
 	}
 
+<<<<<<< HEAD
+=======
+	protected void IsWallInVisionDistance()
+	{
+		float distanceToPlayer = (player.transform.position - transform.position).magnitude;
+		float distanceToWall = (wall.transform.position - transform.position).magnitude;
+
+		Vector3 wallDirection = wall.transform.position - transform.position;
+		wallDirection = wallDirection.normalized;
+		float dot = Vector3.Dot(wallDirection, transform.forward);
+		float angleToWall = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+		Vector3 playerDirection = player.transform.position - transform.position;
+		playerDirection = playerDirection.normalized;
+		float dot2 = Vector3.Dot(playerDirection, transform.forward);
+		float angleToPlayer = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+		if (distanceToWall < distanceToPlayer && angleToPlayer == angleToWall)
+		{
+			Iswallintheway = true;
+		}
+		else
+        {
+			Iswallintheway = false;
+        }
+		
+	}
+
+>>>>>>> parent of 0fd4abcf (Minor Changes)
 	protected bool IsPlayerInVisionAngle()
     {
 		Vector3 playerDirection = player.transform.position - transform.position;
