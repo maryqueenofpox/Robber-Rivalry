@@ -45,6 +45,12 @@ public class Guard_AI : SteeringBehaviour
 	[SerializeField]
 	protected Transform player;
 
+	/// <summary>
+	/// Wall that AI will not be able to see or walk through
+	/// </summary>
+	[SerializeField]
+	protected Transform wall;
+	private bool Iswallintheway = false;
 	protected override void Start()
 	{
 		base.Start();
@@ -59,17 +65,19 @@ public class Guard_AI : SteeringBehaviour
 
 	public override Vector3 UpdateBehaviour(SteeringAgent steeringAgent)
 	{
-		if (IsPlayerInVisionDistance() == true && IsPlayerInVisionAngle() == true)
+		IsWallInVisionDistance();
+		if (IsPlayerInVisionDistance() == true && IsPlayerInVisionAngle() == true && Iswallintheway == false)
 		{
-			// Get the desired velocity for seek and limit to maxSpeed
-			desiredVelocity = Vector3.Normalize((player.position - transform.position)) * steeringAgent.RunningSpeed;
+				// Get the desired velocity for seek and limit to maxSpeed
+				desiredVelocity = Vector3.Normalize((player.position - transform.position)) * steeringAgent.RunningSpeed;
 
-			// Calculate steering velocity
-			steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
-			return steeringVelocity;
+				// Calculate steering velocity
+				steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
+				return steeringVelocity;			
 		}
 		else
 		{
+			IsWallInVisionDistance();
 			// First get a random position on the circumference of a circle which can be used as a direction
 			Vector3 targetPosition = RandomPointOnUnitCircleCircumference();
 
@@ -104,6 +112,32 @@ public class Guard_AI : SteeringBehaviour
 	{
 		float distanceToPlayer = (player.transform.position - transform.position).magnitude;
 		return distanceToPlayer <= VisionDistance;
+	}
+
+	protected void IsWallInVisionDistance()
+	{
+		float distanceToPlayer = (player.transform.position - transform.position).magnitude;
+		float distanceToWall = (wall.transform.position - transform.position).magnitude;
+
+		Vector3 wallDirection = wall.transform.position - transform.position;
+		wallDirection = wallDirection.normalized;
+		float dot = Vector3.Dot(wallDirection, transform.forward);
+		float angleToWall = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+		Vector3 playerDirection = player.transform.position - transform.position;
+		playerDirection = playerDirection.normalized;
+		float dot2 = Vector3.Dot(playerDirection, transform.forward);
+		float angleToPlayer = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+		if (distanceToWall < distanceToPlayer && angleToPlayer <= angleToWall)
+		{
+			Iswallintheway = true;
+		}
+		else
+        {
+			Iswallintheway = false;
+        }
+		
 	}
 
 	protected bool IsPlayerInVisionAngle()
