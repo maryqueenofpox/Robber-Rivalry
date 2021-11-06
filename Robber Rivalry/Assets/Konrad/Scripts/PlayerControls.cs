@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     Rigidbody rb;
-    bool grounded;
-    public float jumpForce = 1.0f, moveSpeed = 50.0f;
+    //bool grounded;
+    public float moveSpeed = 50.0f;
     Vector2 movementInput;
     float sprintTime = 10f;
     float maxSprintTime;
@@ -18,11 +18,16 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] GameObject wetFloorSign;
 
+    public bool canUseAbility;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         maxSprintTime = sprintTime;
         originalRechargeTime = timeUntilRecharge;
+        canUseAbility = false;
+
+        Debug.Log("Instance ID: " + GetInstanceID());
     }
 
     private void FixedUpdate()
@@ -68,17 +73,12 @@ public class PlayerControls : MonoBehaviour
         movementInput = ctx.ReadValue<Vector2>();
     }
 
-    public void Jump(InputAction.CallbackContext ctx)
-    {
-        if (grounded)
-            transform.Translate(new Vector3(0, jumpForce, 0) * Time.deltaTime);
-    }
-
     public void Ability1(InputAction.CallbackContext ctx)
     {
-        if(GameObject.Find("PowerUp").GetComponent<PowerUp>().canUseAbility)
+        if (canUseAbility)
         {
-            Instantiate(wetFloorSign, transform.position+(transform.forward*2), Quaternion.identity);
+            SpawnObject();
+            canUseAbility = false;
         }
     }
 
@@ -90,7 +90,20 @@ public class PlayerControls : MonoBehaviour
             isSprinting = false;
     }
 
+    void SpawnObject()
+    {
+        Instantiate(wetFloorSign, transform.position + transform.forward * 2, Quaternion.identity);
+    }
+
+    // Yes, I could have used the below green code
     private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("PowerUp"))
+            canUseAbility = true;
+    }
+
+    // Below might be unnecessary
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Ground"))
             grounded = true;
@@ -101,4 +114,5 @@ public class PlayerControls : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
             grounded = false;
     }
+    */
 }
