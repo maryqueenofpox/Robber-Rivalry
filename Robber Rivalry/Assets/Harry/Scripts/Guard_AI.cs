@@ -101,7 +101,7 @@ public class Guard_AI : SteeringBehaviour
 			desiredVelocity = Vector3.Normalize(targetPosition - transform.position) * steeringAgent.WalkingSpeed;
 
 			// Calculate steering velocity
-			steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
+		steeringVelocity = desiredVelocity - steeringAgent.CurrentVelocity;
 
 
 			return steeringVelocity;
