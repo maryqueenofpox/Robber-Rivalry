@@ -4,43 +4,46 @@ using UnityEngine;
 
 public class SpawnPowerUps : MonoBehaviour
 {
-    // Might come back to this later, this random spawning is not working out too well
-    /*
-    float timeUntilNextObjectSpawn = 2f;
-    float originalTime;
-    [SerializeField] GameObject abilityToSpawn;
-    [SerializeField] GameObject platformfToSpawnOn;
-    float platformSizeX;
-    float platformSizeZ;
-    Vector3 platformCentre;
-    Vector3 platformLocation;
+    [SerializeField] GameObject[] powerUps;
+    public List<GameObject> testList = new List<GameObject>();
+    GameObject platformToSpawnOn;
+    Transform randomChild;
 
-    // Start is called before the first frame update
-    void Start()
+    float powerUpSpawnTimer = 10f;
+    float originalSpawnTimer;
+
+    int powerUpIndex;
+    int platformIndex;
+    int randomChildIndex;
+
+    [SerializeField] SwapParts swapPartsScript;
+
+    private void Start()
     {
-        originalTime = timeUntilNextObjectSpawn;
-        platformSizeX = platformfToSpawnOn.GetComponent<Collider>().bounds.size.x;
-        platformSizeZ = platformfToSpawnOn.GetComponent<Collider>().bounds.size.z;
-        platformLocation = platformfToSpawnOn.transform.position;
-
-        //Debug.Log("Platform Size: " + platformSize);
-        platformCentre = new Vector3(platformLocation.x, 1, platformLocation.z);
+        originalSpawnTimer = powerUpSpawnTimer;
+        testList.AddRange(swapPartsScript.startingPieces);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        timeUntilNextObjectSpawn -= Time.deltaTime;
-        if (timeUntilNextObjectSpawn <= 0.0f)
+        if (swapPartsScript.isSwapping)
         {
-            float platformSize = platformfToSpawnOn.GetComponent<Renderer>().bounds.size.y;
-            float platformTop = platformfToSpawnOn.transform.position.y + platformSize / 2;
-            Vector3 blockCentre = new Vector3(platformfToSpawnOn.transform.position.x, platformTop, platformfToSpawnOn.transform.position.z);
+            testList.Clear();
+            testList.AddRange(swapPartsScript.startingPieces);
+        }
+        
 
-            //Instantiate(abilityToSpawn, new Vector3(Random.Range(0, platformSize.x), 1, Random.Range(0, platformSize.z)), Quaternion.identity);
-            Instantiate(abilityToSpawn, blockCentre, Quaternion.identity);
-            timeUntilNextObjectSpawn = originalTime;
+        powerUpSpawnTimer -= Time.deltaTime;
+        if (powerUpSpawnTimer <= 0f)
+        {
+            powerUpIndex = Random.Range(0, powerUps.Length);
+            platformIndex = Random.Range(0, swapPartsScript.startingPieces.Count);
+            platformToSpawnOn = swapPartsScript.startingPieces[platformIndex];
+            randomChildIndex = Random.Range(0, platformToSpawnOn.transform.childCount);
+            randomChild = platformToSpawnOn.transform.GetChild(randomChildIndex);
+
+            Instantiate(powerUps[powerUpIndex], randomChild.position, Quaternion.identity);
+            powerUpSpawnTimer = originalSpawnTimer;
         }
     }
-    */
 }

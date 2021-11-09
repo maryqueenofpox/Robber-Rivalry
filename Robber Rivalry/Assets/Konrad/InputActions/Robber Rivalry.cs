@@ -41,6 +41,14 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""64c2286b-587e-49aa-9898-346f8a33c89f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -151,6 +159,17 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6463dcff-9cf7-4230-ab8d-721fb591d816"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -484,6 +503,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -548,6 +568,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Ability1;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Rotation;
     public struct PlayerActions
     {
         private @RobberRivalry m_Wrapper;
@@ -555,6 +576,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -573,6 +595,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Rotation.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -586,6 +611,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Rotation.started += instance.OnRotation;
+                @Rotation.performed += instance.OnRotation;
+                @Rotation.canceled += instance.OnRotation;
             }
         }
     }
@@ -718,6 +746,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
