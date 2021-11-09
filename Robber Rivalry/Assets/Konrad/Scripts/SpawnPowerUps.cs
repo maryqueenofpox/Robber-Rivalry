@@ -9,7 +9,7 @@ public class SpawnPowerUps : MonoBehaviour
     GameObject platformToSpawnOn;
     Transform randomChild;
 
-    float powerUpSpawnTimer = 10f;
+    public float powerUpSpawnTimer = 1f;
     float originalSpawnTimer;
 
     int powerUpIndex;
