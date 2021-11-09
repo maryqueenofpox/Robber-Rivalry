@@ -9,7 +9,6 @@ public class PlayerControls : MonoBehaviour
     //bool grounded;
     public float moveSpeed = 50.0f;
     Vector2 movementInput;
-    Vector2 rotationInput;
     float sprintTime = 10f;
     float maxSprintTime;
     bool isSprinting = false;
@@ -27,6 +26,8 @@ public class PlayerControls : MonoBehaviour
         maxSprintTime = sprintTime;
         originalRechargeTime = timeUntilRecharge;
         canUseAbility = false;
+
+        Debug.Log("Instance ID: " + GetInstanceID());
     }
 
     private void FixedUpdate()
@@ -48,7 +49,7 @@ public class PlayerControls : MonoBehaviour
         else if (!isSprinting)
         {
             rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
-
+            
             if (timeUntilRecharge > 0f)
             {
                 timeUntilRecharge -= Time.deltaTime;
@@ -65,17 +66,6 @@ public class PlayerControls : MonoBehaviour
         }
         else
             Debug.Log("Error, is neither sprinting and not sprinting");
-
-        if (!(rb.velocity == Vector3.zero))
-            transform.rotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
-
-        if (Gamepad.current.rightStick.IsActuated())
-            transform.rotation = Quaternion.LookRotation(new Vector3(rotationInput.x, 0, rotationInput.y));
-    }
-
-    public void Rotation(InputAction.CallbackContext ctx)
-    {
-        rotationInput = ctx.ReadValue<Vector2>();
     }
 
     public void OnMove(InputAction.CallbackContext ctx)

@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class SwapParts : MonoBehaviour
 {
-    //[SerializeField]
-    public List<GameObject> startingPieces = new List<GameObject>(); // holds a list of the ground cubes
+    [SerializeField]
+    List<GameObject> startingPieces = new List<GameObject>(); // holds a list of the ground cubes
     [SerializeField]
     List<GameObject> swappablePieces = new List<GameObject>(); // holds a list of the cubes used for the swap
 
@@ -19,8 +19,8 @@ public class SwapParts : MonoBehaviour
     Vector3 swapPieceVector;
 
     // bools to make sure certain functions don't get called
-    public bool isSwapping = false;
-    public bool finishedSwapping;
+    bool isSwapping = false;
+    bool finishedSwapping;
 
     // holds the value of the index value for the list to use later
     int randomIndex;
@@ -82,9 +82,9 @@ public class SwapParts : MonoBehaviour
 
             if (groundPiece.position == swapPieceVector) // if the position of the ground and swap piece is the same
             {
+                finishedSwapping = true; // sets it to true
                 swappablePieces.Add(startingPieces[randomIndex]); // adds the ground piece to the swap piece list
                 startingPieces.RemoveAt(randomIndex); // removes the ground piece from the ground piece list
-                finishedSwapping = true; // sets it to true
             }
         }
     }
@@ -99,11 +99,11 @@ public class SwapParts : MonoBehaviour
             if (swapPiece.position == groundPieceVector) // if the position matches where the ground piece was
             {
                 // set the bools to false to allow for further swaps in the future
+                finishedSwapping = false;
                 isSwapping = false;
                 // swap the location of the swap piece between the lists
                 startingPieces.Add(swappablePieces[randomSwapIndex]);
                 swappablePieces.RemoveAt(randomSwapIndex);
-                finishedSwapping = false;
             }
         }
     }
