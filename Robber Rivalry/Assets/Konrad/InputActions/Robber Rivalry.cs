@@ -49,6 +49,22 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PickUpGem"",
+                    ""type"": ""Button"",
+                    ""id"": ""98ad50ff-a53f-4556-afa4-fc39b5508035"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DropGem"",
+                    ""type"": ""Button"",
+                    ""id"": ""0996415f-8187-42b8-9c99-f00eaa603aec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -64,133 +80,12 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""WSAD"",
-                    ""id"": ""599bb8bc-c547-443e-8248-13221b7dc0e6"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""4fc9a2f8-866c-4e77-afba-cb061b852d36"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""12fc9e16-7c2e-42f3-b82c-b2d4bd0d9e3f"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""8a483979-6ad7-4bcf-880b-045aca88e4b7"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""d5614fc7-0e46-4186-b1a8-7c016f40bc80"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""UpDownLeftRight"",
-                    ""id"": ""079f422f-e8c2-4b8f-854d-f1c8f87dac82"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""4ae580d0-e8d0-47a1-8195-14ef2092867c"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""e6c8ddc2-4679-4c08-a908-5185942bf6b4"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""5e2bb486-63a4-4bef-ad93-b4c7d57a8aa8"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""439e422f-e557-4fdd-afa1-a1639b060ca6"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""352e0fa4-d987-4089-a235-efbce57bad1f"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Ability1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7b4d3376-84eb-4f30-b1ab-d5a70e1c7a2f"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
                     ""action"": ""Ability1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -208,23 +103,34 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2a16883d-bb07-4967-ae2c-4135d6d0734e"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""6463dcff-9cf7-4230-ab8d-721fb591d816"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bb1a85f-3b93-43a9-866a-ce02e6ffe997"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PickUpGem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fef35388-988d-428b-826a-8d062ce93303"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DropGem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -559,6 +465,8 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
+        m_Player_PickUpGem = m_Player.FindAction("PickUpGem", throwIfNotFound: true);
+        m_Player_DropGem = m_Player.FindAction("DropGem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -624,6 +532,8 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Ability1;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Rotation;
+    private readonly InputAction m_Player_PickUpGem;
+    private readonly InputAction m_Player_DropGem;
     public struct PlayerActions
     {
         private @RobberRivalry m_Wrapper;
@@ -632,6 +542,8 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
+        public InputAction @PickUpGem => m_Wrapper.m_Player_PickUpGem;
+        public InputAction @DropGem => m_Wrapper.m_Player_DropGem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -653,6 +565,12 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Rotation.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
+                @PickUpGem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
+                @PickUpGem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
+                @PickUpGem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
+                @DropGem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
+                @DropGem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
+                @DropGem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -669,6 +587,12 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
+                @PickUpGem.started += instance.OnPickUpGem;
+                @PickUpGem.performed += instance.OnPickUpGem;
+                @PickUpGem.canceled += instance.OnPickUpGem;
+                @DropGem.started += instance.OnDropGem;
+                @DropGem.performed += instance.OnDropGem;
+                @DropGem.canceled += instance.OnDropGem;
             }
         }
     }
@@ -802,6 +726,8 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         void OnAbility1(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
+        void OnPickUpGem(InputAction.CallbackContext context);
+        void OnDropGem(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

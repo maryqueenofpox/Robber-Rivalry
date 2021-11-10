@@ -10,16 +10,20 @@ public class PlayerControls : MonoBehaviour
     public float moveSpeed = 50.0f;
     Vector2 movementInput;
     Vector2 rotationInput;
+    [SerializeField]
     float sprintTime = 10f;
     float maxSprintTime;
     bool isSprinting = false;
+    [SerializeField]
     float sprintForce = 2f;
     float timeUntilRecharge = 2f;
     float originalRechargeTime;
 
     [SerializeField] GameObject wetFloorSign;
 
-    public bool canUseAbility;
+    [SerializeField] int reach = 10;
+    bool canUseAbility;
+    bool isCarryingGem = false;
 
     private void Start()
     {
@@ -27,6 +31,11 @@ public class PlayerControls : MonoBehaviour
         maxSprintTime = sprintTime;
         originalRechargeTime = timeUntilRecharge;
         canUseAbility = false;
+    }
+
+    private void Update()
+    {
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10f, Color.red);
     }
 
     private void FixedUpdate()
@@ -98,6 +107,31 @@ public class PlayerControls : MonoBehaviour
             isSprinting = true;
         else if (ctx.canceled)
             isSprinting = false;
+    }
+
+    public void PickUpGem(InputAction.CallbackContext ctx)
+    {
+        RaycastHit hit;
+        
+        if (!isCarryingGem)
+        {
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach) && hit.transform.CompareTag("Gem"))
+            {
+                hit.transform.parent = transform;
+                transform.GetChild(1).localPosition = new Vector3(0, 1.5f, 0);
+                isCarryingGem = true;
+            }
+        }
+    }
+
+    public void DropGem(InputAction.CallbackContext ctx)
+    {
+        if (isCarryingGem)
+        {
+            transform.GetChild(1).transform.localPosition = transform.TransformDirection(Vector3.forward * 1);
+            transform.GetChild(1).transform.parent = null;
+            isCarryingGem = false;
+        }
     }
 
     void SpawnObject()
