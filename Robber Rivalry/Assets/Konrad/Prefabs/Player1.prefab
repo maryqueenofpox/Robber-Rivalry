@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5388127139169894267}
   - component: {fileID: 8297905263623649742}
   - component: {fileID: 8923449791123323240}
-  - component: {fileID: 5317928747887569723}
   m_Layer: 0
   m_Name: Forward
   m_TagString: Untagged
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5317928747887569723
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509573514402280383}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2068135981471985156
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,8 +211,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 500
+  sprintTime: 10
+  sprintForce: 2
   wetFloorSign: {fileID: 7843242910152865544, guid: bd6975fb571441f48b0994bab2c686c7, type: 3}
-  canUseAbility: 0
+  reach: 10
 --- !u!114 &538959827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +344,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 64c2286b-587e-49aa-9898-346f8a33c89f
     m_ActionName: Player/Rotation[/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8122222668563896476}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: PickUpGem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 98ad50ff-a53f-4556-afa4-fc39b5508035
+    m_ActionName: Player/PickUpGem[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8122222668563896476}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: DropGem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0996415f-8187-42b8-9c99-f00eaa603aec
+    m_ActionName: Player/DropGem[/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
