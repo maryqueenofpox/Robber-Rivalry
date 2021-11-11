@@ -26,6 +26,14 @@ public class SwapParts : MonoBehaviour
     int randomIndex;
     int randomSwapIndex;
 
+    [SerializeField] float swapTimer;
+    float originalTimer;
+
+    private void Start()
+    {
+        originalTimer = swapTimer;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -36,10 +44,17 @@ public class SwapParts : MonoBehaviour
 
     void GetInput()
     {
-        if (Keyboard.current.spaceKey.IsPressed() && isSwapping == false)
+        swapTimer -= Time.deltaTime;
+        if (swapTimer <= 0.0f)
+        {
+            BeginSwap();
+            swapTimer = originalTimer;
+        }
+
+        /*if (Keyboard.current.spaceKey.IsPressed() && isSwapping == false)
         {
             BeginSwap(); // when the key gets called it calls the BeginSwap method
-        }
+        }*/
     }
 
     void BeginSwap()
@@ -57,8 +72,8 @@ public class SwapParts : MonoBehaviour
         groundPiece = index.transform; // makes the groundPiece hold the value of the transform
         groundPieceVector = groundPiece.position; // the vector will hold a constant value of the current position
 
-        if (groundPiece.gameObject.GetComponent<CheckCollision>().isColliding) // if the player is on the box that got picked
-            PickRandomGround(); // redo the random generation
+        /*if (groundPiece.gameObject.GetComponent<CheckCollision>().isColliding) // if the player is on the box that got picked
+            PickRandomGround(); // redo the random generation*/
     }
 
     void PickRandomSwap()
