@@ -118,7 +118,7 @@ public class PlayerControls : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach) && hit.transform.CompareTag("Gem"))
             {
                 hit.transform.parent = transform;
-                transform.GetChild(1).localPosition = new Vector3(0, 1.5f, 0);
+                transform.GetChild(0).localPosition = new Vector3(0, 3.5f, 0);
                 isCarryingGem = true;
             }
         }
@@ -128,15 +128,15 @@ public class PlayerControls : MonoBehaviour
     {
         if (isCarryingGem)
         {
-            transform.GetChild(1).transform.localPosition = transform.TransformDirection(Vector3.forward * 1);
-            transform.GetChild(1).transform.parent = null;
+            transform.GetChild(0).transform.localPosition = transform.TransformDirection(Vector3.forward * 1);
+            transform.GetChild(0).transform.parent = null;
             isCarryingGem = false;
         }
     }
 
     void SpawnObject()
     {
-        Instantiate(wetFloorSign, transform.position + transform.forward * 2, Quaternion.identity);
+        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 2.44f, transform.position.z + transform.forward.z), wetFloorSign.transform.rotation);
     }
 
     // Yes, I could have used the below green code
