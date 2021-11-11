@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2945002605465247289
+--- !u!1 &5122857447441296100
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2563974154360145027}
-  - component: {fileID: 1457701171130288934}
-  - component: {fileID: 3737490934933536748}
-  - component: {fileID: 4108867179943068518}
-  - component: {fileID: 7261648059617746153}
-  - component: {fileID: 5874328545054006118}
-  - component: {fileID: 3387654698357315025}
-  - component: {fileID: 1930627552625390867}
-  m_Layer: 7
-  m_Name: PlayerModeled
-  m_TagString: Player
+  - component: {fileID: 5499980467400847454}
+  - component: {fileID: 8934016366538440699}
+  - component: {fileID: 6636326475926358833}
+  - component: {fileID: -311025439618459005}
+  - component: {fileID: -3698416350223420473}
+  - component: {fileID: 7633386814916328718}
+  - component: {fileID: 5041116329186202035}
+  - component: {fileID: 290024968148807465}
+  m_Layer: 0
+  m_Name: PlayerYellowModel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2563974154360145027
+--- !u!4 &5499980467400847454
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
+  m_GameObject: {fileID: 5122857447441296100}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.581, y: 3.346, z: -2.586}
-  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_LocalPosition: {x: -0.15, y: 3.46, z: -4.52}
+  m_LocalScale: {x: 0.34905985, y: 0.34905985, z: 0.34905985}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1457701171130288934
+--- !u!33 &8934016366538440699
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
+  m_GameObject: {fileID: 5122857447441296100}
   m_Mesh: {fileID: -2406637689874977299, guid: f3cdf0aa0d574fa408237c2ce14d0331, type: 3}
---- !u!23 &3737490934933536748
+--- !u!23 &6636326475926358833
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
+  m_GameObject: {fileID: 5122857447441296100}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,9 +65,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8699436558653759460, guid: f3cdf0aa0d574fa408237c2ce14d0331, type: 3}
+  - {fileID: 2100000, guid: 5b58c112953b24b4ca76a7aa6f5fca8d, type: 2}
   - {fileID: -3683653601302683008, guid: f3cdf0aa0d574fa408237c2ce14d0331, type: 3}
-  - {fileID: 5970794659191331485, guid: f3cdf0aa0d574fa408237c2ce14d0331, type: 3}
+  - {fileID: 2100000, guid: 2a62b193bfc7a444ba98231ec74b6942, type: 2}
   - {fileID: 8830196273332348141, guid: f3cdf0aa0d574fa408237c2ce14d0331, type: 3}
   - {fileID: 7626191068330388430, guid: f3cdf0aa0d574fa408237c2ce14d0331, type: 3}
   m_StaticBatchInfo:
@@ -91,13 +91,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &4108867179943068518
+--- !u!54 &-311025439618459005
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
+  m_GameObject: {fileID: 5122857447441296100}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -107,44 +107,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &7261648059617746153
+--- !u!136 &-3698416350223420473
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
+  m_GameObject: {fileID: 5122857447441296100}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7851422
-  m_Height: 4.8937855
+  m_Radius: 1.1557393
+  m_Height: 5.096306
   m_Direction: 1
-  m_Center: {x: -0.009999983, y: 0.014264137, z: 0.10000002}
---- !u!114 &5874328545054006118
+  m_Center: {x: 0.0007388684, y: -0.018236918, z: 0.03574897}
+--- !u!114 &7633386814916328718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0809e2121d4f9304892bf0ebaba7f9ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 100
-  sprintTime: 10
-  sprintForce: 2
-  wetFloorSign: {fileID: 9071711791412502219, guid: fb941c8d3e17cb049b87ea8972944465, type: 3}
-  reach: 10
---- !u!114 &3387654698357315025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
+  m_GameObject: {fileID: 5122857447441296100}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -165,7 +148,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5874328545054006118}
+      - m_Target: {fileID: 5041116329186202035}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -178,10 +161,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 0fc3bdd9-142a-4dd4-8ec8-656b12e63695
-    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows/leftStick]
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5874328545054006118}
+      - m_Target: {fileID: 5041116329186202035}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: Ability1
         m_Mode: 0
@@ -194,10 +177,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: a5dc3e21-cbc4-4241-b131-1e4eaa0a79ca
-    m_ActionName: Player/Ability1[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonWest]
+    m_ActionName: Player/Ability1[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5874328545054006118}
+      - m_Target: {fileID: 5041116329186202035}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: Sprint
         m_Mode: 0
@@ -210,10 +193,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
-    m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/rightTrigger]
+    m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5874328545054006118}
+      - m_Target: {fileID: 5041116329186202035}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: Rotation
         m_Mode: 0
@@ -226,10 +209,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 64c2286b-587e-49aa-9898-346f8a33c89f
-    m_ActionName: Player/Rotation[/XInputControllerWindows/rightStick,/XInputControllerWindows/rightStick]
+    m_ActionName: Player/Rotation[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5874328545054006118}
+      - m_Target: {fileID: 5041116329186202035}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: PickUpGem
         m_Mode: 0
@@ -242,10 +225,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 98ad50ff-a53f-4556-afa4-fc39b5508035
-    m_ActionName: Player/PickUpGem[/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
+    m_ActionName: Player/PickUpGem[/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5874328545054006118}
+      - m_Target: {fileID: 5041116329186202035}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: DropGem
         m_Mode: 0
@@ -258,19 +241,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 0996415f-8187-42b8-9c99-f00eaa603aec
-    m_ActionName: Player/DropGem[/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonNorth]
+    m_ActionName: Player/DropGem[/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 734bc919-4c91-49e7-b95d-c199ecf08fe9
-    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 6a5260da-994f-4700-951e-70f5fed3806d
-    m_ActionName: UI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
+    m_ActionName: UI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e3f014b6-7bd7-422c-b1eb-9680f14e6808
-    m_ActionName: UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
+    m_ActionName: UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: b13ee2fc-1565-4bbf-b427-1e879beb88f2
@@ -304,13 +287,30 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1930627552625390867
+--- !u!114 &5041116329186202035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945002605465247289}
+  m_GameObject: {fileID: 5122857447441296100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0809e2121d4f9304892bf0ebaba7f9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 150
+  sprintTime: 10
+  sprintForce: 2
+  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
+  reach: 10
+--- !u!114 &290024968148807465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122857447441296100}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9974058f2804dc048a630eff06e9e96f, type: 3}
