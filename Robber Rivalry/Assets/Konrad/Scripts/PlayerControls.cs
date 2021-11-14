@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     Rigidbody rb;
-    //bool grounded;
     public float moveSpeed = 50.0f;
     Vector2 movementInput;
     Vector2 rotationInput;
@@ -23,7 +22,9 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] int reach = 10;
     bool canUseAbility;
-    bool isCarryingGem = false;
+    [HideInInspector] public bool isCarryingGem = false;
+
+    [SerializeField] float slapFoce = 5000f;
 
     private void Start()
     {
@@ -134,6 +135,29 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    public void Slap(InputAction.CallbackContext ctx)
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach)) //&& hit.transform.CompareTag("Player"))
+        {
+            GameObject objectHit = hit.transform.gameObject;
+            
+            if (objectHit.CompareTag("Player"))
+            {
+                PlayerControls controls = objectHit.GetComponent<PlayerControls>();
+                controls.rb.AddForce(transform.forward * slapFoce);
+
+                if (controls.isCarryingGem)
+                {
+                    objectHit.transform.GetChild(0).transform.localPosition = objectHit.transform.TransformDirection(-Vector3.forward * 2);
+                    objectHit.transform.GetChild(0).transform.parent = null;
+                    controls.isCarryingGem = false;
+                }
+            }
+        }
+    }
+
     void SpawnObject()
     {
         Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 2.44f, transform.position.z + transform.forward.z), wetFloorSign.transform.rotation);
@@ -145,18 +169,4 @@ public class PlayerControls : MonoBehaviour
         if (collision.collider.CompareTag("PowerUp"))
             canUseAbility = true;
     }
-
-    // Below might be unnecessary
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Ground"))
-            grounded = true;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.CompareTag("Ground"))
-            grounded = false;
-    }
-    */
 }

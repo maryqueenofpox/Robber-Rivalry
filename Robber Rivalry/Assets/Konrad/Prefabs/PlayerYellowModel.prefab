@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 290024968148807465}
   m_Layer: 0
   m_Name: PlayerYellowModel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,6 +282,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1169ec4c-c794-4e21-9e29-788290ef6132
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5041116329186202035}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: Slap
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 61a60055-6319-4318-b605-7df2c1296645
+    m_ActionName: Player/Slap[/XInputControllerWindows/buttonSouth,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -304,6 +320,8 @@ MonoBehaviour:
   sprintForce: 2
   wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
   reach: 10
+  isCarryingGem: 0
+  slapFoce: 5000
 --- !u!114 &290024968148807465
 MonoBehaviour:
   m_ObjectHideFlags: 0

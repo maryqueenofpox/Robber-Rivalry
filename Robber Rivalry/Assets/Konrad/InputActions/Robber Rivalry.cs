@@ -65,6 +65,14 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Slap"",
+                    ""type"": ""Button"",
+                    ""id"": ""61a60055-6319-4318-b605-7df2c1296645"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -285,6 +293,28 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""DropGem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1479b399-d55c-498d-8274-7f24557d501f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Slap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb42817a-c840-411f-93e0-392d0d492023"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Slap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -606,7 +636,18 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Mouse"",
+            ""bindingGroup"": ""Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]
@@ -621,6 +662,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
         m_Player_PickUpGem = m_Player.FindAction("PickUpGem", throwIfNotFound: true);
         m_Player_DropGem = m_Player.FindAction("DropGem", throwIfNotFound: true);
+        m_Player_Slap = m_Player.FindAction("Slap", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -688,6 +730,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Rotation;
     private readonly InputAction m_Player_PickUpGem;
     private readonly InputAction m_Player_DropGem;
+    private readonly InputAction m_Player_Slap;
     public struct PlayerActions
     {
         private @RobberRivalry m_Wrapper;
@@ -698,6 +741,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
         public InputAction @PickUpGem => m_Wrapper.m_Player_PickUpGem;
         public InputAction @DropGem => m_Wrapper.m_Player_DropGem;
+        public InputAction @Slap => m_Wrapper.m_Player_Slap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -725,6 +769,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @DropGem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
                 @DropGem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
                 @DropGem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
+                @Slap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
+                @Slap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
+                @Slap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -747,6 +794,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @DropGem.started += instance.OnDropGem;
                 @DropGem.performed += instance.OnDropGem;
                 @DropGem.canceled += instance.OnDropGem;
+                @Slap.started += instance.OnSlap;
+                @Slap.performed += instance.OnSlap;
+                @Slap.canceled += instance.OnSlap;
             }
         }
     }
@@ -874,6 +924,15 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_KeyboardSchemeIndex];
         }
     }
+    private int m_MouseSchemeIndex = -1;
+    public InputControlScheme MouseScheme
+    {
+        get
+        {
+            if (m_MouseSchemeIndex == -1) m_MouseSchemeIndex = asset.FindControlSchemeIndex("Mouse");
+            return asset.controlSchemes[m_MouseSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -882,6 +941,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         void OnRotation(InputAction.CallbackContext context);
         void OnPickUpGem(InputAction.CallbackContext context);
         void OnDropGem(InputAction.CallbackContext context);
+        void OnSlap(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
