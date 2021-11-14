@@ -35,48 +35,56 @@ public class Guard_Control : MonoBehaviour
     {
 		if (IsPlayer1InVisionDistance() == true && IsPlayer1InVisionAngle() == true)
 		{
+            GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
             GetComponent<AIDestinationSetter>().target = player1;
             aipath.maxSpeed = 10f;           
         }
         else if (IsPlayer1InVisionDistance() == false && IsPlayer1InVisionAngle() == false)
         {
+            GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
             aipath.maxSpeed = 3f;
         }
         else if (IsPlayer2InVisionDistance() == true && IsPlayer2InVisionAngle() == true)
         {
+            GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
             GetComponent<AIDestinationSetter>().target = player2;
             aipath.maxSpeed = 10f;
         }
         else if (IsPlayer2InVisionDistance() == false && IsPlayer2InVisionAngle() == false)
         {
+            GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
             aipath.maxSpeed = 3f;
         }
         else if (IsPlayer3InVisionDistance() == true && IsPlayer3InVisionAngle() == true)
         {
+            GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
             GetComponent<AIDestinationSetter>().target = player3;
             aipath.maxSpeed = 10f;
         }
         else if (IsPlayer3InVisionDistance() == false && IsPlayer3InVisionAngle() == false)
         {
+            GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
             aipath.maxSpeed = 3f;
         }
         else if (IsPlayer4InVisionDistance() == true && IsPlayer4InVisionAngle() == true)
         {
+            GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
             GetComponent<AIDestinationSetter>().target = player4;
             aipath.maxSpeed = 10f;
         }
         else if (IsPlayer4InVisionDistance() == false && IsPlayer4InVisionAngle() == false)
         {
+            GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
             aipath.maxSpeed = 3f;
