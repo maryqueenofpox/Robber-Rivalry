@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5122857447441296100}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.15, y: 3.46, z: -4.52}
   m_LocalScale: {x: 0.34905985, y: 0.34905985, z: 0.34905985}
   m_Children: []
@@ -319,9 +319,10 @@ MonoBehaviour:
   sprintTime: 10
   sprintForce: 2
   wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
-  reach: 10
+  reach: 0.9
   isCarryingGem: 0
   slapFoce: 5000
+  slapCooldown: 3
 --- !u!114 &290024968148807465
 MonoBehaviour:
   m_ObjectHideFlags: 0

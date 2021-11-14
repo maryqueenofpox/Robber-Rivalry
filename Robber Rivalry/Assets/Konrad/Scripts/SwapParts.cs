@@ -29,6 +29,8 @@ public class SwapParts : MonoBehaviour
     [SerializeField] float swapTimer;
     float originalTimer;
 
+    [SerializeField] float swapSpeed = 50f;
+
     private void Start()
     {
         originalTimer = swapTimer;
@@ -93,7 +95,7 @@ public class SwapParts : MonoBehaviour
                 return; // don't go further
 
             // Changes the position of the piece to smoothly move to the position of the swap piece
-            groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * 10f);
+            groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * swapSpeed);
 
             if (groundPiece.position == swapPieceVector) // if the position of the ground and swap piece is the same
             {
@@ -109,7 +111,7 @@ public class SwapParts : MonoBehaviour
         if (isSwapping && finishedSwapping) // if the swap is still happening and the other piece finished swapping
         {
             // move the swap piece to the position where the ground piece was
-            swapPiece.position = Vector3.MoveTowards(swapPiece.position, groundPieceVector, Time.deltaTime * 10f);
+            swapPiece.position = Vector3.MoveTowards(swapPiece.position, groundPieceVector, Time.deltaTime * swapSpeed);
 
             if (swapPiece.position == groundPieceVector) // if the position matches where the ground piece was
             {

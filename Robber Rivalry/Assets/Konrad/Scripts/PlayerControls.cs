@@ -20,11 +20,15 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] GameObject wetFloorSign;
 
-    [SerializeField] int reach = 10;
+    [SerializeField] float reach = 1.5f;
     bool canUseAbility;
     [HideInInspector] public bool isCarryingGem = false;
 
     [SerializeField] float slapFoce = 5000f;
+
+    [SerializeField] float slapCooldown = 3f;
+    float originalSlapCooldown;
+    bool canSlap = true;
 
     private void Start()
     {
@@ -32,11 +36,23 @@ public class PlayerControls : MonoBehaviour
         maxSprintTime = sprintTime;
         originalRechargeTime = timeUntilRecharge;
         canUseAbility = false;
+        originalSlapCooldown = slapCooldown;
     }
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10f, Color.red);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * reach, Color.red);
+
+        if (!canSlap)
+        {
+            slapCooldown -= Time.deltaTime;
+        }
+
+        if (slapCooldown <= 0.0f)
+        {
+            canSlap = true;
+            slapCooldown = originalSlapCooldown;
+        }
     }
 
     private void FixedUpdate()
@@ -137,22 +153,26 @@ public class PlayerControls : MonoBehaviour
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach)) //&& hit.transform.CompareTag("Player"))
+        if (canSlap)
         {
-            GameObject objectHit = hit.transform.gameObject;
-            
-            if (objectHit.CompareTag("Player"))
-            {
-                PlayerControls controls = objectHit.GetComponent<PlayerControls>();
-                controls.rb.AddForce(transform.forward * slapFoce);
+            canSlap = false;
+            RaycastHit hit;
 
-                if (controls.isCarryingGem)
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach)) //&& hit.transform.CompareTag("Player"))
+            {
+                GameObject objectHit = hit.transform.gameObject;
+
+                if (objectHit.CompareTag("Player"))
                 {
-                    objectHit.transform.GetChild(0).transform.localPosition = objectHit.transform.TransformDirection(-Vector3.forward * 2);
-                    objectHit.transform.GetChild(0).transform.parent = null;
-                    controls.isCarryingGem = false;
+                    PlayerControls controls = objectHit.GetComponent<PlayerControls>();
+                    controls.rb.AddForce(transform.forward * slapFoce);
+
+                    if (controls.isCarryingGem)
+                    {
+                        objectHit.transform.GetChild(0).transform.localPosition = objectHit.transform.TransformDirection(-Vector3.forward * 2);
+                        objectHit.transform.GetChild(0).transform.parent = null;
+                        controls.isCarryingGem = false;
+                    }
                 }
             }
         }
