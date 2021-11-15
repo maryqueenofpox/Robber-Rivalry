@@ -27,11 +27,11 @@ public class Guard_Control : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 		if (IsPlayer1InVisionDistance() == true && IsPlayer1InVisionAngle() == true)
 		{
@@ -42,6 +42,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer1InVisionDistance() == false && IsPlayer1InVisionAngle() == false)
         {
+            Wait();          
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -56,6 +57,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer2InVisionDistance() == false && IsPlayer2InVisionAngle() == false)
         {
+            Wait();
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -70,6 +72,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer3InVisionDistance() == false && IsPlayer3InVisionAngle() == false)
         {
+            Wait();
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -84,6 +87,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer4InVisionDistance() == false && IsPlayer4InVisionAngle() == false)
         {
+            Wait();
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -152,5 +156,10 @@ public class Guard_Control : MonoBehaviour
         float dot = Vector3.Dot(playerDirection, transform.forward);
         float angleToPlayer = Mathf.Acos(dot) * Mathf.Rad2Deg;
         return angleToPlayer <= VisionAngle;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
     }
 }

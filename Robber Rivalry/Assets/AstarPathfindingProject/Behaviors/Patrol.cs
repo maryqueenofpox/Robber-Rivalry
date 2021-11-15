@@ -33,7 +33,7 @@ namespace Pathfinding {
 		}
 
 		/// <summary>Update is called once per frame</summary>
-		void Update () {
+		void FixedUpdate () {
 			if (targets.Length == 0) return;
 
 			bool search = false;
