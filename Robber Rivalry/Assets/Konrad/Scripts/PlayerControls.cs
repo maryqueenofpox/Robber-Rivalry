@@ -30,6 +30,11 @@ public class PlayerControls : MonoBehaviour
     float originalSlapCooldown;
     bool canSlap = true;
 
+    public LootGrabber lootGrabber;
+
+    public float timeUntilScoreIncrease = 4.0f;
+    float originalTimeUntilScoreIncrease;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -37,6 +42,7 @@ public class PlayerControls : MonoBehaviour
         originalRechargeTime = timeUntilRecharge;
         canUseAbility = false;
         originalSlapCooldown = slapCooldown;
+        originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
     }
 
     private void Update()
@@ -52,6 +58,17 @@ public class PlayerControls : MonoBehaviour
         {
             canSlap = true;
             slapCooldown = originalSlapCooldown;
+        }
+
+        if (isCarryingGem)
+        {
+            timeUntilScoreIncrease -= Time.deltaTime;
+            if(timeUntilScoreIncrease <= 0.0f)
+            {
+                lootGrabber.loot += 1;
+                lootGrabber.score.text = lootGrabber.loot.ToString();
+                timeUntilScoreIncrease = originalTimeUntilScoreIncrease;
+            }
         }
     }
 
@@ -155,7 +172,6 @@ public class PlayerControls : MonoBehaviour
     {
         if (canSlap)
         {
-            canSlap = false;
             RaycastHit hit;
 
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach)) //&& hit.transform.CompareTag("Player"))
@@ -173,8 +189,14 @@ public class PlayerControls : MonoBehaviour
                         objectHit.transform.GetChild(0).transform.parent = null;
                         controls.isCarryingGem = false;
                     }
+
+                    canSlap = false;
                 }
+                else
+                    canSlap = false;
             }
+            else
+                canSlap = false;
         }
     }
 
@@ -183,7 +205,6 @@ public class PlayerControls : MonoBehaviour
         Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 2.44f, transform.position.z + transform.forward.z), wetFloorSign.transform.rotation);
     }
 
-    // Yes, I could have used the below green code
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("PowerUp"))

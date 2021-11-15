@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &8216069 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1930627552625390867, guid: bf750472a2decae4989bf5af41559623, type: 3}
+  m_PrefabInstance: {fileID: 2091822872}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9974058f2804dc048a630eff06e9e96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &10746870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2489434777120061707, guid: f3e870f7b5096b6449f2332da7b61e16, type: 3}
@@ -1845,7 +1856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -1984,7 +1995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -3317,6 +3328,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 5874328545054006118, guid: bf750472a2decae4989bf5af41559623, type: 3}
+      propertyPath: lootGrabber
+      value: 
+      objectReference: {fileID: 8216069}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf750472a2decae4989bf5af41559623, type: 3}
 --- !u!1 &501406342 stripped
@@ -4958,6 +4973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 0}
   respawnpoint: {fileID: 0}
+  loot: 0
 --- !u!4 &670318423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cadde0c7430a2a498555e7a063c57cf, type: 3}
@@ -5712,7 +5728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8616421709089952704, guid: 6a19606a90189d64187dd5a90663dfad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.04
+      value: 3.37
       objectReference: {fileID: 0}
     - target: {fileID: 8616421709089952704, guid: 6a19606a90189d64187dd5a90663dfad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6169,6 +6185,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 5041116329186202035, guid: f469c453c3530e34ea93ce707db84492, type: 3}
+      propertyPath: lootGrabber
+      value: 
+      objectReference: {fileID: 8216069}
     - target: {fileID: 5122857447441296100, guid: f469c453c3530e34ea93ce707db84492, type: 3}
       propertyPath: m_Name
       value: PlayerYellowModel (1)
@@ -11844,7 +11864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -12356,6 +12376,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 5041116329186202035, guid: f469c453c3530e34ea93ce707db84492, type: 3}
+      propertyPath: lootGrabber
+      value: 
+      objectReference: {fileID: 8216069}
     - target: {fileID: 5122857447441296100, guid: f469c453c3530e34ea93ce707db84492, type: 3}
       propertyPath: m_Name
       value: PlayerYellowModel
@@ -12806,7 +12830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -15772,6 +15796,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 5874328545054006118, guid: bf750472a2decae4989bf5af41559623, type: 3}
+      propertyPath: lootGrabber
+      value: 
+      objectReference: {fileID: 8216069}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf750472a2decae4989bf5af41559623, type: 3}
 --- !u!1001 &2121299791

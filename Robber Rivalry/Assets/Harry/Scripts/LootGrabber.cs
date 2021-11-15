@@ -9,7 +9,7 @@ public class LootGrabber : MonoBehaviour
     public TextMeshProUGUI score;
     public Transform respawnpoint;
 
-    private float loot = 0;
+    public float loot = 0;
 
     private void OnTriggerEnter(Collider other)
     {

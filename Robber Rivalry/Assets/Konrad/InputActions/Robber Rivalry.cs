@@ -375,22 +375,22 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cb42817a-c840-411f-93e0-392d0d492023"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
+                    ""id"": ""540b8eb6-85f6-4f68-a5cb-543e5350ad6c"",
+                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
+                    ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Switch"",
                     ""action"": ""Slap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""540b8eb6-85f6-4f68-a5cb-543e5350ad6c"",
-                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
-                    ""interactions"": """",
+                    ""id"": ""86e5c3b6-64fb-41fc-8892-4059755fae8b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Switch"",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Slap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -719,17 +719,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Mouse"",
-            ""bindingGroup"": ""Mouse"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Mouse>"",
-                    ""isOptional"": true,
-                    ""isOR"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Switch"",
             ""bindingGroup"": ""Switch"",
             ""devices"": [
@@ -1010,15 +999,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         {
             if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
             return asset.controlSchemes[m_KeyboardSchemeIndex];
-        }
-    }
-    private int m_MouseSchemeIndex = -1;
-    public InputControlScheme MouseScheme
-    {
-        get
-        {
-            if (m_MouseSchemeIndex == -1) m_MouseSchemeIndex = asset.FindControlSchemeIndex("Mouse");
-            return asset.controlSchemes[m_MouseSchemeIndex];
         }
     }
     private int m_SwitchSchemeIndex = -1;
