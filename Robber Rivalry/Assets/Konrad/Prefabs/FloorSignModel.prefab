@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 587654784777737144}
   - component: {fileID: 4379791643422318135}
   - component: {fileID: 1474830509287286365}
+  - component: {fileID: -3868361444865088525}
   m_Layer: 6
   m_Name: FloorSignModel
   m_TagString: Wall
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3230887729457355034, guid: ead18f54b60336041808f57b5c17be24, type: 3}
+  - {fileID: 2100000, guid: 19bbfca84e87ca94ea1de6b98e219f29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.60680425, y: 0.80648917, z: 0.95172125}
-  m_Center: {x: -0.000000044703484, y: -0.12783399, z: 0.47457394}
+  m_Size: {x: 1.0314965, y: 1.0435513, z: 5.1518707}
+  m_Center: {x: 0.010700941, y: -0.09225567, z: 2.574649}
 --- !u!114 &1474830509287286365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +110,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbfefb7354487c46b274bb03db5e1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &-3868361444865088525
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380134044881384045}
+  serializedVersion: 2
+  m_Mass: 1000
+  m_Drag: 1000
+  m_AngularDrag: 1000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
