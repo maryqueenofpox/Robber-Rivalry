@@ -24,25 +24,37 @@ public class Guard_Control : MonoBehaviour
 
     AIPath aipath;
 
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Player")
+        {
+            GetComponent<AIDestinationSetter>().enabled = false;
+            GetComponent<Patrol>().enabled = true;
+            StartCoroutine(Wait3());
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
 		if (IsPlayer1InVisionDistance() == true && IsPlayer1InVisionAngle() == true)
 		{
+            StartCoroutine(Wait());
             GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
-            GetComponent<AIDestinationSetter>().target = player1;
+            GetComponent<AIDestinationSetter>().target = player1;           
+
             aipath.maxSpeed = 10f;           
         }
         else if (IsPlayer1InVisionDistance() == false && IsPlayer1InVisionAngle() == false)
         {
-            Wait();          
+                      
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -50,6 +62,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer2InVisionDistance() == true && IsPlayer2InVisionAngle() == true)
         {
+            StartCoroutine(Wait());
             GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
             GetComponent<AIDestinationSetter>().target = player2;
@@ -57,7 +70,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer2InVisionDistance() == false && IsPlayer2InVisionAngle() == false)
         {
-            Wait();
+           
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -65,6 +78,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer3InVisionDistance() == true && IsPlayer3InVisionAngle() == true)
         {
+            StartCoroutine(Wait());
             GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
             GetComponent<AIDestinationSetter>().target = player3;
@@ -72,7 +86,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer3InVisionDistance() == false && IsPlayer3InVisionAngle() == false)
         {
-            Wait();
+            
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -80,6 +94,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer4InVisionDistance() == true && IsPlayer4InVisionAngle() == true)
         {
+            StartCoroutine(Wait());
             GetComponent<Patrol>().enabled = false;
             GetComponent<AIDestinationSetter>().enabled = true;
             GetComponent<AIDestinationSetter>().target = player4;
@@ -87,7 +102,7 @@ public class Guard_Control : MonoBehaviour
         }
         else if (IsPlayer4InVisionDistance() == false && IsPlayer4InVisionAngle() == false)
         {
-            Wait();
+           
             GetComponent<Patrol>().enabled = true;
             GetComponent<AIDestinationSetter>().enabled = false;
             GetComponent<Patrol>().enabled = true;
@@ -161,5 +176,9 @@ public class Guard_Control : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(1);
+    }
+    IEnumerator Wait3()
+    {
+        yield return new WaitForSeconds(3);
     }
 }
