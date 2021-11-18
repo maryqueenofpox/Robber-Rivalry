@@ -35,6 +35,9 @@ public class PlayerControls : MonoBehaviour
     public float timeUntilScoreIncrease = 4.0f;
     float originalTimeUntilScoreIncrease;
 
+    public float lowFrequency = 2.0f;
+    public float highFrequency = 2.0f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -43,11 +46,14 @@ public class PlayerControls : MonoBehaviour
         canUseAbility = false;
         originalSlapCooldown = slapCooldown;
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
+        Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency);
     }
 
     private void Update()
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * reach, Color.red);
+
+        
 
         if (!canSlap)
         {
