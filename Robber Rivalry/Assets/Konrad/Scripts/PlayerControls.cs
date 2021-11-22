@@ -46,7 +46,7 @@ public class PlayerControls : MonoBehaviour
         canUseAbility = false;
         originalSlapCooldown = slapCooldown;
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
-        Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency);
+        //Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency); << For controller vibration
     }
 
     private void Update()
@@ -215,5 +215,10 @@ public class PlayerControls : MonoBehaviour
     {
         if (collision.collider.CompareTag("PowerUp"))
             canUseAbility = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        
     }
 }
