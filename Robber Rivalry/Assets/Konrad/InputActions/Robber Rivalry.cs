@@ -73,6 +73,14 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""MainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""560ba04b-0de3-4db7-b2f6-5f8b62b8e3b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -392,6 +400,28 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Slap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dca6b5a5-f9fc-4601-9425-d30efe986bea"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a59f24f-1e0b-4064-8b73-f5f2914f543a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MainMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -740,6 +770,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         m_Player_PickUpGem = m_Player.FindAction("PickUpGem", throwIfNotFound: true);
         m_Player_DropGem = m_Player.FindAction("DropGem", throwIfNotFound: true);
         m_Player_Slap = m_Player.FindAction("Slap", throwIfNotFound: true);
+        m_Player_MainMenu = m_Player.FindAction("MainMenu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -808,6 +839,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PickUpGem;
     private readonly InputAction m_Player_DropGem;
     private readonly InputAction m_Player_Slap;
+    private readonly InputAction m_Player_MainMenu;
     public struct PlayerActions
     {
         private @RobberRivalry m_Wrapper;
@@ -819,6 +851,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         public InputAction @PickUpGem => m_Wrapper.m_Player_PickUpGem;
         public InputAction @DropGem => m_Wrapper.m_Player_DropGem;
         public InputAction @Slap => m_Wrapper.m_Player_Slap;
+        public InputAction @MainMenu => m_Wrapper.m_Player_MainMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -849,6 +882,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Slap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
                 @Slap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
                 @Slap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
+                @MainMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
+                @MainMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
+                @MainMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -874,6 +910,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Slap.started += instance.OnSlap;
                 @Slap.performed += instance.OnSlap;
                 @Slap.canceled += instance.OnSlap;
+                @MainMenu.started += instance.OnMainMenu;
+                @MainMenu.performed += instance.OnMainMenu;
+                @MainMenu.canceled += instance.OnMainMenu;
             }
         }
     }
@@ -1019,6 +1058,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         void OnPickUpGem(InputAction.CallbackContext context);
         void OnDropGem(InputAction.CallbackContext context);
         void OnSlap(InputAction.CallbackContext context);
+        void OnMainMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

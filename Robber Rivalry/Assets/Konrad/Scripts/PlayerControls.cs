@@ -38,6 +38,8 @@ public class PlayerControls : MonoBehaviour
     public float lowFrequency = 2.0f;
     public float highFrequency = 2.0f;
 
+    [SerializeField] GameObject menuPanel;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,6 +49,8 @@ public class PlayerControls : MonoBehaviour
         originalSlapCooldown = slapCooldown;
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
         //Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency); << For controller vibration
+
+        menuPanel.SetActive(false);
     }
 
     private void Update()
@@ -130,6 +134,20 @@ public class PlayerControls : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctx)
     {
         movementInput = ctx.ReadValue<Vector2>();
+    }
+
+    public void OpenOrCloseMenuPanel(InputAction.CallbackContext ctx)
+    {
+        if (menuPanel.activeInHierarchy == true)
+        {
+            menuPanel.SetActive(false);
+            Debug.Log("Off");
+        }
+        else if (menuPanel.activeInHierarchy == false)
+        {
+            menuPanel.SetActive(true);
+            Debug.Log("On");
+        }
     }
 
     public void Ability1(InputAction.CallbackContext ctx)
