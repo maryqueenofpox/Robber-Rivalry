@@ -61,6 +61,7 @@ public class SwapParts : MonoBehaviour
 
     void BeginSwap()
     {
+        AstarPath.active.Scan();
         PickRandomGround(); // picks a random cube to swap
         PickRandomSwap(); // picks a random swap cube to swap with
         
@@ -92,7 +93,8 @@ public class SwapParts : MonoBehaviour
         if (isSwapping) // if it's true
         {
             if (finishedSwapping == true) // if this piece finished swapping
-                return; // don't go further
+                AstarPath.active.Scan();
+            return; // don't go further
 
             // Changes the position of the piece to smoothly move to the position of the swap piece
             groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * swapSpeed);
