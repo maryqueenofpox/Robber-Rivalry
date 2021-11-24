@@ -52,7 +52,6 @@ public class SwapParts : MonoBehaviour
             BeginSwap();
             swapTimer = originalTimer;
         }
-
         /*if (Keyboard.current.spaceKey.IsPressed() && isSwapping == false)
         {
             BeginSwap(); // when the key gets called it calls the BeginSwap method
@@ -93,11 +92,13 @@ public class SwapParts : MonoBehaviour
         if (isSwapping) // if it's true
         {
             if (finishedSwapping == true) // if this piece finished swapping
-                AstarPath.active.Scan();
-            return; // don't go further
+            {
+                return; // don't go further
+            }
 
             // Changes the position of the piece to smoothly move to the position of the swap piece
             groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * swapSpeed);
+            AstarPath.active.Scan();
 
             if (groundPiece.position == swapPieceVector) // if the position of the ground and swap piece is the same
             {
@@ -123,6 +124,7 @@ public class SwapParts : MonoBehaviour
                 startingPieces.Add(swappablePieces[randomSwapIndex]);
                 swappablePieces.RemoveAt(randomSwapIndex);
                 finishedSwapping = false;
+                AstarPath.active.Scan();
             }
         }
     }
