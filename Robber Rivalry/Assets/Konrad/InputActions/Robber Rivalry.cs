@@ -418,7 +418,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""5a59f24f-1e0b-4064-8b73-f5f2914f543a"",
                     ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""MainMenu"",
