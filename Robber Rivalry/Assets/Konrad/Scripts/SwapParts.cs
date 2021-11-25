@@ -31,6 +31,8 @@ public class SwapParts : MonoBehaviour
 
     [SerializeField] float swapSpeed = 50f;
 
+    float swap = 0.2f; // for updating the scan only once
+
     private void Start()
     {
         originalTimer = swapTimer;
@@ -52,18 +54,12 @@ public class SwapParts : MonoBehaviour
             BeginSwap();
             swapTimer = originalTimer;
         }
-        /*if (Keyboard.current.spaceKey.IsPressed() && isSwapping == false)
-        {
-            BeginSwap(); // when the key gets called it calls the BeginSwap method
-        }*/
     }
 
     void BeginSwap()
     {
-        AstarPath.active.Scan();
         PickRandomGround(); // picks a random cube to swap
         PickRandomSwap(); // picks a random swap cube to swap with
-        
         isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
     }
 
@@ -98,13 +94,20 @@ public class SwapParts : MonoBehaviour
 
             // Changes the position of the piece to smoothly move to the position of the swap piece
             groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * swapSpeed);
-            AstarPath.active.Scan();
+
+            swap -= Time.deltaTime;
+            if (swap <= 0f)
+            {
+                AstarPath.active.Scan();
+                swap = 10000f;
+            }
 
             if (groundPiece.position == swapPieceVector) // if the position of the ground and swap piece is the same
             {
                 swappablePieces.Add(startingPieces[randomIndex]); // adds the ground piece to the swap piece list
                 startingPieces.RemoveAt(randomIndex); // removes the ground piece from the ground piece list
                 finishedSwapping = true; // sets it to true
+                swap = 0.2f;
             }
         }
     }
@@ -118,13 +121,13 @@ public class SwapParts : MonoBehaviour
 
             if (swapPiece.position == groundPieceVector) // if the position matches where the ground piece was
             {
+                AstarPath.active.Scan();
                 // set the bools to false to allow for further swaps in the future
                 isSwapping = false;
                 // swap the location of the swap piece between the lists
                 startingPieces.Add(swappablePieces[randomSwapIndex]);
                 swappablePieces.RemoveAt(randomSwapIndex);
                 finishedSwapping = false;
-                AstarPath.active.Scan();
             }
         }
     }
