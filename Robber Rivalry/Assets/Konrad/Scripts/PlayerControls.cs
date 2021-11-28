@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class PlayerControls : MonoBehaviour
     public float highFrequency = 2.0f;
 
     [SerializeField] GameObject menuPanel;
+    [SerializeField] TextMeshProUGUI playerScore;
 
     private void Start()
     {
