@@ -39,4 +39,9 @@ public class MainMenu : MonoBehaviour
     {
         // For character selection
     }
+
+    public void Remach()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

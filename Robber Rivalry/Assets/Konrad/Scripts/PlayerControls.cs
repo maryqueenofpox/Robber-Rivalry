@@ -40,7 +40,6 @@ public class PlayerControls : MonoBehaviour
     public float highFrequency = 2.0f;
 
     [SerializeField] GameObject menuPanel;
-    [SerializeField] TextMeshProUGUI playerScore;
 
     private void Start()
     {
