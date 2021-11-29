@@ -11,6 +11,7 @@ public class LootGrabber : MonoBehaviour
 
     public float loot = 0;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Loot")
@@ -27,6 +28,19 @@ public class LootGrabber : MonoBehaviour
             {
                 loot--;
                 score.text = loot.ToString();
+            }
+        }
+        if (other.transform.tag == "Killzone")
+        {
+            transform.position = respawnpoint.position;
+            if (loot > 5)
+            {
+                loot -= 5;
+                score.text = loot.ToString();
+            }
+            else if (loot <= 5)
+            {
+                loot = 0;
             }
         }
     }
