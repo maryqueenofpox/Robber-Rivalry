@@ -41,6 +41,9 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] GameObject menuPanel;
 
+    [SerializeField] float vibrationIntensity = 0.3f;
+    public bool vibrateController;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,8 +52,9 @@ public class PlayerControls : MonoBehaviour
         canUseAbility = false;
         originalSlapCooldown = slapCooldown;
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
-        //Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency); << For controller vibration
+        //Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency); //<< For controller vibration
 
+        vibrateController = false;
         menuPanel.SetActive(false);
     }
 
@@ -81,6 +85,11 @@ public class PlayerControls : MonoBehaviour
                 timeUntilScoreIncrease = originalTimeUntilScoreIncrease;
             }
         }
+        //Gamepad.current.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
+        if (vibrateController)
+            Gamepad.current.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
+        else
+            Gamepad.current.SetMotorSpeeds(0, 0);
     }
 
     private void FixedUpdate()
