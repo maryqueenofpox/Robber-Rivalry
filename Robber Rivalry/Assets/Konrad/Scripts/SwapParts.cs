@@ -33,9 +33,23 @@ public class SwapParts : MonoBehaviour
 
     float swap = 0.2f; // for updating the scan only once
 
+    
+    [SerializeField] float warnTimerAmount = 5f;
+    float originalWarnTimer;
+
+    GameObject index;
+
+    bool HitDetect;
+    RaycastHit rayHit;
+    bool startWarn;
+    bool pickPlatform;
+
     private void Start()
     {
         originalTimer = swapTimer;
+        originalWarnTimer = warnTimerAmount;
+        startWarn = false;
+        pickPlatform = true;
     }
 
     // Update is called once per frame
@@ -44,15 +58,99 @@ public class SwapParts : MonoBehaviour
         GetInput(); // keeps checking for any sort of input
         SwapGroundPieces(); // keeps updating the position of the ground piece
         SwapSkyPieces(); // keeps updating the position of the swap piece
+
+        if (startWarn == true)
+            WarnTimer();
     }
+    
+    private void FixedUpdate()
+    {
+        if (startWarn)
+        {
+            Debug.Log("start warn");
+            HitDetect = Physics.BoxCast(index.GetComponent<Collider>().bounds.center, new Vector3(9, 1, 9), index.transform.up, out rayHit, index.transform.rotation, 10f);
+
+            if (HitDetect)
+            {
+                Debug.Log("Hit Detect Call");
+                if (rayHit.collider.CompareTag("Player"))
+                {
+                    Debug.Log("Ray Hit Call");
+                    rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = true;
+
+                    if (isSwapping)
+                        rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = false;
+                }
+            }
+        }
+    }
+
+    /*
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        if (HitDetect)
+        {
+            Gizmos.DrawRay(index.transform.position, index.transform.up * rayHit.distance);
+            Gizmos.DrawWireCube(index.transform.position + index.transform.up * rayHit.distance, new Vector3(9, 3, 9));
+        }
+        else
+        {
+            Gizmos.DrawRay(index.transform.position, index.transform.up * 3f);
+            Gizmos.DrawWireCube(index.transform.position + index.transform.up * 3f, new Vector3(9, 3, 9));
+        }
+    }
+    */
 
     void GetInput()
     {
         swapTimer -= Time.deltaTime;
-        if (swapTimer <= 0.0f)
+        if (swapTimer <= warnTimerAmount)
         {
-            BeginSwap();
-            swapTimer = originalTimer;
+            if (pickPlatform)
+            {
+                BeginSwap();
+                pickPlatform = false;
+            }
+
+            startWarn = true;
+
+            if (swapTimer <= 0f)
+            {
+                swapTimer = originalTimer;
+                pickPlatform = true;
+            }
+        }
+    }
+
+    void WarnTimer()
+    {
+        //HitDetect = Physics.BoxCast(index.GetComponent<Collider>().bounds.center, new Vector3(9, 1, 9), index.transform.up, out rayHit, index.transform.rotation, 10f);
+        warnTimerAmount -= Time.deltaTime;
+
+        /*if (HitDetect)
+        {
+            Debug.Log("Hit Detect Call");
+            if (rayHit.collider.CompareTag("Player"))
+            {
+                Debug.Log("Ray Hit Call");
+                rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = true;
+            }
+        }*/
+
+        /*
+        if (rayHit.collider.CompareTag("Player"))
+        {
+            Debug.Log("Ray Hit Call");
+            rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = true;
+        }
+        */
+
+        if (warnTimerAmount <= 0f)
+        {
+            warnTimerAmount = originalWarnTimer;
+            isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
+            startWarn = false;
         }
     }
 
@@ -60,13 +158,12 @@ public class SwapParts : MonoBehaviour
     {
         PickRandomGround(); // picks a random cube to swap
         PickRandomSwap(); // picks a random swap cube to swap with
-        isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
     }
 
     void PickRandomGround()
     {
         randomIndex = Random.Range(0, startingPieces.Count); // picks a random index number from the list
-        GameObject index = startingPieces[randomIndex]; // sets the index to be the random picked object from the list
+        index = startingPieces[randomIndex]; // sets the index to be the random picked object from the list
         groundPiece = index.transform; // makes the groundPiece hold the value of the transform
         groundPieceVector = groundPiece.position; // the vector will hold a constant value of the current position
 
