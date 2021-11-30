@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        text.text = timer.ToString("0");
+        text.text = timer.ToString("0.00");
 
         if (timer <= 0)
             timer = 0;

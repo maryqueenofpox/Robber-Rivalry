@@ -12,10 +12,10 @@ public class SwapParts : MonoBehaviour
 
     // for holding the position value
     Transform groundPiece;
-    Transform swapPiece; 
+    Transform swapPiece;
 
     // for holding a constant value for the position to swap to
-    Vector3 groundPieceVector; 
+    Vector3 groundPieceVector;
     Vector3 swapPieceVector;
 
     // bools to make sure certain functions don't get called
@@ -32,24 +32,19 @@ public class SwapParts : MonoBehaviour
     [SerializeField] float swapSpeed = 50f;
 
     float swap = 0.2f; // for updating the scan only once
-
-    
-    [SerializeField] float warnTimerAmount = 5f;
-    float originalWarnTimer;
-
     GameObject index;
 
-    bool HitDetect;
-    RaycastHit rayHit;
-    bool startWarn;
-    bool pickPlatform;
+    bool warning;
+    float warningTimer = 5f;
+    float originalWarningTimer;
+    Color originalColour;
 
     private void Start()
     {
         originalTimer = swapTimer;
-        originalWarnTimer = warnTimerAmount;
-        startWarn = false;
-        pickPlatform = true;
+        warning = false;
+        originalWarningTimer = warningTimer;
+        originalColour = index.GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
@@ -59,98 +54,25 @@ public class SwapParts : MonoBehaviour
         SwapGroundPieces(); // keeps updating the position of the ground piece
         SwapSkyPieces(); // keeps updating the position of the swap piece
 
-        if (startWarn == true)
-            WarnTimer();
-    }
-    
-    private void FixedUpdate()
-    {
-        if (startWarn)
+        if (warning)
+            warningTimer -= Time.deltaTime;
+        if (warningTimer <= 0)
         {
-            Debug.Log("start warn");
-            HitDetect = Physics.BoxCast(index.GetComponent<Collider>().bounds.center, new Vector3(9, 1, 9), index.transform.up, out rayHit, index.transform.rotation, 10f);
-
-            if (HitDetect)
-            {
-                Debug.Log("Hit Detect Call");
-                if (rayHit.collider.CompareTag("Player"))
-                {
-                    Debug.Log("Ray Hit Call");
-                    rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = true;
-
-                    if (isSwapping)
-                        rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = false;
-                }
-            }
+            isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
+            warningTimer = originalWarningTimer;
+            warning = false;
         }
     }
-
-    /*
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        if (HitDetect)
-        {
-            Gizmos.DrawRay(index.transform.position, index.transform.up * rayHit.distance);
-            Gizmos.DrawWireCube(index.transform.position + index.transform.up * rayHit.distance, new Vector3(9, 3, 9));
-        }
-        else
-        {
-            Gizmos.DrawRay(index.transform.position, index.transform.up * 3f);
-            Gizmos.DrawWireCube(index.transform.position + index.transform.up * 3f, new Vector3(9, 3, 9));
-        }
-    }
-    */
 
     void GetInput()
     {
-        swapTimer -= Time.deltaTime;
-        if (swapTimer <= warnTimerAmount)
+        if (!isSwapping)
+            swapTimer -= Time.deltaTime;
+
+        if (swapTimer <= 0.0f)
         {
-            if (pickPlatform)
-            {
-                BeginSwap();
-                pickPlatform = false;
-            }
-
-            startWarn = true;
-
-            if (swapTimer <= 0f)
-            {
-                swapTimer = originalTimer;
-                pickPlatform = true;
-            }
-        }
-    }
-
-    void WarnTimer()
-    {
-        //HitDetect = Physics.BoxCast(index.GetComponent<Collider>().bounds.center, new Vector3(9, 1, 9), index.transform.up, out rayHit, index.transform.rotation, 10f);
-        warnTimerAmount -= Time.deltaTime;
-
-        /*if (HitDetect)
-        {
-            Debug.Log("Hit Detect Call");
-            if (rayHit.collider.CompareTag("Player"))
-            {
-                Debug.Log("Ray Hit Call");
-                rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = true;
-            }
-        }*/
-
-        /*
-        if (rayHit.collider.CompareTag("Player"))
-        {
-            Debug.Log("Ray Hit Call");
-            rayHit.collider.gameObject.GetComponent<PlayerControls>().vibrateController = true;
-        }
-        */
-
-        if (warnTimerAmount <= 0f)
-        {
-            warnTimerAmount = originalWarnTimer;
-            isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
-            startWarn = false;
+            BeginSwap();
+            swapTimer = originalTimer;
         }
     }
 
@@ -158,6 +80,8 @@ public class SwapParts : MonoBehaviour
     {
         PickRandomGround(); // picks a random cube to swap
         PickRandomSwap(); // picks a random swap cube to swap with
+        index.GetComponent<Renderer>().material.color = Color.red;
+        warning = true;
     }
 
     void PickRandomGround()
@@ -192,6 +116,7 @@ public class SwapParts : MonoBehaviour
             // Changes the position of the piece to smoothly move to the position of the swap piece
             groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * swapSpeed);
 
+            index.GetComponent<Renderer>().material.color = originalColour;
             swap -= Time.deltaTime;
             if (swap <= 0f)
             {

@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Launch3x3Map()
     {
-        SceneManager.LoadScene("3x3Map");
+        SceneManager.LoadScene("3x3");
     }
 
     public void Launch3x4Map()
@@ -17,12 +17,12 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchMainMenu()
     {
-        SceneManager.LoadScene("GameOpenMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void LaunchMaps()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Maps");
     }
 
     public void Options()

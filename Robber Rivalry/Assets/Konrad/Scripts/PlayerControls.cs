@@ -44,6 +44,14 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float vibrationIntensity = 0.3f;
     public bool vibrateController;
 
+    [SerializeField] float rayRadius = 10f;
+
+    bool isPlayer;
+    bool isGem;
+    PlayerControls controls;
+    Transform gemTransform;
+    [SerializeField] GameObject powerUpUI;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,12 +64,13 @@ public class PlayerControls : MonoBehaviour
 
         vibrateController = false;
         menuPanel.SetActive(false);
+        isPlayer = false;
+        powerUpUI.SetActive(false);
     }
 
     private void Update()
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * reach, Color.red);
-
         
 
         if (!canSlap)
@@ -85,11 +94,21 @@ public class PlayerControls : MonoBehaviour
                 timeUntilScoreIncrease = originalTimeUntilScoreIncrease;
             }
         }
+
+        if (canUseAbility)
+            powerUpUI.SetActive(true);
+        else
+            powerUpUI.SetActive(false);
+
+        /*
         //Gamepad.current.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
         if (vibrateController)
             Gamepad.current.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
         else
             Gamepad.current.SetMotorSpeeds(0, 0);
+
+        Debug.Log("Gamepad ID: " + Gamepad.current.deviceId);
+        */
     }
 
     private void FixedUpdate()
@@ -134,6 +153,11 @@ public class PlayerControls : MonoBehaviour
 
         if (Gamepad.current.rightStick.IsActuated())
             transform.rotation = Quaternion.LookRotation(new Vector3(rotationInput.x, 0, rotationInput.y));
+
+        if (Gamepad.current == null)
+        {
+            Debug.Log("No GamePad Detected, lol");
+        }
     }
 
     public void Rotation(InputAction.CallbackContext ctx)
@@ -179,14 +203,12 @@ public class PlayerControls : MonoBehaviour
 
     public void PickUpGem(InputAction.CallbackContext ctx)
     {
-        RaycastHit hit;
-        
         if (!isCarryingGem)
         {
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach) && hit.transform.CompareTag("Gem"))
+            if (isGem)
             {
-                hit.transform.parent = transform;
-                transform.GetChild(0).localPosition = new Vector3(0, 3.5f, 0);
+                gemTransform.parent = transform;
+                transform.GetChild(1).localPosition = new Vector3(0, 3.5f, 0);
                 isCarryingGem = true;
             }
         }
@@ -196,8 +218,8 @@ public class PlayerControls : MonoBehaviour
     {
         if (isCarryingGem)
         {
-            transform.GetChild(0).transform.localPosition = transform.TransformDirection(Vector3.forward * 1);
-            transform.GetChild(0).transform.parent = null;
+            transform.GetChild(1).transform.localPosition = transform.TransformDirection(Vector3.forward * 1);
+            transform.GetChild(1).transform.parent = null;
             isCarryingGem = false;
         }
     }
@@ -206,31 +228,19 @@ public class PlayerControls : MonoBehaviour
     {
         if (canSlap)
         {
-            RaycastHit hit;
-
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, reach)) //&& hit.transform.CompareTag("Player"))
+            if (isPlayer)
             {
-                GameObject objectHit = hit.transform.gameObject;
+                controls.rb.AddForce(transform.forward * slapFoce);
 
-                if (objectHit.CompareTag("Player"))
+                if (controls.isCarryingGem)
                 {
-                    PlayerControls controls = objectHit.GetComponent<PlayerControls>();
-                    controls.rb.AddForce(transform.forward * slapFoce);
-
-                    if (controls.isCarryingGem)
-                    {
-                        objectHit.transform.GetChild(0).transform.localPosition = objectHit.transform.TransformDirection(-Vector3.forward * 2);
-                        objectHit.transform.GetChild(0).transform.parent = null;
-                        controls.isCarryingGem = false;
-                    }
-
-                    canSlap = false;
+                    controls.transform.GetChild(1).transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
+                    controls.transform.GetChild(1).transform.parent = null;
+                    controls.isCarryingGem = false;
                 }
-                else
-                    canSlap = false;
-            }
-            else
+
                 canSlap = false;
+            }
         }
     }
 
@@ -246,8 +256,25 @@ public class PlayerControls : MonoBehaviour
             canUseAbility = true;
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Yes");
+            controls = other.GetComponent<PlayerControls>();
+            isPlayer = true;
+        }
+
+        if (other.gameObject.CompareTag("Gem"))
+        {
+            Debug.Log("Gem");
+            gemTransform = other.GetComponent<Transform>();
+            isGem = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isPlayer = false;
     }
 }
