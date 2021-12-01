@@ -66,7 +66,7 @@ public class SwapParts : MonoBehaviour
 
     void GetInput()
     {
-        if (!isSwapping)
+        if (!warning && !isSwapping)
             swapTimer -= Time.deltaTime;
 
         if (swapTimer <= 0.0f)
