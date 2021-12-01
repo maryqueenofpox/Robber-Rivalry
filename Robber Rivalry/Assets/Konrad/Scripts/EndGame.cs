@@ -44,6 +44,7 @@ public class EndGame : MonoBehaviour
 
     float max;
     bool doOnce;
+    bool doGemAddOnce;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,8 @@ public class EndGame : MonoBehaviour
         x4.enabled = false;
 
         doOnce = true;
+        doGemAddOnce = true;
+
     }
 
     // Update is called once per frame
@@ -80,9 +83,54 @@ public class EndGame : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, originalPosition, 5f * Time.deltaTime);
             escapeWall.SetActive(true);
             endGamePanel.SetActive(true);
+            AddGemPoints();
             max = Mathf.Max(player_1_Script.loot, player_2_Script.loot, player_3_Script.loot, player_4_Script.loot);
             Scoring();
             Time.timeScale = 0f;
+        }
+    }
+
+    void AddGemPoints()
+    {
+        if (doGemAddOnce)
+        {
+            if (Player1.transform.parent == transform)
+            {
+                if (Player1.transform.childCount > 1)
+                {
+                    player_1_Script.loot += gemRewardAmount;
+                    player_1_Script.loot.ToString();
+                }
+            }
+
+            if (Player2.transform.parent == transform)
+            {
+                if (Player2.transform.childCount > 1)
+                {
+                    player_2_Script.loot += gemRewardAmount;
+                    player_1_Script.loot.ToString();
+                }
+            }
+
+            if (Player3.transform.parent == transform)
+            {
+                if (Player3.transform.childCount > 1)
+                {
+                    player_3_Script.loot += gemRewardAmount;
+                    player_1_Script.loot.ToString();
+                }
+            }
+
+            if (Player4.transform.parent == transform)
+            {
+                if (Player4.transform.childCount > 1)
+                {
+                    player_4_Script.loot += gemRewardAmount;
+                    player_1_Script.loot.ToString();
+                }
+            }
+
+            doGemAddOnce = false;
         }
     }
 
@@ -107,9 +155,6 @@ public class EndGame : MonoBehaviour
         {
             if (player_1_Script.loot == max)
                 player_1_Crown.SetActive(true);
-
-            if (Player1.transform.childCount > 1)
-                player_1_Script.loot += gemRewardAmount;
         }
         else
         {
@@ -121,9 +166,6 @@ public class EndGame : MonoBehaviour
         {
             if (player_2_Script.loot == max)
                 player_2_Crown.SetActive(true);
-
-            if (Player2.transform.childCount > 1)
-                player_2_Script.loot += gemRewardAmount;
         }
         else
         {
@@ -135,9 +177,6 @@ public class EndGame : MonoBehaviour
         {
             if (player_3_Script.loot == max)
                 player_3_Crown.SetActive(true);
-
-            if (Player3.transform.childCount > 1)
-                player_3_Script.loot += gemRewardAmount;
         }
         else
         {
@@ -149,9 +188,6 @@ public class EndGame : MonoBehaviour
         {
             if (player_4_Script.loot == max)
                 player_4_Crown.SetActive(true);
-
-            if (Player4.transform.childCount > 1)
-                player_4_Script.loot += gemRewardAmount;
         }
         else
         {

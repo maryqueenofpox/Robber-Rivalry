@@ -11,6 +11,8 @@ public class LootGrabber : MonoBehaviour
 
     public float loot = 0;
 
+    public float percentageToRemove = 10;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,7 +28,8 @@ public class LootGrabber : MonoBehaviour
             transform.position = respawnpoint.position;
             if (loot > 0)
             {
-                loot--;
+                float pointsToRemove = Mathf.Round(loot / percentageToRemove);
+                loot -= pointsToRemove;
                 score.text = loot.ToString();
             }
         }

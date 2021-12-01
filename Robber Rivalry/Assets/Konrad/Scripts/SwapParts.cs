@@ -35,7 +35,7 @@ public class SwapParts : MonoBehaviour
     GameObject index;
 
     bool warning;
-    float warningTimer = 5f;
+    public float warningTimer = 5f;
     float originalWarningTimer;
     Color originalColour;
 

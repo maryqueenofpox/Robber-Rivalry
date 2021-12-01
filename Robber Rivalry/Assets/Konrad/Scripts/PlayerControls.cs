@@ -45,6 +45,7 @@ public class PlayerControls : MonoBehaviour
     public bool vibrateController;
 
     [SerializeField] float rayRadius = 10f;
+    [SerializeField] float gemPointIncrease;
 
     bool isPlayer;
     bool isGem;
@@ -86,12 +87,17 @@ public class PlayerControls : MonoBehaviour
 
         if (isCarryingGem)
         {
-            timeUntilScoreIncrease -= Time.deltaTime;
-            if(timeUntilScoreIncrease <= 0.0f)
+            if (transform.childCount < 2)
+                isCarryingGem = false;
+            else
             {
-                lootGrabber.loot += 1;
-                lootGrabber.score.text = lootGrabber.loot.ToString();
-                timeUntilScoreIncrease = originalTimeUntilScoreIncrease;
+                timeUntilScoreIncrease -= Time.deltaTime;
+                if (timeUntilScoreIncrease <= 0.0f)
+                {
+                    lootGrabber.loot += gemPointIncrease;
+                    lootGrabber.score.text = lootGrabber.loot.ToString();
+                    timeUntilScoreIncrease = originalTimeUntilScoreIncrease;
+                }
             }
         }
 
@@ -113,6 +119,8 @@ public class PlayerControls : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /// CHANGE SPRINT TO DASH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         if (isSprinting)
         {
             if (!(sprintTime <= 0f))
@@ -153,11 +161,6 @@ public class PlayerControls : MonoBehaviour
 
         if (Gamepad.current.rightStick.IsActuated())
             transform.rotation = Quaternion.LookRotation(new Vector3(rotationInput.x, 0, rotationInput.y));
-
-        if (Gamepad.current == null)
-        {
-            Debug.Log("No GamePad Detected, lol");
-        }
     }
 
     public void Rotation(InputAction.CallbackContext ctx)
@@ -210,6 +213,7 @@ public class PlayerControls : MonoBehaviour
                 gemTransform.parent = transform;
                 transform.GetChild(1).localPosition = new Vector3(0, 3.5f, 0);
                 isCarryingGem = true;
+                isGem = false;
             }
         }
     }
@@ -260,14 +264,12 @@ public class PlayerControls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Yes");
             controls = other.GetComponent<PlayerControls>();
             isPlayer = true;
         }
 
         if (other.gameObject.CompareTag("Gem"))
         {
-            Debug.Log("Gem");
             gemTransform = other.GetComponent<Transform>();
             isGem = true;
         }
@@ -276,5 +278,6 @@ public class PlayerControls : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         isPlayer = false;
+        isGem = false;
     }
 }
