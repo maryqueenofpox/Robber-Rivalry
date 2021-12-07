@@ -7,72 +7,83 @@ using TMPro;
 public class PlayerControls : MonoBehaviour
 {
     Rigidbody rb;
-    public float moveSpeed = 50.0f;
     Vector2 movementInput;
     Vector2 rotationInput;
-    [SerializeField]
-    float sprintTime = 10f;
-    float maxSprintTime;
-    bool isSprinting = false;
-    [SerializeField]
-    float sprintForce = 2f;
-    float timeUntilRecharge = 2f;
-    float originalRechargeTime;
 
+    [Header("Movement Values")]
+    public float moveSpeed = 50.0f;
+    [SerializeField] float dashForce = 10f;
+
+    [Header("Abilities")]
     [SerializeField] GameObject wetFloorSign;
-
     [SerializeField] float reach = 1.5f;
-    bool canUseAbility;
-    [HideInInspector] public bool isCarryingGem = false;
-
     [SerializeField] float slapFoce = 5000f;
-
     [SerializeField] float slapCooldown = 3f;
+    [SerializeField] float dashCoolDown = 2f;
+    float originalDashCoolDown;
+    bool isDashing;
+
+    [HideInInspector] public bool isCarryingGem = false;
     float originalSlapCooldown;
+    bool canUseAbility;
     bool canSlap = true;
 
+    [Header("Loot Grabber Script")]
     public LootGrabber lootGrabber;
 
+    [Header("Gem Score")]
+    [SerializeField] float gemPointIncrease;
     public float timeUntilScoreIncrease = 4.0f;
     float originalTimeUntilScoreIncrease;
+    Transform gemTransform;
 
-    public float lowFrequency = 2.0f;
-    public float highFrequency = 2.0f;
-
+    [Header("UI")]
     [SerializeField] GameObject menuPanel;
-
-    [SerializeField] float vibrationIntensity = 0.3f;
-    public bool vibrateController;
-
-    [SerializeField] float rayRadius = 10f;
-    [SerializeField] float gemPointIncrease;
+    [SerializeField] GameObject powerUpUI;
 
     bool isPlayer;
     bool isGem;
     PlayerControls controls;
-    Transform gemTransform;
-    [SerializeField] GameObject powerUpUI;
+
+    bool isStunned;
+    [SerializeField] float stunDuration = 1f;
+    float originalStunDuration;
+
+    Animator anim;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        maxSprintTime = sprintTime;
-        originalRechargeTime = timeUntilRecharge;
         canUseAbility = false;
         originalSlapCooldown = slapCooldown;
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
         //Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency); //<< For controller vibration
 
-        vibrateController = false;
         menuPanel.SetActive(false);
         isPlayer = false;
         powerUpUI.SetActive(false);
+        originalDashCoolDown = dashCoolDown;
+        isDashing = false;
+        originalStunDuration = stunDuration;
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * reach, Color.red);
         
+        if (isStunned)
+        {
+            stunDuration -= Time.deltaTime;
+            // play animation
+            if (stunDuration <= 0)
+            {
+                // stop animation
+                isStunned = false;
+                stunDuration = originalStunDuration;
+                // enable idle animation
+            }
+        }
 
         if (!canSlap)
         {
@@ -106,55 +117,28 @@ public class PlayerControls : MonoBehaviour
         else
             powerUpUI.SetActive(false);
 
-        /*
-        //Gamepad.current.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
-        if (vibrateController)
-            Gamepad.current.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
-        else
-            Gamepad.current.SetMotorSpeeds(0, 0);
-
-        Debug.Log("Gamepad ID: " + Gamepad.current.deviceId);
-        */
+        if (isDashing)
+        {
+            dashCoolDown -= Time.deltaTime;
+            
+            if (dashCoolDown <= 0)
+            {
+                isDashing = false;
+                dashCoolDown = originalDashCoolDown;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         /// CHANGE SPRINT TO DASH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /// doneish.
 
-        if (isSprinting)
-        {
-            if (!(sprintTime <= 0f))
-            {
-                rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * sprintForce * Time.deltaTime;
-                sprintTime -= Time.deltaTime;
-            }
-            else
-            {
-                sprintTime = 0f;
-                isSprinting = false;
-                timeUntilRecharge = originalRechargeTime;
-            }
-        }
-        else if (!isSprinting)
-        {
-            rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
+        rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
 
-            if (timeUntilRecharge > 0f)
-            {
-                timeUntilRecharge -= Time.deltaTime;
-            }
-            else if (timeUntilRecharge <= 0f)
-            {
-                timeUntilRecharge = 0f;
-
-                sprintTime += Time.deltaTime;
-
-                if (sprintTime >= maxSprintTime)
-                    sprintTime = maxSprintTime;
-            }
-        }
-        else
-            Debug.Log("Error, is neither sprinting and not sprinting");
+        /// if velocity is 0
+        /// set the animation to play idle
+        /// peace
 
         if (!(rb.velocity == Vector3.zero))
             transform.rotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
@@ -196,12 +180,14 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    public void Sprint(InputAction.CallbackContext ctx)
+    public void Dash(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
-            isSprinting = true;
-        else if (ctx.canceled)
-            isSprinting = false;
+        if (!isDashing)
+        {
+            rb.AddForce(transform.TransformDirection(Vector3.forward * dashForce));
+            isDashing = true;
+        }
+        
     }
 
     public void PickUpGem(InputAction.CallbackContext ctx)
@@ -235,6 +221,7 @@ public class PlayerControls : MonoBehaviour
             if (isPlayer)
             {
                 controls.rb.AddForce(transform.forward * slapFoce);
+                controls.isStunned = true;
 
                 if (controls.isCarryingGem)
                 {

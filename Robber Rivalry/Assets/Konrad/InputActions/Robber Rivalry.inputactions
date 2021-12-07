@@ -22,12 +22,12 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "0f70675b-9e64-4576-8df3-795f59ee7548",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Rotation",
@@ -184,11 +184,11 @@
                 {
                     "name": "",
                     "id": "f9efab5d-6dff-489a-8925-45f0f29f308f",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "Press",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Sprint",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -196,10 +196,10 @@
                     "name": "",
                     "id": "53e2522c-d69e-40b6-ba59-1e1645dc3c0c",
                     "path": "<Keyboard>/shift",
-                    "interactions": "Hold",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Sprint",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -207,10 +207,10 @@
                     "name": "",
                     "id": "2f7ad03e-b55e-4341-a03d-f69f9ac786f9",
                     "path": "<SwitchProControllerHID>/rightTrigger",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Switch",
-                    "action": "Sprint",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
