@@ -21,9 +21,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float slapCooldown = 3f;
     [SerializeField] float dashCoolDown = 2f;
     float originalDashCoolDown;
-    bool isDashing;
+    [SerializeField] bool isDashing;
 
-    [HideInInspector] public bool isCarryingGem = false;
+     public bool isCarryingGem = false;
     float originalSlapCooldown;
     bool canUseAbility;
     bool canSlap = true;
@@ -49,6 +49,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float stunDuration = 1f;
     float originalStunDuration;
 
+    Transform gemChild;
     Animator anim;
 
     private void Start()
@@ -57,7 +58,6 @@ public class PlayerControls : MonoBehaviour
         canUseAbility = false;
         originalSlapCooldown = slapCooldown;
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
-        //Gamepad.current.SetMotorSpeeds(lowFrequency, highFrequency); //<< For controller vibration
 
         menuPanel.SetActive(false);
         isPlayer = false;
@@ -75,13 +75,13 @@ public class PlayerControls : MonoBehaviour
         if (isStunned)
         {
             stunDuration -= Time.deltaTime;
-            // play animation
+            anim.SetBool("gotSlapped", true);
             if (stunDuration <= 0)
             {
-                // stop animation
+                anim.SetBool("gotSlapped", false);
                 isStunned = false;
                 stunDuration = originalStunDuration;
-                // enable idle animation
+                anim.SetBool("idle", true);
             }
         }
 
@@ -134,11 +134,21 @@ public class PlayerControls : MonoBehaviour
         /// CHANGE SPRINT TO DASH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         /// doneish.
 
-        rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
+        if (!isStunned)
+            rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
+        else
+            rb.velocity = Vector3.zero;
 
-        /// if velocity is 0
-        /// set the animation to play idle
-        /// peace
+        if (rb.velocity != Vector3.zero)
+        {
+            anim.SetBool("idle", false);
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+            anim.SetBool("idle", true);
+        }
 
         if (!(rb.velocity == Vector3.zero))
             transform.rotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
@@ -173,7 +183,7 @@ public class PlayerControls : MonoBehaviour
 
     public void Ability1(InputAction.CallbackContext ctx)
     {
-        if (canUseAbility)
+        if (canUseAbility && !isStunned)
         {
             SpawnObject();
             canUseAbility = false;
@@ -182,22 +192,22 @@ public class PlayerControls : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext ctx)
     {
-        if (!isDashing)
+        if (!isDashing && !isStunned)
         {
             rb.AddForce(transform.TransformDirection(Vector3.forward * dashForce));
             isDashing = true;
         }
-        
     }
 
     public void PickUpGem(InputAction.CallbackContext ctx)
     {
-        if (!isCarryingGem)
+        if (!isCarryingGem && !isStunned)
         {
             if (isGem)
             {
                 gemTransform.parent = transform;
-                transform.GetChild(1).localPosition = new Vector3(0, 3.5f, 0);
+                gemChild = transform.Find("Gem");
+                gemChild.localPosition = new Vector3(0, 3.5f, 0);
                 isCarryingGem = true;
                 isGem = false;
             }
@@ -208,15 +218,15 @@ public class PlayerControls : MonoBehaviour
     {
         if (isCarryingGem)
         {
-            transform.GetChild(1).transform.localPosition = transform.TransformDirection(Vector3.forward * 1);
-            transform.GetChild(1).transform.parent = null;
+            gemChild.localPosition = transform.TransformDirection(Vector3.forward * 1);
+            gemChild.parent = null;
             isCarryingGem = false;
         }
     }
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        if (canSlap)
+        if (canSlap && !isStunned)
         {
             if (isPlayer)
             {
