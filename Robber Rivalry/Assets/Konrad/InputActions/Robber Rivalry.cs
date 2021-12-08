@@ -197,7 +197,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f9efab5d-6dff-489a-8925-45f0f29f308f"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
