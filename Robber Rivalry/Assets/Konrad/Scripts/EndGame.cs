@@ -96,7 +96,7 @@ public class EndGame : MonoBehaviour
         {
             if (Player1.transform.parent == transform)
             {
-                if (Player1.transform.childCount > 1)
+                if (Player1.transform.Find("Gem"))
                 {
                     player_1_Script.loot += gemRewardAmount;
                     player_1_Script.loot.ToString();
@@ -105,7 +105,7 @@ public class EndGame : MonoBehaviour
 
             if (Player2.transform.parent == transform)
             {
-                if (Player2.transform.childCount > 1)
+                if (Player2.transform.Find("Gem"))
                 {
                     player_2_Script.loot += gemRewardAmount;
                     player_1_Script.loot.ToString();
@@ -114,7 +114,7 @@ public class EndGame : MonoBehaviour
 
             if (Player3.transform.parent == transform)
             {
-                if (Player3.transform.childCount > 1)
+                if (Player3.transform.Find("Gem"))
                 {
                     player_3_Script.loot += gemRewardAmount;
                     player_1_Script.loot.ToString();
@@ -123,7 +123,7 @@ public class EndGame : MonoBehaviour
 
             if (Player4.transform.parent == transform)
             {
-                if (Player4.transform.childCount > 1)
+                if (Player4.transform.Find("Gem"))
                 {
                     player_4_Script.loot += gemRewardAmount;
                     player_1_Script.loot.ToString();
