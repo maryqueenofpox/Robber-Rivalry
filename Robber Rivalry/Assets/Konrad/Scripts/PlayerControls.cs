@@ -58,6 +58,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     float durationToIncreaseBy = 0.1f;
 
+    bool doTheSlap = false;
+
     private void Start()
     {
         originalSlapToFalse = timeToSetSlapToFalse;
@@ -84,8 +86,8 @@ public class PlayerControls : MonoBehaviour
             timeToSetSlapToFalse -= Time.deltaTime;
             if (timeToSetSlapToFalse <= 0f)
             {
-                anim.SetBool("isSlapping", false);
                 timeToSetSlapToFalse = originalSlapToFalse;
+                anim.SetBool("isSlapping", false);
             }
        
         }
@@ -108,7 +110,7 @@ public class PlayerControls : MonoBehaviour
             anim.SetBool("isDashing", false);
         }
 
-            if (!canSlap)
+        if (!canSlap)
         {
             slapCooldown -= Time.deltaTime;
         }
@@ -155,6 +157,9 @@ public class PlayerControls : MonoBehaviour
             if (dashDuration >= maxDashTime)
                 dashDuration = maxDashTime;
         }
+
+        if (doTheSlap)
+            DoTheSlap();
     }
 
     private void FixedUpdate()
@@ -268,23 +273,33 @@ public class PlayerControls : MonoBehaviour
 
     public void Slap(InputAction.CallbackContext ctx)
     {
+        doTheSlap = true;
+    }
+
+    void DoTheSlap()
+    {
         if (canSlap && !isStunned)
         {
             anim.SetBool("isSlapping", true);
-            if (isPlayer)
+            if (timeToSetSlapToFalse <= 0.1f)
             {
-                controls.rb.AddForce(transform.forward * slapFoce);
-                controls.isStunned = true;
-
-                if (controls.isCarryingGem)
+                Debug.Log("I'm getting called multiple times (hopefully");
+                if (isPlayer)
                 {
-                    controls.transform.GetChild(1).transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
-                    controls.transform.GetChild(1).transform.parent = null;
-                    controls.isCarryingGem = false;
-                }
+                    controls.rb.AddForce(transform.forward * slapFoce);
+                    controls.isStunned = true;
 
-                canSlap = false;
-                
+                    if (controls.isCarryingGem)
+                    {
+                        controls.transform.GetChild(1).transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
+                        controls.transform.GetChild(1).transform.parent = null;
+                        controls.isCarryingGem = false;
+                    }
+
+                    canSlap = false;
+                    doTheSlap = false;
+                }
+                doTheSlap = false;
             }
         }
     }
