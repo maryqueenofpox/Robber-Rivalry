@@ -40,7 +40,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""id"": ""0f70675b-9e64-4576-8df3-795f59ee7548"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)""
+                    ""interactions"": ""Hold""
                 },
                 {
                     ""name"": ""Rotation"",
@@ -198,7 +198,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""f9efab5d-6dff-489a-8925-45f0f29f308f"",
                     ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Dash"",
@@ -209,7 +209,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""53e2522c-d69e-40b6-ba59-1e1645dc3c0c"",
                     ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Dash"",
@@ -220,7 +220,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""2f7ad03e-b55e-4341-a03d-f69f9ac786f9"",
                     ""path"": ""<SwitchProControllerHID>/rightTrigger"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Switch"",
                     ""action"": ""Dash"",

@@ -19,11 +19,11 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float reach = 1.5f;
     [SerializeField] float slapFoce = 5000f;
     [SerializeField] float slapCooldown = 3f;
-    [SerializeField] float dashCoolDown = 2f;
-    float originalDashCoolDown;
+    [SerializeField] float dashDuration = 2f;
     [SerializeField] bool isDashing;
+    float maxDashTime;
 
-     public bool isCarryingGem = false;
+    public bool isCarryingGem = false;
     float originalSlapCooldown;
     bool canUseAbility;
     bool canSlap = true;
@@ -62,10 +62,10 @@ public class PlayerControls : MonoBehaviour
         menuPanel.SetActive(false);
         isPlayer = false;
         powerUpUI.SetActive(false);
-        originalDashCoolDown = dashCoolDown;
         isDashing = false;
         originalStunDuration = stunDuration;
         anim = GetComponent<Animator>();
+        maxDashTime = dashDuration;
     }
 
     private void Update()
@@ -119,25 +119,30 @@ public class PlayerControls : MonoBehaviour
 
         if (isDashing)
         {
-            dashCoolDown -= Time.deltaTime;
+            dashDuration -= Time.deltaTime;
             
-            if (dashCoolDown <= 0)
+            if (dashDuration <= 0)
             {
                 isDashing = false;
-                dashCoolDown = originalDashCoolDown;
             }
+        }
+        else
+        {
+            dashDuration += Time.deltaTime;
+            if (dashDuration >= maxDashTime)
+                dashDuration = maxDashTime;
         }
     }
 
     private void FixedUpdate()
     {
-        /// CHANGE SPRINT TO DASH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        /// doneish.
-
-        if (!isStunned)
-            rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
+        if (isDashing)
+        {
+            rb.velocity = transform.TransformDirection(Vector3.forward) * moveSpeed * dashForce * Time.deltaTime;
+            // anim is dashing
+        }
         else
-            rb.velocity = Vector3.zero;
+            rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
 
         if (rb.velocity != Vector3.zero)
         {
@@ -150,10 +155,10 @@ public class PlayerControls : MonoBehaviour
             anim.SetBool("idle", true);
         }
 
-        if (!(rb.velocity == Vector3.zero))
+        if (!(rb.velocity == Vector3.zero) && !isDashing)
             transform.rotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
 
-        if (Gamepad.current.rightStick.IsActuated())
+        if (Gamepad.current.rightStick.IsActuated() && !isDashing)
             transform.rotation = Quaternion.LookRotation(new Vector3(rotationInput.x, 0, rotationInput.y));
     }
 
@@ -192,10 +197,12 @@ public class PlayerControls : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext ctx)
     {
-        if (!isDashing && !isStunned)
+        if (!isStunned)
         {
-            rb.AddForce(transform.TransformDirection(Vector3.forward * dashForce));
-            isDashing = true;
+            if (ctx.performed)
+                isDashing = true;
+            else
+                isDashing = false;
         }
     }
 
