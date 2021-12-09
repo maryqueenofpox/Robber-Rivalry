@@ -52,8 +52,15 @@ public class PlayerControls : MonoBehaviour
     Transform gemChild;
     Animator anim;
 
+    [SerializeField]
+    float timeToSetSlapToFalse = 1f;
+    float originalSlapToFalse;
+    [SerializeField]
+    float durationToIncreaseBy = 0.1f;
+
     private void Start()
     {
+        originalSlapToFalse = timeToSetSlapToFalse;
         rb = GetComponent<Rigidbody>();
         canUseAbility = false;
         originalSlapCooldown = slapCooldown;
@@ -71,7 +78,18 @@ public class PlayerControls : MonoBehaviour
     private void Update()
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * reach, Color.red);
-        
+
+        if (anim.GetBool("isSlapping") == true)
+        {
+            timeToSetSlapToFalse -= Time.deltaTime;
+            if (timeToSetSlapToFalse <= 0f)
+            {
+                anim.SetBool("isSlapping", false);
+                timeToSetSlapToFalse = originalSlapToFalse;
+            }
+       
+        }
+
         if (isStunned)
         {
             stunDuration -= Time.deltaTime;
@@ -85,7 +103,12 @@ public class PlayerControls : MonoBehaviour
             }
         }
 
-        if (!canSlap)
+        if (dashDuration <= 0)
+        {
+            anim.SetBool("isDashing", false);
+        }
+
+            if (!canSlap)
         {
             slapCooldown -= Time.deltaTime;
         }
@@ -128,7 +151,7 @@ public class PlayerControls : MonoBehaviour
         }
         else
         {
-            dashDuration += Time.deltaTime;
+            dashDuration += durationToIncreaseBy * Time.deltaTime;
             if (dashDuration >= maxDashTime)
                 dashDuration = maxDashTime;
         }
@@ -136,13 +159,19 @@ public class PlayerControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDashing)
+        if (!isStunned)
         {
-            rb.velocity = transform.TransformDirection(Vector3.forward) * moveSpeed * dashForce * Time.deltaTime;
-            // anim is dashing
+            if (isDashing)
+            {
+                rb.velocity = transform.TransformDirection(Vector3.forward) * moveSpeed * dashForce * Time.deltaTime;
+                // anim is dashing
+            }
+            else
+                rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
         }
         else
-            rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
+            rb.velocity = Vector3.zero;
+        
 
         if (rb.velocity != Vector3.zero)
         {
@@ -200,9 +229,15 @@ public class PlayerControls : MonoBehaviour
         if (!isStunned)
         {
             if (ctx.performed)
+            {
+                anim.SetBool("isDashing", true);
                 isDashing = true;
-            else
+            }                 
+            else               
+            {
+                anim.SetBool("isDashing", false);
                 isDashing = false;
+            }
         }
     }
 
@@ -235,6 +270,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (canSlap && !isStunned)
         {
+            anim.SetBool("isSlapping", true);
             if (isPlayer)
             {
                 controls.rb.AddForce(transform.forward * slapFoce);
@@ -248,6 +284,7 @@ public class PlayerControls : MonoBehaviour
                 }
 
                 canSlap = false;
+                
             }
         }
     }
