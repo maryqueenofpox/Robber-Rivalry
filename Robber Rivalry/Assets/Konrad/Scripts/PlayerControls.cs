@@ -59,6 +59,7 @@ public class PlayerControls : MonoBehaviour
     float durationToIncreaseBy = 0.1f;
 
     bool doTheSlap = false;
+    [SerializeField] AudioSource powerUpAudio;
 
     private void Start()
     {
@@ -313,7 +314,10 @@ public class PlayerControls : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("PowerUp"))
+        {
+            powerUpAudio.Play();
             canUseAbility = true;
+        }
     }
 
     private void OnTriggerStay(Collider other)

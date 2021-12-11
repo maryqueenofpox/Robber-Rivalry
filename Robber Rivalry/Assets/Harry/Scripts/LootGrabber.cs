@@ -13,11 +13,14 @@ public class LootGrabber : MonoBehaviour
 
     public float percentageToRemove = 10;
 
+    [SerializeField] AudioSource bonkAudio;
+    [SerializeField] AudioSource lootAudio;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Loot")
         {
+            lootAudio.Play();
             loot++;
             score.text = loot.ToString();
             Destroy(other.gameObject);
@@ -25,6 +28,7 @@ public class LootGrabber : MonoBehaviour
 
         if (other.transform.tag == "Guard")
         {
+            bonkAudio.Play();
             transform.position = respawnpoint.position;
             if (loot > 0)
             {

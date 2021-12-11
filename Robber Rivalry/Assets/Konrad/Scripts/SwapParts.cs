@@ -38,13 +38,25 @@ public class SwapParts : MonoBehaviour
     public float warningTimer = 5f;
     float originalWarningTimer;
     Color originalColour;
+    bool pickedColour;
+    bool changedColour;
+
+
+    [SerializeField] float flashTimerSpeed;
+    [SerializeField] float lowTimeFlashTimerSpeed;
+    [SerializeField] float whenToMakeFastFlash;
+
+    bool toDropAllPlatforms;
 
     private void Start()
     {
         originalTimer = swapTimer;
         warning = false;
         originalWarningTimer = warningTimer;
-        originalColour = index.GetComponent<Renderer>().material.color;
+        pickedColour = false;
+        changedColour = false;
+
+        toDropAllPlatforms = false;
     }
 
     // Update is called once per frame
@@ -55,12 +67,19 @@ public class SwapParts : MonoBehaviour
         SwapSkyPieces(); // keeps updating the position of the swap piece
 
         if (warning)
+        {
             warningTimer -= Time.deltaTime;
+
+            FlashTheWarning();
+        }
+
         if (warningTimer <= 0)
         {
             isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
             warningTimer = originalWarningTimer;
             warning = false;
+            changedColour = false;
+            StopAllCoroutines();
         }
     }
 
@@ -80,7 +99,14 @@ public class SwapParts : MonoBehaviour
     {
         PickRandomGround(); // picks a random cube to swap
         PickRandomSwap(); // picks a random swap cube to swap with
-        index.GetComponent<Renderer>().material.color = Color.red;
+
+        if (!pickedColour)
+        {
+            originalColour = index.GetComponent<Renderer>().material.color;
+            pickedColour = true;
+        }
+
+
         warning = true;
     }
 
@@ -150,6 +176,41 @@ public class SwapParts : MonoBehaviour
                 startingPieces.Add(swappablePieces[randomSwapIndex]);
                 swappablePieces.RemoveAt(randomSwapIndex);
                 finishedSwapping = false;
+            }
+        }
+    }
+
+    IEnumerator FlashingColours()
+    {
+        if (warningTimer > whenToMakeFastFlash)
+        {
+            changedColour = true;
+            yield return new WaitForSeconds(flashTimerSpeed);
+            changedColour = false;
+        }
+        else
+        {
+            changedColour = true;
+            yield return new WaitForSeconds(lowTimeFlashTimerSpeed);
+            changedColour = false;
+        }
+    }
+
+    void FlashTheWarning()
+    {
+        if (!toDropAllPlatforms)
+        {
+            if (!changedColour)
+            {
+                if (index.GetComponent<Renderer>().material.color == originalColour)
+                {
+                    index.GetComponent<Renderer>().material.color = Color.red;
+                }
+                else
+                {
+                    index.GetComponent<Renderer>().material.color = originalColour;
+                }
+                StartCoroutine(FlashingColours());
             }
         }
     }
