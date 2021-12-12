@@ -14,6 +14,22 @@ public class LootSpawner : MonoBehaviour
             Transform clone;
             clone  = Instantiate(prefab, transform.position, prefab.rotation);
             clone.transform.parent = transform;
+            clone.gameObject.tag = "Loot";
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.transform.tag == "LootReplenish")
+        {
+            if (Random.Range(0, 100) < 80)
+            {
+                //Loot prefab is spawned at location of spawner
+                Transform clone;
+                clone = Instantiate(prefab, transform.position, prefab.rotation);
+                clone.transform.parent = transform;
+                clone.gameObject.tag = "Loot";
+            }
         }
     }
 
