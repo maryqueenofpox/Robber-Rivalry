@@ -22,6 +22,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float dashDuration = 2f;
     [SerializeField] bool isDashing;
     float maxDashTime;
+    [SerializeField] float bashForce = 2000000f;
 
     public bool isCarryingGem = false;
     float originalSlapCooldown;
@@ -326,6 +327,24 @@ public class PlayerControls : MonoBehaviour
         {
             controls = other.GetComponent<PlayerControls>();
             isPlayer = true;
+
+            if (isDashing)
+            {
+                int randomDirection = Random.Range(0, 2);
+                Debug.Log("Random Direction: " + randomDirection);
+                switch (randomDirection)
+                {
+                    case 0:
+                        controls.rb.AddForce(-transform.right * bashForce);
+                        break;
+                    case 1:
+                        controls.rb.AddForce(transform.right * bashForce);
+                        break;
+                    default:
+                        Debug.Log("Error, random direction error in trigger collider.");
+                        break;
+                }
+            }
         }
 
         if (other.gameObject.CompareTag("Gem"))
