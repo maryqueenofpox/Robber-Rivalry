@@ -11,7 +11,8 @@ public class LootGrabber : MonoBehaviour
 
     public float loot = 0;
 
-    public float percentageToRemove = 10;
+    public float percentageToRemoveGuard = 10;
+    public float percentageToRemoveSpace = 20;
 
     [SerializeField] AudioSource bonkAudio;
     [SerializeField] AudioSource lootAudio;
@@ -32,20 +33,25 @@ public class LootGrabber : MonoBehaviour
             transform.position = respawnpoint.position;
             if (loot > 0)
             {
-                float pointsToRemove = Mathf.Round(loot / percentageToRemove);
+                float pointsToRemove = Mathf.Round(loot / percentageToRemoveGuard);
                 loot -= pointsToRemove;
                 score.text = loot.ToString();
+            }
+            else if(loot <= 0)
+            {
+                loot = 0;
             }
         }
         if (other.transform.tag == "Killzone")
         {
             transform.position = respawnpoint.position;
-            if (loot > 5)
+            if (loot > 0)
             {
-                loot -= 5;
+                float pointsToRemove = Mathf.Round(loot / percentageToRemoveSpace);
+                loot -= pointsToRemove;
                 score.text = loot.ToString();
             }
-            else if (loot <= 5)
+            else if (loot <= 0)
             {
                 loot = 0;
             }
