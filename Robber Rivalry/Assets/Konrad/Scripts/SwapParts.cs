@@ -38,6 +38,7 @@ public class SwapParts : MonoBehaviour
     public float warningTimer = 5f;
     float originalWarningTimer;
     Color originalColour;
+    Color originalColour2;
     bool pickedColour;
     bool changedColour;
 
@@ -104,6 +105,7 @@ public class SwapParts : MonoBehaviour
         {
             Material[] materials = index.GetComponent<Renderer>().materials;
             originalColour = materials[1].color;
+            originalColour2 = materials[2].color;
             pickedColour = true;
         }
 
@@ -208,10 +210,12 @@ public class SwapParts : MonoBehaviour
                 if (materials[1].color == originalColour)
                 {
                     materials[1].color = Color.red;
+                    materials[2].color = Color.red;
                 }
                 else
                 {
                     materials[1].color = originalColour;
+                    materials[2].color = originalColour2;
                 }
                 StartCoroutine(FlashingColours());
             }
