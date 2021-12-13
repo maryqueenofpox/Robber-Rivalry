@@ -9462,6 +9462,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9633f505ded3a5b4bb41a30e58a8aad8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988881256312858879, guid: 9633f505ded3a5b4bb41a30e58a8aad8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9633f505ded3a5b4bb41a30e58a8aad8, type: 3}
 --- !u!1 &345045506 stripped
@@ -34887,7 +34895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAAIexslFq5dgIAADYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzg0DBGPTW4sdpwcnnridXLjIYjEaC4mRRGwn43+vJMAQ+wS8t/v27WrFF6Jc1UC0kCtJ87XIAf2cIPuOfkwG8hlOeC/4ln5CH/NOc13aIOxi3rCmwuCBTVOiAi0p+cX3zAb7Bmw4LYSslvkeUqG0MnCBmQJDSaFtNjfQ1wSduoRz9/y0z8nFvBHgGuQQFXvh7HE+D7rgwEtmSeyH03mf5QVhlMRxME9cfsMJw1UNue1jkInCTuAx8KYukJseuxjfm9rKgjGqOotIn2s3ghTXqjENmoCcYtOyM+d7s8QgJdB9qd13FI8lXotCQUsElpD4vKDSjLCVR79FO9cKq0Nr8gOzxhaMI+euVV7f0Q+Bowspque+eDT17DR0ScnhDZ8JVno0+DG8GHcQuWkdMTvgHYP3EviLWEnR8NzQWjY2uVEQLkZi1wbTEshhiGvt3oBNfX/YwXDYF9f/KWW02l0NGWDLhBt9YnNAmmP6Yyy75VGdkkGtiX8K/uL9eMs64olKpQ3VFeTW3U400oaipRubbabRqZAcHNx5roFjps8bI6O/neM9Nyp7wzxhe5+64h3XX5ObFAcP8b5/Q23EEXolVYrjGlT52mhGOQymLfFi5pQKztsdG8+kT9s2ssBklLZvaP59u9AumiXTODS3KcTEx8nDHMg0wDsSkhnGkMyRWz/KTZ+YbVqj3XjMqfFBnJtN638zk5XEtdv3XOLjin5WYjRyyguxJRKAv7YKV+MgTRFzRfNlTs2AtqA15e680VeGmCAHyLOrUOY6XZ60xNmgkqGafghtkQyl7ueSIQtfV3kj4YPC0RbvxS7o8h9QSwMEFAAACAgAAAAh7K1gGNltAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKSibmlqZmRmaGFUWKyQaKlrkVqsqlhYlKyUbJ5YmKqpYVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAAh7GyUWrl2AgAANgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAAh7K1gGNltAAAAeAAAAAkAJAAAAAAAAAAAAAAAwwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB7AwAAAAA=
+    dataString: UEsDBBQAAAgIAAAAIewGnhQ8dgIAADYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzjUDBGPorSWO00MST9xOLlxksRiNhcRIIraT8b9XEmCIcwLe2337drXiE1GuGiBayLWkxZMoAP2cIfuOfsxG8hFOeC/4ln7AEPNGC13ZIOxiXrGmwuCBTVOiBi0p+cX3zAb7Bmw5LYWsV8UeMqG0MnCJmQJDSaFtNjfQ5wyd+oRz//ywz9nFvBHgGuQYFXvh8i5Jgj547ntJnEZBvBiyvCCM0jgOktTlt5wwXDdQ2D5GmSjsBe4Cb+ECuemxj/E9q0YEY1T1FpE+N24EGW5Uaxo0AQXFpmVnzveWqUEqoPtKu+8onkq8lKWCjggsIfH5nkozwk4e/RbdXGusDp3Jd8xaWzCOnLtO+ekbPQ8cXUpRPw7Fo4WXGExXlBxe8ZlgpSeDn8L30w4iN60jZge8Y/BWAX8WaylaXhhay9YmtwrC+4nYtcGsAnIY4zq7N2DbfD/sYDzsi+v/lDFa766GDLBlwo0+tTkgzTH9MZbd8qheyaDWxD8Ff/F+umU98UCl0obqC3LrbidaaUPRyo3NNtPqTEgODu49N8Ax0+eNkdFfzvE7Nyl7wzxge5/64j03XJObFAeP8b5/Q23EEQYlVYnjE6jqpdWMchhNW+LZzCkTnHc7Np3JkLZtZYnJJG3f0uLrdqFdtEwXcWhuU4iJj9N5AmQR4B0JyRJjSBPk1o9y0ydmm85oPx5zanwU52bTht/MbC1x4/a9kPi4ph+1mIyc8lJsiQTgL53C1ThIU8Rc0WJVUDOgLWhNuTtv9JkjJsgBivwqlLtOVyctcT6q5Kih70JbJEeZ+7nkyMLXVd5IeKdwtMUHsQu6/AdQSwMEFAAACAgAAAAh7K1gGNltAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKSibmlqZmRmaGFUWKyQaKlrkVqsqlhYlKyUbJ5YmKqpYVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAAh7AaeFDx2AgAANgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAAh7K1gGNltAAAAeAAAAAkAJAAAAAAAAAAAAAAAwwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB7AwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -34936,7 +34944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319559919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.29, y: 2.16, z: -1.4}
+  m_LocalPosition: {x: 5.29, y: -0.58, z: -1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54105,6 +54113,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a194da9a3c010c946982288f4b625632, type: 3}
       propertyPath: m_Name
       value: Salon Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a194da9a3c010c946982288f4b625632, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a194da9a3c010c946982288f4b625632, type: 3}
