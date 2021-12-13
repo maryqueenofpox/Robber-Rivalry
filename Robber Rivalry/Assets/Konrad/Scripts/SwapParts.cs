@@ -145,7 +145,11 @@ public class SwapParts : MonoBehaviour
             // Changes the position of the piece to smoothly move to the position of the swap piece
             groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * swapSpeed);
 
+            Material[] materials = index.GetComponent<Renderer>().materials;
+
             //index.GetComponent<Renderer>().material.color = originalColour;
+            materials[1].color = originalColour;
+            materials[2].color = originalColour2;
             swap -= Time.deltaTime;
             if (swap <= 0f)
             {
