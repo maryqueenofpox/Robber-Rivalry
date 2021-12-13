@@ -102,7 +102,8 @@ public class SwapParts : MonoBehaviour
 
         if (!pickedColour)
         {
-            originalColour = index.GetComponent<Renderer>().material.color;
+            Material[] materials = index.GetComponent<Renderer>().materials;
+            originalColour = materials[1].color;
             pickedColour = true;
         }
 
@@ -142,7 +143,7 @@ public class SwapParts : MonoBehaviour
             // Changes the position of the piece to smoothly move to the position of the swap piece
             groundPiece.position = Vector3.MoveTowards(groundPiece.position, swapPieceVector, Time.deltaTime * swapSpeed);
 
-            index.GetComponent<Renderer>().material.color = originalColour;
+            //index.GetComponent<Renderer>().material.color = originalColour;
             swap -= Time.deltaTime;
             if (swap <= 0f)
             {
@@ -198,17 +199,19 @@ public class SwapParts : MonoBehaviour
 
     void FlashTheWarning()
     {
+        Material[] materials = index.GetComponent<Renderer>().materials;
+
         if (!toDropAllPlatforms)
         {
             if (!changedColour)
             {
-                if (index.GetComponent<Renderer>().material.color == originalColour)
+                if (materials[1].color == originalColour)
                 {
-                    index.GetComponent<Renderer>().material.color = Color.red;
+                    materials[1].color = Color.red;
                 }
                 else
                 {
-                    index.GetComponent<Renderer>().material.color = originalColour;
+                    materials[1].color = originalColour;
                 }
                 StartCoroutine(FlashingColours());
             }
