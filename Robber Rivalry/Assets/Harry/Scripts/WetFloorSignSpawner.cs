@@ -22,13 +22,13 @@ public class WetFloorSignSpawner : MonoBehaviour
     {
         if (other.transform.tag == "LootReplenish")
         {
-            if (Random.Range(0, 100) < 80)
+            if (Random.Range(0, 100) < 61)
             {
                 //Loot prefab is spawned at location of spawner
                 Transform clone;
                 clone = Instantiate(prefab, transform.position, prefab.rotation);
                 clone.transform.parent = transform;
-                clone.gameObject.tag = "Loot";
+                clone.gameObject.tag = "PowerUp";
             }
         }
     }
