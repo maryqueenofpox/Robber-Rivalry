@@ -162,6 +162,8 @@ public class PlayerControls : MonoBehaviour
 
         if (doTheSlap)
             DoTheSlap();
+
+        Debug.Log("Gem Status: " + isCarryingGem);
     }
 
     private void FixedUpdate()
@@ -256,7 +258,7 @@ public class PlayerControls : MonoBehaviour
             {
                 gemTransform.parent = transform;
                 gemChild = transform.Find("Gem");
-                gemChild.localPosition = new Vector3(0, 3.5f, 0);
+                gemChild.localPosition = new Vector3(0, 2.5f, 0);
                 isCarryingGem = true;
                 isGem = false;
             }
@@ -285,7 +287,6 @@ public class PlayerControls : MonoBehaviour
             anim.SetBool("isSlapping", true);
             if (timeToSetSlapToFalse <= 0.1f)
             {
-                Debug.Log("I'm getting called multiple times (hopefully");
                 if (isPlayer)
                 {
                     controls.rb.AddForce(transform.forward * slapFoce);
@@ -293,8 +294,8 @@ public class PlayerControls : MonoBehaviour
 
                     if (controls.isCarryingGem)
                     {
-                        controls.transform.GetChild(1).transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
-                        controls.transform.GetChild(1).transform.parent = null;
+                        controls.transform.Find("Gem").transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
+                        controls.transform.Find("Gem").transform.parent = null;
                         controls.isCarryingGem = false;
                     }
 
@@ -331,7 +332,6 @@ public class PlayerControls : MonoBehaviour
             if (isDashing)
             {
                 int randomDirection = Random.Range(0, 2);
-                Debug.Log("Random Direction: " + randomDirection);
                 switch (randomDirection)
                 {
                     case 0:
