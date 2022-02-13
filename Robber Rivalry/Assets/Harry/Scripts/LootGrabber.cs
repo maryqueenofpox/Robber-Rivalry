@@ -17,15 +17,16 @@ public class LootGrabber : MonoBehaviour
     [SerializeField] AudioSource bonkAudio;
     [SerializeField] AudioSource lootAudio;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if(other.transform.tag == "Loot")
+        if (other.transform.tag == "Loot")
         {
             lootAudio.Play();
             loot++;
             score.text = loot.ToString();
             Destroy(other.gameObject);
         }
+
 
         if (other.transform.tag == "Guard")
         {

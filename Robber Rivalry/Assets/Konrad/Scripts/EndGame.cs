@@ -75,7 +75,7 @@ public class EndGame : MonoBehaviour
         if(timer.timer <= movePlatformTimer && timer.timer > 0)
         {
             escapeWall.SetActive(false);
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(30.12f, 0f, -0.300f), 10f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(26.00f, 0f, -0.300f), 10f * Time.deltaTime);
         }
 
         if (timer.timer <= 0)
