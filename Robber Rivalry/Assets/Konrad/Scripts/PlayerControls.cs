@@ -309,7 +309,7 @@ public class PlayerControls : MonoBehaviour
 
     void SpawnObject()
     {
-        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 0f, transform.position.z + transform.forward.z), wetFloorSign.transform.rotation);
+        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 0f, transform.position.z + transform.forward.z), transform.rotation); //wetFloorSign.transform.rotation);
         AstarPath.active.Scan();
     }
 

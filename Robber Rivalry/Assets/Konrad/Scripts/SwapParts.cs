@@ -49,6 +49,9 @@ public class SwapParts : MonoBehaviour
 
     bool toDropAllPlatforms;
 
+    float[] rotationDegrees = { 0.0f, 90.0f, 180.0f, 270.0f };
+    int rotationArrayLength;
+
     private void Start()
     {
         originalTimer = swapTimer;
@@ -58,6 +61,7 @@ public class SwapParts : MonoBehaviour
         changedColour = false;
 
         toDropAllPlatforms = false;
+        rotationArrayLength = rotationDegrees.Length;
     }
 
     // Update is called once per frame
@@ -162,6 +166,10 @@ public class SwapParts : MonoBehaviour
                 swappablePieces.Add(startingPieces[randomIndex]); // adds the ground piece to the swap piece list
                 startingPieces.RemoveAt(randomIndex); // removes the ground piece from the ground piece list
                 finishedSwapping = true; // sets it to true
+
+                int rotationIndex = Random.Range(0, rotationArrayLength);
+                swapPiece.Rotate(0.0f, rotationDegrees[rotationIndex], 0.0f);
+
                 swap = 0.2f;
             }
         }
