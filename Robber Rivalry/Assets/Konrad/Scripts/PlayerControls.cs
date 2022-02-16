@@ -46,7 +46,7 @@ public class PlayerControls : MonoBehaviour
     bool isGem;
     PlayerControls controls;
 
-    bool isStunned;
+    public bool isStunned;
     [SerializeField] float stunDuration = 1f;
     float originalStunDuration;
 
@@ -61,6 +61,10 @@ public class PlayerControls : MonoBehaviour
 
     bool doTheSlap = false;
     [SerializeField] AudioSource powerUpAudio;
+
+    public bool vulnerable;
+    [SerializeField] float vulnerableTimer = 1f;
+    float originalVulnerableTimer;
 
     private void Start()
     {
@@ -77,6 +81,9 @@ public class PlayerControls : MonoBehaviour
         originalStunDuration = stunDuration;
         anim = GetComponent<Animator>();
         maxDashTime = dashDuration;
+
+        vulnerable = true;
+        originalVulnerableTimer = vulnerableTimer;
     }
 
     private void Update()
@@ -94,7 +101,7 @@ public class PlayerControls : MonoBehaviour
        
         }
 
-        if (isStunned)
+        if (isStunned && vulnerable)
         {
             stunDuration -= Time.deltaTime;
             anim.SetBool("gotSlapped", true);
@@ -102,8 +109,20 @@ public class PlayerControls : MonoBehaviour
             {
                 anim.SetBool("gotSlapped", false);
                 isStunned = false;
+                vulnerable = false;
                 stunDuration = originalStunDuration;
                 anim.SetBool("idle", true);
+            }
+        }
+
+        if (!vulnerable)
+        {
+            vulnerableTimer -= Time.deltaTime;
+
+            if (vulnerableTimer <= 0f)
+            {
+                vulnerableTimer = originalVulnerableTimer;
+                vulnerable = true;
             }
         }
 
@@ -287,9 +306,10 @@ public class PlayerControls : MonoBehaviour
             anim.SetBool("isSlapping", true);
             if (timeToSetSlapToFalse <= 0.1f)
             {
-                if (isPlayer)
+                if (isPlayer && controls.vulnerable)
                 {
                     controls.rb.AddForce(transform.forward * slapFoce);
+                    //if (controls.vulnerable)
                     controls.isStunned = true;
 
                     if (controls.isCarryingGem)

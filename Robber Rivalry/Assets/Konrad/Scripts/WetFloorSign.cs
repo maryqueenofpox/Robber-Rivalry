@@ -59,4 +59,18 @@ public class WetFloorSign : MonoBehaviour
     {
         transform.localScale = new Vector3((hit.distance + hit2.distance) * 2, transform.localScale.y, transform.localScale.z);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerControls controls;
+            controls = other.gameObject.GetComponent<PlayerControls>();
+
+            if (controls.vulnerable)
+                controls.isStunned = true;
+            else
+                Debug.Log("Not vulnerable");
+        }
+    }
 }
