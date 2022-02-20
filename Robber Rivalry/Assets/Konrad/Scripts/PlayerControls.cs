@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -66,6 +67,10 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float vulnerableTimer = 1f;
     float originalVulnerableTimer;
 
+    [SerializeField] Image sprintBar;
+
+    ForceField forceField;
+
     private void Start()
     {
         originalSlapToFalse = timeToSetSlapToFalse;
@@ -84,11 +89,21 @@ public class PlayerControls : MonoBehaviour
 
         vulnerable = true;
         originalVulnerableTimer = vulnerableTimer;
+
+        forceField = GetComponent<ForceField>();
+
+        forceField.enabled = true;
     }
 
     private void Update()
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * reach, Color.red);
+
+        sprintBar.fillAmount = dashDuration / maxDashTime;
+        if ((dashDuration / maxDashTime) < 0.5f)
+            sprintBar.color = Color.red;
+        else
+            sprintBar.color = Color.green;
 
         if (anim.GetBool("isSlapping") == true)
         {
@@ -308,19 +323,28 @@ public class PlayerControls : MonoBehaviour
             {
                 if (isPlayer && controls.vulnerable)
                 {
-                    controls.rb.AddForce(transform.forward * slapFoce);
-                    //if (controls.vulnerable)
-                    controls.isStunned = true;
-
-                    if (controls.isCarryingGem)
+                    if (controls.forceField.enabled == true)
                     {
-                        controls.transform.Find("Gem").transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
-                        controls.transform.Find("Gem").transform.parent = null;
-                        controls.isCarryingGem = false;
+                        controls.forceField.enabled = false;
+                        canSlap = false;
+                        return;
                     }
+                    else
+                    {
+                        controls.rb.AddForce(transform.forward * slapFoce);
+                        //if (controls.vulnerable)
+                        controls.isStunned = true;
 
-                    canSlap = false;
-                    doTheSlap = false;
+                        if (controls.isCarryingGem)
+                        {
+                            controls.transform.Find("Gem").transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
+                            controls.transform.Find("Gem").transform.parent = null;
+                            controls.isCarryingGem = false;
+                        }
+
+                        canSlap = false;
+                        doTheSlap = false;
+                    }
                 }
                 doTheSlap = false;
             }
