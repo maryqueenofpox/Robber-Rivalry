@@ -327,6 +327,7 @@ public class PlayerControls : MonoBehaviour
                     {
                         controls.forceField.enabled = false;
                         canSlap = false;
+                        doTheSlap = false;
                         return;
                     }
                     else
