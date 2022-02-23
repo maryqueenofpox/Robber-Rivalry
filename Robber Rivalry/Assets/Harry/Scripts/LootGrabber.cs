@@ -72,6 +72,10 @@ public class LootGrabber : MonoBehaviour
                 transform.position = respawnpoint.position;
             }
         } 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.transform.tag == "Killzone")
         {
             transform.position = respawnpoint.position;
