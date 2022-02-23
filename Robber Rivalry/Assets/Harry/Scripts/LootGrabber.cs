@@ -9,6 +9,9 @@ public class LootGrabber : MonoBehaviour
     public TextMeshProUGUI score;
     public Transform respawnpoint;
 
+    [SerializeField]
+    public Transform Loot;
+
     public float loot = 0;
 
     public float percentageToRemoveGuard = 10;
@@ -31,18 +34,44 @@ public class LootGrabber : MonoBehaviour
         if (other.transform.tag == "Guard")
         {
             bonkAudio.Play();
-            transform.position = respawnpoint.position;
+            Transform clone;
             if (loot > 0)
             {
                 float pointsToRemove = Mathf.Round(loot / percentageToRemoveGuard);
                 loot -= pointsToRemove;
                 score.text = loot.ToString();
+
+                if (loot >= 5)
+                {
+                    for (int i = 0; i <= 5; i++)
+                    {
+                        clone = Instantiate(Loot, transform.position, Loot.rotation);
+                        clone.gameObject.tag = "Loot";
+
+                        clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
+                    }
+                }
+                else if (loot < 5)
+                {
+
+                    for (int i = 0; i <= loot; i++)
+                    {
+                        clone = Instantiate(Loot, transform.position, Loot.rotation);
+                        clone.gameObject.tag = "Loot";
+
+                        clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
+                    }
+                }
+
+                transform.position = respawnpoint.position;
+
             }
             else if(loot <= 0)
             {
                 loot = 0;
+                transform.position = respawnpoint.position;
             }
-        }
+        } 
         if (other.transform.tag == "Killzone")
         {
             transform.position = respawnpoint.position;

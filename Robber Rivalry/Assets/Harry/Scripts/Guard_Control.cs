@@ -5,6 +5,8 @@ using Pathfinding;
 
 public class Guard_Control : MonoBehaviour
 {
+    float waitTime = 5f;
+
     [SerializeField]
     public float VisionDistance = 10.0f;
     [SerializeField]
@@ -31,13 +33,23 @@ public class Guard_Control : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if(other.transform.tag == "Player")
         {
-            GetComponent<AIDestinationSetter>().enabled = false;
-            GetComponent<Patrol>().enabled = true;
-            StartCoroutine(Wait3());
+            waitTime = 0.0f;
+
+            if (waitTime < 5)
+            {
+                GetComponent<AIDestinationSetter>().enabled = false;
+                GetComponent<Patrol>().enabled = true;
+                waitTime -= Time.deltaTime;
+            }
+            else
+            {
+                return;
+            }
+    
         }
     }
     // Update is called once per frame
