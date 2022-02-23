@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SwapParts : MonoBehaviour
 {
+    public bool iAmTiredOfWaitingOnGem = true;
+    public GameObject gemPlatform;
+
     //[SerializeField]
     public List<GameObject> startingPieces = new List<GameObject>(); // holds a list of the ground cubes
     [SerializeField]
@@ -130,11 +132,21 @@ public class SwapParts : MonoBehaviour
 
     void PickRandomSwap()
     {
-        // Same description as the one above but instead it's for the pieces to swap with
-        randomSwapIndex = Random.Range(0, swappablePieces.Count);
-        GameObject swapIndex = swappablePieces[randomSwapIndex];
-        swapPiece = swapIndex.transform;
-        swapPieceVector = swapPiece.position;
+        if (iAmTiredOfWaitingOnGem)
+        {
+            swapPiece = gemPlatform.transform;
+            iAmTiredOfWaitingOnGem = false;
+            swapPieceVector = swapPiece.position;
+            randomSwapIndex = 7;
+        }
+        else
+        {
+            // Same description as the one above but instead it's for the pieces to swap with
+            randomSwapIndex = Random.Range(0, swappablePieces.Count);
+            GameObject swapIndex = swappablePieces[randomSwapIndex];
+            swapPiece = swapIndex.transform;
+            swapPieceVector = swapPiece.position;
+        }
     }
 
     void SwapGroundPieces()

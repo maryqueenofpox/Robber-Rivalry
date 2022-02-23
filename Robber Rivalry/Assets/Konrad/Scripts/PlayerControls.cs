@@ -311,7 +311,8 @@ public class PlayerControls : MonoBehaviour
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        doTheSlap = true;
+        if (canSlap)
+            doTheSlap = true;
     }
 
     void DoTheSlap()
@@ -356,6 +357,16 @@ public class PlayerControls : MonoBehaviour
     {
         Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 0f, transform.position.z + transform.forward.z), transform.rotation); //wetFloorSign.transform.rotation);
         AstarPath.active.Scan();
+    }
+
+    public void DropGemByGuard()
+    {
+        if (isCarryingGem)
+        {
+            transform.Find("Gem").transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            transform.Find("Gem").transform.parent = null;
+            isCarryingGem = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

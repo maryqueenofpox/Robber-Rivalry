@@ -4515,36 +4515,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234526596}
   m_CullTransparentMesh: 1
---- !u!1 &241789124
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 241789125}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &241789125
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241789124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.23, y: 0, z: -26.13}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 46
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &241936141
 GameObject:
   m_ObjectHideFlags: 0
@@ -13909,6 +13879,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &443516596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8996078004399835514, guid: 6a19606a90189d64187dd5a90663dfad, type: 3}
+  m_PrefabInstance: {fileID: 787033028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &443516601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443516596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6929b9cee31825549a8f97fdccff8c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentPlatform: {fileID: 1855189997}
+  originalPos: {fileID: 795368680}
 --- !u!1 &449206088
 GameObject:
   m_ObjectHideFlags: 0
@@ -22446,6 +22435,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.76, y: 1.72, z: 2.46}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &795368679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 795368680}
+  m_Layer: 0
+  m_Name: GemPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &795368680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795368679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5400009, y: 0.339, z: -0.14999962}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1855189998}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &796476295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23453,8 +23472,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854395186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.37, y: -20.41, z: 2.98}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.5, y: -20.41, z: 2.98}
+  m_LocalScale: {x: 3.3, y: 1, z: 3.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 25
@@ -27877,6 +27896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362e0a76e8d75d24d93209419f6b3a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformMoveToLocation: {x: 30.03, y: 0, z: -0.3}
+  platformSpeed: 5
   timer: {fileID: 1040461252}
   movePlatformTimer: 20
   escapeWall: {fileID: 957285309}
@@ -51250,6 +51271,10 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
+      propertyPath: gemPlatform
+      value: 
+      objectReference: {fileID: 1855189997}
+    - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: warningTimer
       value: 3
       objectReference: {fileID: 0}
@@ -51276,6 +51301,10 @@ PrefabInstance:
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: whenToMakeFastFlash
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
+      propertyPath: iAmTiredOfWaitingOnGem
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: lowTimeFlashTimerSpeed
@@ -51316,7 +51345,7 @@ PrefabInstance:
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: startingPieces.Array.data[6]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 370253129}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: startingPieces.Array.data[7]
       value: 

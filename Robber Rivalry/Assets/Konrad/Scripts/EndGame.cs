@@ -5,6 +5,9 @@ using TMPro;
 
 public class EndGame : MonoBehaviour
 {
+    [SerializeField] Vector3 platformMoveToLocation;
+    [SerializeField] float platformSpeed = 5f;
+
     [SerializeField] Timer timer;
     [SerializeField] float movePlatformTimer;
     Vector3 originalPosition;
@@ -75,12 +78,12 @@ public class EndGame : MonoBehaviour
         if(timer.timer <= movePlatformTimer && timer.timer > 0)
         {
             escapeWall.SetActive(false);
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(26.00f, 0f, -0.300f), 10f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, platformMoveToLocation, platformSpeed * Time.deltaTime);
         }
 
         if (timer.timer <= 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, originalPosition, 5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, originalPosition, platformSpeed * Time.deltaTime);
             escapeWall.SetActive(true);
             endGamePanel.SetActive(true);
             AddGemPoints();

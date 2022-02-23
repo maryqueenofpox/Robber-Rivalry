@@ -20,6 +20,13 @@ public class LootGrabber : MonoBehaviour
     [SerializeField] AudioSource bonkAudio;
     [SerializeField] AudioSource lootAudio;
 
+    PlayerControls playerControls;
+
+    private void Start()
+    {
+        playerControls = GetComponent<PlayerControls>();
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.transform.tag == "Loot")
@@ -35,6 +42,8 @@ public class LootGrabber : MonoBehaviour
         {
             bonkAudio.Play();
             Transform clone;
+            playerControls.DropGemByGuard();
+
             if (loot > 0)
             {
                 float pointsToRemove = Mathf.Round(loot / percentageToRemoveGuard);
