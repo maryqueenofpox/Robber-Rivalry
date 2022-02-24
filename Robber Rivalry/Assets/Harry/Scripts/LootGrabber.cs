@@ -54,7 +54,7 @@ public class LootGrabber : MonoBehaviour
                 {
                     for (int i = 0; i <= 5; i++)
                     {
-                        clone = Instantiate(Loot, transform.position, Loot.rotation);
+                        clone = Instantiate(Loot, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Loot.rotation);
                         clone.gameObject.tag = "Loot";
 
                         clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
@@ -65,7 +65,7 @@ public class LootGrabber : MonoBehaviour
 
                     for (int i = 0; i <= loot; i++)
                     {
-                        clone = Instantiate(Loot, transform.position, Loot.rotation);
+                        clone = Instantiate(Loot, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Loot.rotation);
                         clone.gameObject.tag = "Loot";
 
                         clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
