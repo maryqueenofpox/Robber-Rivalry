@@ -25,6 +25,10 @@ public class PlayerControls : MonoBehaviour
     float maxDashTime;
     [SerializeField] float bashForce = 2000000f;
 
+    public GameObject rayGun;
+    [SerializeField] GameObject rayBullet;
+    [SerializeField] float bulletVelocity = 50f;
+
     public bool isCarryingGem = false;
     float originalSlapCooldown;
     bool canUseAbility;
@@ -71,11 +75,13 @@ public class PlayerControls : MonoBehaviour
 
     ForceField forceField;
 
+    //PlayerData playerData;
+
     private void Start()
     {
+        canUseAbility = false;
         originalSlapToFalse = timeToSetSlapToFalse;
         rb = GetComponent<Rigidbody>();
-        canUseAbility = false;
         originalSlapCooldown = slapCooldown;
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
 
@@ -93,6 +99,8 @@ public class PlayerControls : MonoBehaviour
         forceField = GetComponent<ForceField>();
 
         forceField.enabled = true;
+
+        rayGun.SetActive(false);
     }
 
     private void Update()
@@ -313,6 +321,20 @@ public class PlayerControls : MonoBehaviour
     {
         if (canSlap)
             doTheSlap = true;
+    }
+
+    public void ShootRayGun(InputAction.CallbackContext ctx)
+    {
+        if (rayGun.activeSelf == true)
+        {
+            Debug.Log("Gun Active");
+            GameObject bullet;
+            bullet = Instantiate(rayBullet, rayGun.transform.position, transform.rotation);
+
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * Time.deltaTime);
+
+            rayGun.SetActive(false);
+        }
     }
 
     void DoTheSlap()

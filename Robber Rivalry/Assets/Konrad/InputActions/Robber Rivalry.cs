@@ -81,6 +81,14 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Raygun"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f81fb50-aa5c-440c-87d2-56b968def781"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -422,6 +430,28 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""MainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98612cf8-fab1-47f8-a052-96c7a227c8d8"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Raygun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b92089f-1343-4e16-869a-754fe8c73e78"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Raygun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -771,6 +801,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         m_Player_DropGem = m_Player.FindAction("DropGem", throwIfNotFound: true);
         m_Player_Slap = m_Player.FindAction("Slap", throwIfNotFound: true);
         m_Player_MainMenu = m_Player.FindAction("MainMenu", throwIfNotFound: true);
+        m_Player_Raygun = m_Player.FindAction("Raygun", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -840,6 +871,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_DropGem;
     private readonly InputAction m_Player_Slap;
     private readonly InputAction m_Player_MainMenu;
+    private readonly InputAction m_Player_Raygun;
     public struct PlayerActions
     {
         private @RobberRivalry m_Wrapper;
@@ -852,6 +884,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         public InputAction @DropGem => m_Wrapper.m_Player_DropGem;
         public InputAction @Slap => m_Wrapper.m_Player_Slap;
         public InputAction @MainMenu => m_Wrapper.m_Player_MainMenu;
+        public InputAction @Raygun => m_Wrapper.m_Player_Raygun;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -885,6 +918,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @MainMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
                 @MainMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
                 @MainMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
+                @Raygun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRaygun;
+                @Raygun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRaygun;
+                @Raygun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRaygun;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -913,6 +949,9 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @MainMenu.started += instance.OnMainMenu;
                 @MainMenu.performed += instance.OnMainMenu;
                 @MainMenu.canceled += instance.OnMainMenu;
+                @Raygun.started += instance.OnRaygun;
+                @Raygun.performed += instance.OnRaygun;
+                @Raygun.canceled += instance.OnRaygun;
             }
         }
     }
@@ -1059,6 +1098,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         void OnDropGem(InputAction.CallbackContext context);
         void OnSlap(InputAction.CallbackContext context);
         void OnMainMenu(InputAction.CallbackContext context);
+        void OnRaygun(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

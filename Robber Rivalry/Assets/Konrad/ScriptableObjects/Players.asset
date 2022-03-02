@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523ead5579e9742479639563143ab42f, type: 3}
+  m_Name: Players
+  m_EditorClassIdentifier: 
+  _moveSpeed: 250
+  _dashForce: 2
+  _wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
+  _reach: 0.9
+  _slapFoce: 5000000
+  _slapCooldown: 3
+  _dashDuration: 0.5
+  _bashForce: 2000000
+  _rayGun: {fileID: 0}
+  _rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
+  _bulletVelocity: 50
+  _lootGrabber: {fileID: 0}
+  _gemPointIncrease: 1
+  _timeUntilScoreIncrease: 4
+  _stunDuration: 1
+  _timeToSetSlapToFalse: 0.5
+  _durationToIncreaseBy: 0.1
+  _powerUpAudio: {fileID: 0}
+  _vulnerableTimer: 1
