@@ -398,7 +398,9 @@ public class PlayerControls : MonoBehaviour
             powerUpAudio.Play();
             canUseAbility = true;
         }
+        
     }
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -430,11 +432,33 @@ public class PlayerControls : MonoBehaviour
             gemTransform = other.GetComponent<Transform>();
             isGem = true;
         }
+
+        
+    }
+    /*/
+     Trigger for player walking into honey pile on floor; speed should be reduced and then return to normal after they exit trigger
+    */
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Honey"))
+        {
+            moveSpeed = 30.0f;
+        }
+       
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Honey"))
+
+        {
+            moveSpeed = 50.0f;
+        }
+
         isPlayer = false;
         isGem = false;
+        
     }
+    
+    
 }

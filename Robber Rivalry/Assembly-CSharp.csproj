@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,35 +53,50 @@
     <UnityVersion>2021.1.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Konrad\Scripts\PlayerControls.cs" />
-    <Compile Include="Assets\Konrad\Scripts\SwapParts.cs" />
-    <Compile Include="Assets\Konrad\Scripts\PowerUp.cs" />
-    <Compile Include="Assets\Konrad\Scripts\WetFloorSign.cs" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\PlayerInputHandler.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PlayerMechanics\PlayerControls.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MapMechanics\SwapParts.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PowerupMechanics\PowerUp.cs" />
+    <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\CharacterSelect.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PowerupMechanics\WetFloorSign.cs" />
     <Compile Include="Assets\Harry\Scripts\SteeringAgent.cs" />
     <Compile Include="Assets\Harry\Scripts\Guard_AI.cs" />
-    <Compile Include="Assets\Konrad\Scripts\Timer.cs" />
+    <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\InitLevel.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MapMechanics\Timer.cs" />
     <Compile Include="Assets\Harry\Scripts\LootDestroyer.cs" />
-    <Compile Include="Assets\SpaceSkies Free\Demo\Scripts\LookCamera.cs" />
-    <Compile Include="Assets\Konrad\Scripts\CheckCollision.cs" />
-    <Compile Include="Assets\Konrad\Scripts\SpawnPowerUps.cs" />
+    <Compile Include="Assets\Konrad\ScriptableObjects\PlayerData.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PlayerMechanics\CheckCollision.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MapMechanics\SpawnPowerUps.cs" />
     <Compile Include="Assets\Harry\Scripts\LootGrabber.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MapMechanics\PlayerUI.cs" />
     <Compile Include="Assets\Harry\Scripts\Helper.cs" />
+    <Compile Include="Assets\Konrad\Testasdasd.cs" />
     <Compile Include="Assets\Harry\Scripts\Guard_Pathfinding.cs" />
-    <Compile Include="Assets\Konrad\Scripts\InputManager.cs" />
-    <Compile Include="Assets\SpaceSkies Free\Demo\Scripts\SkyboxChanger.cs" />
+    <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\InputManager.cs" />
+    <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\CharacterLoader.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PowerupMechanics\RayGun.cs" />
+    <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\PlayerSetup.cs" />
     <Compile Include="Assets\Konrad\InputActions\Robber Rivalry.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PlayerMechanics\GemMechanic.cs" />
     <Compile Include="Assets\Harry\Scripts\LootSpawner_Bottom.cs" />
-    <Compile Include="Assets\Konrad\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MenuMechanics\MainMenu.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PlayerMechanics\SlapMechanic.cs" />
     <Compile Include="Assets\Harry\Scripts\WetFloorSignSpawner.cs" />
     <Compile Include="Assets\Harry\Scripts\Guard_Control.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MapMechanics\Gem.cs" />
     <Compile Include="Assets\Harry\Scripts\Bottom_WetFloorSpawner.cs" />
-    <Compile Include="Assets\Konrad\Scripts\BlackHole.cs" />
-    <Compile Include="Assets\Harry\Scripts\SteeringBehaviour.cs" />
-    <Compile Include="Assets\Konrad\Scripts\Squid.cs" />
-    <Compile Include="Assets\Harry\Scripts\LootSpawner.cs" />
-    <Compile Include="Assets\Konrad\Scripts\ForceField.cs" />
-    <Compile Include="Assets\Konrad\Scripts\EndGame.cs" />
+    <Compile Include="Assets\Konrad\Scripts\AiMechanics\BlackHole.cs" />
     <Compile Include="Assets\Harry\Scripts\HarryGeode.cs" />
+    <Compile Include="Assets\Harry\Scripts\SteeringBehaviour.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MapMechanics\Squid.cs" />
+    <Compile Include="Assets\Harry\Scripts\LootSpawner.cs" />
+    <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\SpawnPlayer.cs" />
+    <Compile Include="Assets\Konrad\Scripts\PowerupMechanics\ForceField.cs" />
+    <Compile Include="Assets\Konrad\Scripts\MapMechanics\EndGame.cs" />
+    <Compile Include="Assets\Harry\Scripts\HoneySplat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
