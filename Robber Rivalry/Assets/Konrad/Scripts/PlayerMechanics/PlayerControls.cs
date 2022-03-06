@@ -13,6 +13,7 @@ public class PlayerControls : MonoBehaviour
 
     [Header("Movement Values")]
     public float moveSpeed = 50.0f;
+    [SerializeField] public float originalmoveSpeed = 250.0f;
     [SerializeField] float dashForce = 10f;
 
     [Header("Abilities")]
@@ -398,7 +399,11 @@ public class PlayerControls : MonoBehaviour
             powerUpAudio.Play();
             canUseAbility = true;
         }
-        
+        if (collision.collider.CompareTag("HoneyExit"))
+        {
+            moveSpeed = 50.0f;
+        }
+
     }
 
 
@@ -442,9 +447,14 @@ public class PlayerControls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Honey"))
         {
-            moveSpeed = 30.0f;
+            moveSpeed = 50.0f;
         }
-       
+
+        if (other.gameObject.CompareTag("HoneyExit"))
+        {
+            moveSpeed = originalmoveSpeed;
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -452,7 +462,13 @@ public class PlayerControls : MonoBehaviour
         if (other.gameObject.CompareTag("Honey"))
 
         {
-            moveSpeed = 50.0f;
+            moveSpeed = originalmoveSpeed;
+        }
+
+        if (other.gameObject.CompareTag("HoneyExit"))
+
+        {
+            moveSpeed = originalmoveSpeed;
         }
 
         isPlayer = false;
