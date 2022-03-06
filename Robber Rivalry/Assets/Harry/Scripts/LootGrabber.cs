@@ -20,11 +20,11 @@ public class LootGrabber : MonoBehaviour
     [SerializeField] AudioSource bonkAudio;
     [SerializeField] AudioSource lootAudio;
 
-    PlayerControls playerControls;
+    GemMechanic gemMechanic;
 
     private void Start()
     {
-        playerControls = GetComponent<PlayerControls>();
+        gemMechanic = GetComponent<GemMechanic>();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -42,7 +42,7 @@ public class LootGrabber : MonoBehaviour
         {
             bonkAudio.Play();
             Transform clone;
-            playerControls.DropGemByGuard();
+            gemMechanic.DropGem();
 
             if (loot > 0)
             {

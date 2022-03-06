@@ -6,57 +6,43 @@ public class SlapMechanic : MonoBehaviour
 {
     [SerializeField] float slapFoce = 5000f;
     [SerializeField] float slapCooldown = 3f;
-    bool canSlap = true;
-    [SerializeField]
-    float timeToSetSlapToFalse = 1f;
+    bool canSlap;
+    [SerializeField] float timeToSetSlapToFalse = 1f;
     float originalSlapToFalse;
-    [SerializeField]
-    float durationToIncreaseBy = 0.1f;
     bool doTheSlap = false;
     float originalSlapCooldown;
 
-    Animator anim;
+    PlayerAnimations playerAnimationsScript;
 
-    public PlayerControls controls { get; set; }
+    PlayerMovement playerMovement;
+    PlayerControls controls;
+    ForceField forceField;
+    GemMechanic gemMechanic;
+    bool isPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-
-        originalSlapToFalse = timeToSetSlapToFalse;
+        playerAnimationsScript = GetComponent<PlayerAnimations>();
 
         originalSlapToFalse = timeToSetSlapToFalse;
         originalSlapCooldown = slapCooldown;
+
+        canSlap = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (anim.GetBool("isSlapping") == true)
+        if (playerAnimationsScript.anim.GetBool("isSlapping") == true)
         {
             timeToSetSlapToFalse -= Time.deltaTime;
             if (timeToSetSlapToFalse <= 0f)
             {
                 timeToSetSlapToFalse = originalSlapToFalse;
-                anim.SetBool("isSlapping", false);
+                playerAnimationsScript.IsSlappingAnimation(false);
             }
         }
-        /*
-        if (isStunned && vulnerable)
-        {
-            stunDuration -= Time.deltaTime;
-            anim.SetBool("gotSlapped", true);
-            if (stunDuration <= 0)
-            {
-                anim.SetBool("gotSlapped", false);
-                isStunned = false;
-                vulnerable = false;
-                stunDuration = originalStunDuration;
-                anim.SetBool("idle", true);
-            }
-        }
-        */
         if (!canSlap)
         {
             slapCooldown -= Time.deltaTime;
@@ -72,34 +58,32 @@ public class SlapMechanic : MonoBehaviour
             DoTheSlap();
     }
 
-    void DoTheSlap()
+    public void DoTheSlap()
     {
-        /*
-        if (canSlap && !isStunned)
+        if (canSlap)
         {
-            anim.SetBool("isSlapping", true);
+            playerAnimationsScript.IsSlappingAnimation(true);
             if (timeToSetSlapToFalse <= 0.1f)
             {
                 if (isPlayer && controls.vulnerable)
                 {
-                    if (controls.forceField.enabled == true)
+                    if (forceField.enabled == true)
                     {
-                        controls.forceField.enabled = false;
+                        forceField.enabled = false;
                         canSlap = false;
                         doTheSlap = false;
                         return;
                     }
                     else
                     {
-                        controls.rb.AddForce(transform.forward * slapFoce);
-                        //if (controls.vulnerable)
+                        playerMovement.rb.AddForce(transform.forward * slapFoce);
                         controls.isStunned = true;
 
-                        if (controls.isCarryingGem)
+                        if (gemMechanic.isCarryingGem)
                         {
-                            controls.transform.Find("Gem").transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
-                            controls.transform.Find("Gem").transform.parent = null;
-                            controls.isCarryingGem = false;
+                            playerMovement.transform.Find("Gem").transform.localPosition = playerMovement.transform.TransformDirection(-Vector3.forward * 2);
+                            playerMovement.transform.Find("Gem").transform.parent = null;
+                            gemMechanic.isCarryingGem = false;
                         }
 
                         canSlap = false;
@@ -109,6 +93,25 @@ public class SlapMechanic : MonoBehaviour
                 doTheSlap = false;
             }
         }
-        */
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerMovement = other.GetComponent<PlayerMovement>();
+            forceField = other.GetComponent<ForceField>();
+            gemMechanic = other.GetComponent<GemMechanic>();
+            controls = other.GetComponent<PlayerControls>();
+            isPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isPlayer = false;
+        }
     }
 }

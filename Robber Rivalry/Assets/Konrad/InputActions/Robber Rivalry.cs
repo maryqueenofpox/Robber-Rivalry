@@ -27,7 +27,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Ability1"",
+                    ""name"": ""Ability"",
                     ""type"": ""Button"",
                     ""id"": ""a5dc3e21-cbc4-4241-b131-1e4eaa0a79ca"",
                     ""expectedControlType"": ""Button"",
@@ -41,14 +41,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold""
-                },
-                {
-                    ""name"": ""Rotation"",
-                    ""type"": ""Value"",
-                    ""id"": ""64c2286b-587e-49aa-9898-346f8a33c89f"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 },
                 {
                     ""name"": ""PickUpGem"",
@@ -81,14 +73,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Raygun"",
-                    ""type"": ""Button"",
-                    ""id"": ""8f81fb50-aa5c-440c-87d2-56b968def781"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -176,7 +160,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -187,7 +171,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -198,7 +182,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Switch"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -232,83 +216,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Switch"",
                     ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6463dcff-9cf7-4230-ab8d-721fb591d816"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""UpDownLeftRightArrows"",
-                    ""id"": ""c722092e-ae50-402c-a723-36318e03143d"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""f70b5991-7cfe-4d46-95fe-683f637b398c"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""9b5f8630-1fb5-4e16-a40f-3853a6a91c38"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""f72d978c-73e0-4b48-ac64-08cc1ec2857d"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""f3ca0dc9-c25d-464c-8020-b1a36a7e475a"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ea7fe865-0a0d-4958-89d6-079815e2dada"",
-                    ""path"": ""<SwitchProControllerHID>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Switch"",
-                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -430,28 +337,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""MainMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""98612cf8-fab1-47f8-a052-96c7a227c8d8"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Raygun"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3b92089f-1343-4e16-869a-754fe8c73e78"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Raygun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -794,14 +679,12 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
+        m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
         m_Player_PickUpGem = m_Player.FindAction("PickUpGem", throwIfNotFound: true);
         m_Player_DropGem = m_Player.FindAction("DropGem", throwIfNotFound: true);
         m_Player_Slap = m_Player.FindAction("Slap", throwIfNotFound: true);
         m_Player_MainMenu = m_Player.FindAction("MainMenu", throwIfNotFound: true);
-        m_Player_Raygun = m_Player.FindAction("Raygun", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -864,27 +747,23 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Ability1;
+    private readonly InputAction m_Player_Ability;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Rotation;
     private readonly InputAction m_Player_PickUpGem;
     private readonly InputAction m_Player_DropGem;
     private readonly InputAction m_Player_Slap;
     private readonly InputAction m_Player_MainMenu;
-    private readonly InputAction m_Player_Raygun;
     public struct PlayerActions
     {
         private @RobberRivalry m_Wrapper;
         public PlayerActions(@RobberRivalry wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
+        public InputAction @Ability => m_Wrapper.m_Player_Ability;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
         public InputAction @PickUpGem => m_Wrapper.m_Player_PickUpGem;
         public InputAction @DropGem => m_Wrapper.m_Player_DropGem;
         public InputAction @Slap => m_Wrapper.m_Player_Slap;
         public InputAction @MainMenu => m_Wrapper.m_Player_MainMenu;
-        public InputAction @Raygun => m_Wrapper.m_Player_Raygun;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -897,15 +776,12 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Ability1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
-                @Ability1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
-                @Ability1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
+                @Ability.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
+                @Ability.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
+                @Ability.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Rotation.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
-                @Rotation.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
-                @Rotation.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
                 @PickUpGem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
                 @PickUpGem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
                 @PickUpGem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
@@ -918,9 +794,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @MainMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
                 @MainMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
                 @MainMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainMenu;
-                @Raygun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRaygun;
-                @Raygun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRaygun;
-                @Raygun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRaygun;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -928,15 +801,12 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Ability1.started += instance.OnAbility1;
-                @Ability1.performed += instance.OnAbility1;
-                @Ability1.canceled += instance.OnAbility1;
+                @Ability.started += instance.OnAbility;
+                @Ability.performed += instance.OnAbility;
+                @Ability.canceled += instance.OnAbility;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @Rotation.started += instance.OnRotation;
-                @Rotation.performed += instance.OnRotation;
-                @Rotation.canceled += instance.OnRotation;
                 @PickUpGem.started += instance.OnPickUpGem;
                 @PickUpGem.performed += instance.OnPickUpGem;
                 @PickUpGem.canceled += instance.OnPickUpGem;
@@ -949,9 +819,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @MainMenu.started += instance.OnMainMenu;
                 @MainMenu.performed += instance.OnMainMenu;
                 @MainMenu.canceled += instance.OnMainMenu;
-                @Raygun.started += instance.OnRaygun;
-                @Raygun.performed += instance.OnRaygun;
-                @Raygun.canceled += instance.OnRaygun;
             }
         }
     }
@@ -1091,14 +958,12 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnAbility1(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnRotation(InputAction.CallbackContext context);
         void OnPickUpGem(InputAction.CallbackContext context);
         void OnDropGem(InputAction.CallbackContext context);
         void OnSlap(InputAction.CallbackContext context);
         void OnMainMenu(InputAction.CallbackContext context);
-        void OnRaygun(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -9,18 +9,4 @@ public class ForceField : MonoBehaviour
         Debug.Log("Hello, I have been enabled");
         // Play animation
     }
-
-    // Probs don't need the bottom
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

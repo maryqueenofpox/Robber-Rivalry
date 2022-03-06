@@ -1,141 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
-    Rigidbody rb;
-    Vector2 movementInput;
-    Vector2 rotationInput;
+    SlapMechanic slapMechanicScript;
+    GemMechanic gemMechanicScript;
+    BashMechanic bashMechanicScript;
+    PlayerUI playerUIScript;
+    PlayerMovement playerMovementScript;
+    PlayerAbilities playerAbilitiesScript;
+    ForceField forceFieldScript;
+    PlayerAnimations playerAnimationsScript;
 
-    [Header("Movement Values")]
-    public float moveSpeed = 50.0f;
-    [SerializeField] public float originalmoveSpeed = 250.0f;
-    [SerializeField] float dashForce = 10f;
-
-    [Header("Abilities")]
-    [SerializeField] GameObject wetFloorSign;
-    [SerializeField] float reach = 1.5f;
-    [SerializeField] float slapFoce = 5000f;
-    [SerializeField] float slapCooldown = 3f;
-    [SerializeField] float dashDuration = 2f;
-    [SerializeField] bool isDashing;
-    float maxDashTime;
-    [SerializeField] float bashForce = 2000000f;
-
-    public GameObject rayGun;
-    [SerializeField] GameObject rayBullet;
-    [SerializeField] float bulletVelocity = 50f;
-
-    public bool isCarryingGem = false;
-    float originalSlapCooldown;
-    bool canUseAbility;
-    bool canSlap = true;
-
-    [Header("Loot Grabber Script")]
-    public LootGrabber lootGrabber;
-
-    [Header("Gem Score")]
-    [SerializeField] float gemPointIncrease;
-    public float timeUntilScoreIncrease = 4.0f;
-    float originalTimeUntilScoreIncrease;
-    Transform gemTransform;
-
-    [Header("UI")]
-    [SerializeField] GameObject menuPanel;
-    [SerializeField] GameObject powerUpUI;
-
-    bool isPlayer;
-    bool isGem;
-    PlayerControls controls;
-
-    public bool isStunned;
     [SerializeField] float stunDuration = 1f;
     float originalStunDuration;
-
-    Transform gemChild;
-    Animator anim;
-
-    [SerializeField]
-    float timeToSetSlapToFalse = 1f;
-    float originalSlapToFalse;
-    [SerializeField]
-    float durationToIncreaseBy = 0.1f;
-
-    bool doTheSlap = false;
-    [SerializeField] AudioSource powerUpAudio;
-
-    public bool vulnerable;
+    public bool isStunned;
+    
+    public bool vulnerable { get; set; }
     [SerializeField] float vulnerableTimer = 1f;
     float originalVulnerableTimer;
 
-    [SerializeField] Image sprintBar;
-
-    ForceField forceField;
-
-    //PlayerData playerData;
-
     private void Start()
     {
-        canUseAbility = false;
-        originalSlapToFalse = timeToSetSlapToFalse;
-        rb = GetComponent<Rigidbody>();
-        originalSlapCooldown = slapCooldown;
-        originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
+        GetStartingComponents();
 
-        menuPanel.SetActive(false);
-        isPlayer = false;
-        powerUpUI.SetActive(false);
-        isDashing = false;
         originalStunDuration = stunDuration;
-        anim = GetComponent<Animator>();
-        maxDashTime = dashDuration;
-
-        vulnerable = true;
         originalVulnerableTimer = vulnerableTimer;
-
-        forceField = GetComponent<ForceField>();
-
-        forceField.enabled = true;
-
-        rayGun.SetActive(false);
+        vulnerable = true;
     }
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * reach, Color.red);
-
-        sprintBar.fillAmount = dashDuration / maxDashTime;
-        if ((dashDuration / maxDashTime) < 0.5f)
-            sprintBar.color = Color.red;
-        else
-            sprintBar.color = Color.green;
-
-        if (anim.GetBool("isSlapping") == true)
-        {
-            timeToSetSlapToFalse -= Time.deltaTime;
-            if (timeToSetSlapToFalse <= 0f)
-            {
-                timeToSetSlapToFalse = originalSlapToFalse;
-                anim.SetBool("isSlapping", false);
-            }
-       
-        }
-
         if (isStunned && vulnerable)
         {
             stunDuration -= Time.deltaTime;
-            anim.SetBool("gotSlapped", true);
+            playerAnimationsScript.GotSlappedAnim(true);
             if (stunDuration <= 0)
             {
-                anim.SetBool("gotSlapped", false);
+                playerAnimationsScript.GotSlappedAnim(false);
                 isStunned = false;
                 vulnerable = false;
                 stunDuration = originalStunDuration;
-                anim.SetBool("idle", true);
+                playerAnimationsScript.IdleAnimation(true);
             }
         }
 
@@ -149,332 +55,70 @@ public class PlayerControls : MonoBehaviour
                 vulnerable = true;
             }
         }
-
-        if (dashDuration <= 0)
-        {
-            anim.SetBool("isDashing", false);
-        }
-
-        if (!canSlap)
-        {
-            slapCooldown -= Time.deltaTime;
-        }
-
-        if (slapCooldown <= 0.0f)
-        {
-            canSlap = true;
-            slapCooldown = originalSlapCooldown;
-        }
-
-        if (isCarryingGem)
-        {
-            if (transform.childCount < 2)
-                isCarryingGem = false;
-            else
-            {
-                timeUntilScoreIncrease -= Time.deltaTime;
-                if (timeUntilScoreIncrease <= 0.0f)
-                {
-                    lootGrabber.loot += gemPointIncrease;
-                    lootGrabber.score.text = lootGrabber.loot.ToString();
-                    timeUntilScoreIncrease = originalTimeUntilScoreIncrease;
-                }
-            }
-        }
-
-        if (canUseAbility)
-            powerUpUI.SetActive(true);
-        else
-            powerUpUI.SetActive(false);
-
-        if (isDashing)
-        {
-            dashDuration -= Time.deltaTime;
-            
-            if (dashDuration <= 0)
-            {
-                isDashing = false;
-            }
-        }
-        else
-        {
-            dashDuration += durationToIncreaseBy * Time.deltaTime;
-            if (dashDuration >= maxDashTime)
-                dashDuration = maxDashTime;
-        }
-
-        if (doTheSlap)
-            DoTheSlap();
-
-        Debug.Log("Gem Status: " + isCarryingGem);
-    }
-
-    private void FixedUpdate()
-    {
-        if (!isStunned)
-        {
-            if (isDashing)
-            {
-                rb.velocity = transform.TransformDirection(Vector3.forward) * moveSpeed * dashForce * Time.deltaTime;
-                // anim is dashing
-            }
-            else
-                rb.velocity = new Vector3(movementInput.x, 0, movementInput.y) * moveSpeed * Time.deltaTime;
-        }
-        else
-            rb.velocity = Vector3.zero;
-        
-
-        if (rb.velocity != Vector3.zero)
-        {
-            anim.SetBool("idle", false);
-            anim.SetBool("isMoving", true);
-        }
-        else
-        {
-            anim.SetBool("isMoving", false);
-            anim.SetBool("idle", true);
-        }
-
-        if (!(rb.velocity == Vector3.zero) && !isDashing)
-            transform.rotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
-
-        if (Gamepad.current.rightStick.IsActuated() && !isDashing)
-            transform.rotation = Quaternion.LookRotation(new Vector3(rotationInput.x, 0, rotationInput.y));
-    }
-
-    public void Rotation(InputAction.CallbackContext ctx)
-    {
-        rotationInput = ctx.ReadValue<Vector2>();
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        movementInput = ctx.ReadValue<Vector2>();
+        if (!isStunned)
+            playerMovementScript.movementInput = ctx.ReadValue<Vector2>();
+        else
+            return;
     }
 
     public void OpenOrCloseMenuPanel(InputAction.CallbackContext ctx)
     {
-        if (menuPanel.activeInHierarchy == true)
-        {
-            menuPanel.SetActive(false);
-            Debug.Log("Off");
-        }
-        else if (menuPanel.activeInHierarchy == false)
-        {
-            menuPanel.SetActive(true);
-            Debug.Log("On");
-        }
+        playerUIScript.DoShitToMenu();
     }
 
-    public void Ability1(InputAction.CallbackContext ctx)
+    public void Ability(InputAction.CallbackContext ctx)
     {
-        if (canUseAbility && !isStunned)
-        {
-            SpawnObject();
-            canUseAbility = false;
-        }
+        if (!isStunned)
+            playerAbilitiesScript.Ability();
+        else
+            return;
     }
 
     public void Dash(InputAction.CallbackContext ctx)
     {
         if (!isStunned)
-        {
             if (ctx.performed)
-            {
-                anim.SetBool("isDashing", true);
-                isDashing = true;
-            }                 
-            else               
-            {
-                anim.SetBool("isDashing", false);
-                isDashing = false;
-            }
-        }
+                playerMovementScript.isDashing = true;
+            else
+                playerMovementScript.isDashing = false;
+        else
+            return;
     }
 
     public void PickUpGem(InputAction.CallbackContext ctx)
     {
-        if (!isCarryingGem && !isStunned)
-        {
-            if (isGem)
-            {
-                gemTransform.parent = transform;
-                gemChild = transform.Find("Gem");
-                gemChild.localPosition = new Vector3(0, 2.5f, 0);
-                isCarryingGem = true;
-                isGem = false;
-            }
-        }
+        if (!isStunned)
+            gemMechanicScript.PickUpGem();
+        else
+            return;
     }
 
     public void DropGem(InputAction.CallbackContext ctx)
     {
-        if (isCarryingGem)
-        {
-            gemChild.localPosition = transform.TransformDirection(Vector3.forward * 1);
-            gemChild.parent = null;
-            isCarryingGem = false;
-        }
+        gemMechanicScript.DropGem();
     }
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        if (canSlap)
-            doTheSlap = true;
+        if (!isStunned)
+            slapMechanicScript.DoTheSlap();
+        else
+            return;
     }
 
-    public void ShootRayGun(InputAction.CallbackContext ctx)
+    void GetStartingComponents()
     {
-        if (rayGun.activeSelf == true)
-        {
-            Debug.Log("Gun Active");
-            GameObject bullet;
-            bullet = Instantiate(rayBullet, rayGun.transform.position, transform.rotation);
-
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * Time.deltaTime);
-
-            rayGun.SetActive(false);
-        }
+        slapMechanicScript = GetComponent<SlapMechanic>();
+        gemMechanicScript = GetComponent<GemMechanic>();
+        bashMechanicScript = GetComponent<BashMechanic>();
+        playerUIScript = GetComponent<PlayerUI>();
+        playerMovementScript = GetComponent<PlayerMovement>();
+        playerAbilitiesScript = GetComponent<PlayerAbilities>();
+        forceFieldScript = GetComponent<ForceField>();
+        playerAnimationsScript = GetComponent<PlayerAnimations>();
     }
-
-    void DoTheSlap()
-    {
-        if (canSlap && !isStunned)
-        {
-            anim.SetBool("isSlapping", true);
-            if (timeToSetSlapToFalse <= 0.1f)
-            {
-                if (isPlayer && controls.vulnerable)
-                {
-                    if (controls.forceField.enabled == true)
-                    {
-                        controls.forceField.enabled = false;
-                        canSlap = false;
-                        doTheSlap = false;
-                        return;
-                    }
-                    else
-                    {
-                        controls.rb.AddForce(transform.forward * slapFoce);
-                        //if (controls.vulnerable)
-                        controls.isStunned = true;
-
-                        if (controls.isCarryingGem)
-                        {
-                            controls.transform.Find("Gem").transform.localPosition = controls.transform.TransformDirection(-Vector3.forward * 2);
-                            controls.transform.Find("Gem").transform.parent = null;
-                            controls.isCarryingGem = false;
-                        }
-
-                        canSlap = false;
-                        doTheSlap = false;
-                    }
-                }
-                doTheSlap = false;
-            }
-        }
-    }
-
-    void SpawnObject()
-    {
-        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 0f, transform.position.z + transform.forward.z), transform.rotation); //wetFloorSign.transform.rotation);
-        AstarPath.active.Scan();
-    }
-
-    public void DropGemByGuard()
-    {
-        if (isCarryingGem)
-        {
-            transform.Find("Gem").transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-            transform.Find("Gem").transform.parent = null;
-            isCarryingGem = false;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("PowerUp"))
-        {
-            powerUpAudio.Play();
-            canUseAbility = true;
-        }
-        if (collision.collider.CompareTag("HoneyExit"))
-        {
-            moveSpeed = 50.0f;
-        }
-
-    }
-
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            controls = other.GetComponent<PlayerControls>();
-            isPlayer = true;
-
-            if (isDashing)
-            {
-                int randomDirection = Random.Range(0, 2);
-                switch (randomDirection)
-                {
-                    case 0:
-                        controls.rb.AddForce(-transform.right * bashForce);
-                        break;
-                    case 1:
-                        controls.rb.AddForce(transform.right * bashForce);
-                        break;
-                    default:
-                        Debug.Log("Error, random direction error in trigger collider.");
-                        break;
-                }
-            }
-        }
-
-        if (other.gameObject.CompareTag("Gem"))
-        {
-            gemTransform = other.GetComponent<Transform>();
-            isGem = true;
-        }
-
-        
-    }
-    /*/
-     Trigger for player walking into honey pile on floor; speed should be reduced and then return to normal after they exit trigger
-    */
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Honey"))
-        {
-            moveSpeed = 50.0f;
-        }
-
-        if (other.gameObject.CompareTag("HoneyExit"))
-        {
-            moveSpeed = originalmoveSpeed;
-        }
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Honey"))
-
-        {
-            moveSpeed = originalmoveSpeed;
-        }
-
-        if (other.gameObject.CompareTag("HoneyExit"))
-
-        {
-            moveSpeed = originalmoveSpeed;
-        }
-
-        isPlayer = false;
-        isGem = false;
-        
-    }
-    
-    
 }

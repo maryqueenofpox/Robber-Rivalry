@@ -457,10 +457,10 @@ RectTransform:
   - {fileID: 1805076522}
   - {fileID: 107693525}
   - {fileID: 1156803443}
-  - {fileID: 9344943}
-  - {fileID: 509294468}
   - {fileID: 1642249334}
   - {fileID: 948103070}
+  - {fileID: 9344943}
+  - {fileID: 509294468}
   m_Father: {fileID: 0}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10615,7 +10615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -13334,7 +13334,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 440957281}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Ability1
+        m_MethodName: Ability
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13362,22 +13362,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 440957281}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Rotation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 64c2286b-587e-49aa-9898-346f8a33c89f
-    m_ActionName: Player/Rotation[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 440957281}
@@ -13482,10 +13466,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 560ba04b-0de3-4db7-b2f6-5f8b62b8e3b5
     m_ActionName: Player/MainMenu[/XInputControllerWindows/start,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8f81fb50-aa5c-440c-87d2-56b968def781
-    m_ActionName: Player/Raygun[/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightShoulder,/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -13503,33 +13483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0809e2121d4f9304892bf0ebaba7f9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 250
-  originalmoveSpeed: 250
-  dashForce: 2
-  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
-  reach: 0.9
-  slapFoce: 5000000
-  slapCooldown: 3
-  dashDuration: 0.5
-  isDashing: 0
-  bashForce: 2000000
-  rayGun: {fileID: 1660216319}
-  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
-  bulletVelocity: 50
-  isCarryingGem: 0
-  lootGrabber: {fileID: 440957282}
-  gemPointIncrease: 1
-  timeUntilScoreIncrease: 4
-  menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 1642249333}
-  isStunned: 0
   stunDuration: 1
-  timeToSetSlapToFalse: 0.5
-  durationToIncreaseBy: 0.1
-  powerUpAudio: {fileID: 440957288}
-  vulnerable: 0
+  isStunned: 0
   vulnerableTimer: 1
-  sprintBar: {fileID: 2017026348}
 --- !u!114 &440957282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13903,6 +13859,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0510774e7734cf4459414b134071b878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &440957291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440957279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84208cd8b85e2b84a912833f69941da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPanel: {fileID: 107693526}
+  powerUpUI: {fileID: 1642249333}
+  sprintBar: {fileID: 2017026348}
+--- !u!114 &440957292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440957279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e580f922295cc4fb7b4bddf700a2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slapFoce: 5000000
+  slapCooldown: 3
+  timeToSetSlapToFalse: 0.5
+--- !u!114 &440957293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440957279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b919d46557d4fc64b89deb9b5bed1abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 250
+  originalmoveSpeed: 250
+  dashForce: 2
+  dashDuration: 0.5
+  durationToIncreaseBy: 0.1
+--- !u!114 &440957294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440957279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfa000cf161a86439fbc6342158fa0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &440957295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440957279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d7fcfe03c5b3446857ab1a1c40a3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
+  rayGun: {fileID: 1660216319}
+  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
+  bulletVelocity: 50
+  powerUpAudio: {fileID: 440957288}
+--- !u!114 &440957296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440957279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1446aebe295d27b48b2a5d5c3cc6c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCarryingGem: 0
+  gemPointIncrease: 1
+  timeUntilScoreIncrease: 4
+--- !u!114 &440957297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440957279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0172acac44c7c8a4a832f6c3246dfa12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bashForce: 2000000
 --- !u!1 &442172136
 GameObject:
   m_ObjectHideFlags: 0
@@ -26452,7 +26512,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6119988021200260053, guid: 042db1f32ca635a4d8c77bbd918fcfa4, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6119988021200260053, guid: 042db1f32ca635a4d8c77bbd918fcfa4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26496,7 +26556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6891985185248235887, guid: 042db1f32ca635a4d8c77bbd918fcfa4, type: 3}
       propertyPath: m_Name
-      value: FloorSignPowerUp
+      value: Player2Power
       objectReference: {fileID: 0}
     - target: {fileID: 6891985185248235887, guid: 042db1f32ca635a4d8c77bbd918fcfa4, type: 3}
       propertyPath: m_TagString
@@ -34568,7 +34628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3516723215157539544, guid: 316e9e729f8c82d4d831fe6de9fd543a, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3516723215157539544, guid: 316e9e729f8c82d4d831fe6de9fd543a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34612,7 +34672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4289178973514360930, guid: 316e9e729f8c82d4d831fe6de9fd543a, type: 3}
       propertyPath: m_Name
-      value: FloorSignPowerUp (3)
+      value: Player1Power
       objectReference: {fileID: 0}
     - target: {fileID: 4289178973514360930, guid: 316e9e729f8c82d4d831fe6de9fd543a, type: 3}
       propertyPath: m_TagString
@@ -39986,33 +40046,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0809e2121d4f9304892bf0ebaba7f9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 250
-  originalmoveSpeed: 250
-  dashForce: 2
-  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
-  reach: 0.9
-  slapFoce: 5000000
-  slapCooldown: 3
-  dashDuration: 0.5
-  isDashing: 0
-  bashForce: 2000000
-  rayGun: {fileID: 442172136}
-  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
-  bulletVelocity: 50
-  isCarryingGem: 0
-  lootGrabber: {fileID: 1330635592}
-  gemPointIncrease: 1
-  timeUntilScoreIncrease: 4
-  menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 948103069}
-  isStunned: 0
   stunDuration: 1
-  timeToSetSlapToFalse: 0.5
-  durationToIncreaseBy: 0.1
-  powerUpAudio: {fileID: 1330635600}
-  vulnerable: 0
+  isStunned: 0
   vulnerableTimer: 1
-  sprintBar: {fileID: 632982592}
 --- !u!114 &1330635594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40058,7 +40094,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1330635593}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Ability1
+        m_MethodName: Ability
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40086,22 +40122,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1330635593}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Rotation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 64c2286b-587e-49aa-9898-346f8a33c89f
-    m_ActionName: Player/Rotation[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1330635593}
@@ -40206,10 +40226,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 560ba04b-0de3-4db7-b2f6-5f8b62b8e3b5
     m_ActionName: Player/MainMenu[/XInputControllerWindows/start,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8f81fb50-aa5c-440c-87d2-56b968def781
-    m_ActionName: Player/Raygun[/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -40568,6 +40584,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0510774e7734cf4459414b134071b878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1330635603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330635591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84208cd8b85e2b84a912833f69941da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPanel: {fileID: 107693526}
+  powerUpUI: {fileID: 948103069}
+  sprintBar: {fileID: 632982592}
+--- !u!114 &1330635604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330635591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e580f922295cc4fb7b4bddf700a2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slapFoce: 5000000
+  slapCooldown: 3
+  timeToSetSlapToFalse: 0.5
+--- !u!114 &1330635605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330635591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b919d46557d4fc64b89deb9b5bed1abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 250
+  originalmoveSpeed: 250
+  dashForce: 2
+  dashDuration: 0.5
+  durationToIncreaseBy: 0.1
+--- !u!114 &1330635606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330635591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfa000cf161a86439fbc6342158fa0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1330635607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330635591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d7fcfe03c5b3446857ab1a1c40a3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
+  rayGun: {fileID: 442172136}
+  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
+  bulletVelocity: 50
+  powerUpAudio: {fileID: 1330635600}
+--- !u!114 &1330635608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330635591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1446aebe295d27b48b2a5d5c3cc6c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCarryingGem: 0
+  gemPointIncrease: 1
+  timeUntilScoreIncrease: 4
+--- !u!114 &1330635609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330635591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0172acac44c7c8a4a832f6c3246dfa12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bashForce: 2000000
 --- !u!1 &1341927890 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8181712612116556150, guid: a14dc6a7ccda6da4e8109d67d057f67d, type: 3}
@@ -48495,7 +48615,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1622927491}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Ability1
+        m_MethodName: Ability
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -48523,22 +48643,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1622927491}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Rotation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 64c2286b-587e-49aa-9898-346f8a33c89f
-    m_ActionName: Player/Rotation[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1622927491}
@@ -48643,10 +48747,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 560ba04b-0de3-4db7-b2f6-5f8b62b8e3b5
     m_ActionName: Player/MainMenu[/XInputControllerWindows/start,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8f81fb50-aa5c-440c-87d2-56b968def781
-    m_ActionName: Player/Raygun[/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightShoulder,/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -48664,33 +48764,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0809e2121d4f9304892bf0ebaba7f9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 250
-  originalmoveSpeed: 250
-  dashForce: 2
-  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
-  reach: 0.9
-  slapFoce: 5000000
-  slapCooldown: 3
-  dashDuration: 0.5
-  isDashing: 0
-  bashForce: 2000000
-  rayGun: {fileID: 688418832}
-  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
-  bulletVelocity: 50
-  isCarryingGem: 0
-  lootGrabber: {fileID: 1622927492}
-  gemPointIncrease: 1
-  timeUntilScoreIncrease: 4
-  menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 509294467}
-  isStunned: 0
   stunDuration: 1
-  timeToSetSlapToFalse: 0.5
-  durationToIncreaseBy: 0.1
-  powerUpAudio: {fileID: 1330635600}
-  vulnerable: 0
+  isStunned: 0
   vulnerableTimer: 1
-  sprintBar: {fileID: 850146656}
 --- !u!114 &1622927492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49059,6 +49135,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0510774e7734cf4459414b134071b878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1622927500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622927488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84208cd8b85e2b84a912833f69941da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPanel: {fileID: 107693526}
+  powerUpUI: {fileID: 509294467}
+  sprintBar: {fileID: 850146656}
+--- !u!114 &1622927501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622927488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e580f922295cc4fb7b4bddf700a2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slapFoce: 5000000
+  slapCooldown: 3
+  timeToSetSlapToFalse: 0.5
+--- !u!114 &1622927502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622927488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b919d46557d4fc64b89deb9b5bed1abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 250
+  originalmoveSpeed: 250
+  dashForce: 2
+  dashDuration: 0.5
+  durationToIncreaseBy: 0.1
+--- !u!114 &1622927503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622927488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfa000cf161a86439fbc6342158fa0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1622927504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622927488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d7fcfe03c5b3446857ab1a1c40a3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
+  rayGun: {fileID: 688418832}
+  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
+  bulletVelocity: 50
+  powerUpAudio: {fileID: 1622927497}
+--- !u!114 &1622927505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622927488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1446aebe295d27b48b2a5d5c3cc6c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCarryingGem: 0
+  gemPointIncrease: 1
+  timeUntilScoreIncrease: 4
+--- !u!114 &1622927506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622927488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0172acac44c7c8a4a832f6c3246dfa12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bashForce: 2000000
 --- !u!1 &1624613363
 GameObject:
   m_ObjectHideFlags: 0
@@ -50652,7 +50832,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5171322096490291692, guid: d7148882a329113428e4c14f7440f102, type: 3}
       propertyPath: m_Name
-      value: FloorSignPowerUp (2)
+      value: Player4Power
       objectReference: {fileID: 0}
     - target: {fileID: 5171322096490291692, guid: d7148882a329113428e4c14f7440f102, type: 3}
       propertyPath: m_TagString
@@ -50660,7 +50840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5516886045206969174, guid: d7148882a329113428e4c14f7440f102, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5516886045206969174, guid: d7148882a329113428e4c14f7440f102, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52257,7 +52437,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1459256637226414578, guid: 3b148f0c12dacd540957813108c04fca, type: 3}
       propertyPath: m_Name
-      value: FloorSignPowerUp (1)
+      value: Player3Power
       objectReference: {fileID: 0}
     - target: {fileID: 1459256637226414578, guid: 3b148f0c12dacd540957813108c04fca, type: 3}
       propertyPath: m_TagString
@@ -52265,7 +52445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237025136936135496, guid: 3b148f0c12dacd540957813108c04fca, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2237025136936135496, guid: 3b148f0c12dacd540957813108c04fca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -61185,33 +61365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0809e2121d4f9304892bf0ebaba7f9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 250
-  originalmoveSpeed: 250
-  dashForce: 2
-  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
-  reach: 0.9
-  slapFoce: 5000000
-  slapCooldown: 3
-  dashDuration: 0.5
-  isDashing: 0
-  bashForce: 2000000
-  rayGun: {fileID: 636107200}
-  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
-  bulletVelocity: 50
-  isCarryingGem: 0
-  lootGrabber: {fileID: 2104509585}
-  gemPointIncrease: 1
-  timeUntilScoreIncrease: 4
-  menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 9344942}
-  isStunned: 0
   stunDuration: 1
-  timeToSetSlapToFalse: 0.5
-  durationToIncreaseBy: 0.1
-  powerUpAudio: {fileID: 1330635600}
-  vulnerable: 0
+  isStunned: 0
   vulnerableTimer: 1
-  sprintBar: {fileID: 1791729757}
 --- !u!114 &2104509587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61257,7 +61413,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2104509586}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Ability1
+        m_MethodName: Ability
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -61285,22 +61441,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2104509586}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Rotation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 64c2286b-587e-49aa-9898-346f8a33c89f
-    m_ActionName: Player/Rotation[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2104509586}
@@ -61405,10 +61545,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 560ba04b-0de3-4db7-b2f6-5f8b62b8e3b5
     m_ActionName: Player/MainMenu[/XInputControllerWindows/start,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8f81fb50-aa5c-440c-87d2-56b968def781
-    m_ActionName: Player/Raygun[/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -61767,6 +61903,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0510774e7734cf4459414b134071b878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2104509596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104509584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84208cd8b85e2b84a912833f69941da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPanel: {fileID: 107693526}
+  powerUpUI: {fileID: 9344942}
+  sprintBar: {fileID: 1791729757}
+--- !u!114 &2104509597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104509584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e580f922295cc4fb7b4bddf700a2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slapFoce: 5000000
+  slapCooldown: 3
+  timeToSetSlapToFalse: 0.5
+--- !u!114 &2104509598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104509584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b919d46557d4fc64b89deb9b5bed1abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 250
+  originalmoveSpeed: 250
+  dashForce: 2
+  dashDuration: 0.5
+  durationToIncreaseBy: 0.1
+--- !u!114 &2104509599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104509584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfa000cf161a86439fbc6342158fa0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2104509600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104509584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d7fcfe03c5b3446857ab1a1c40a3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wetFloorSign: {fileID: 1380134044881384045, guid: 1dc10fa2869676c4892451821a38bc15, type: 3}
+  rayGun: {fileID: 636107200}
+  rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
+  bulletVelocity: 50
+  powerUpAudio: {fileID: 2104509593}
+--- !u!114 &2104509601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104509584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1446aebe295d27b48b2a5d5c3cc6c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCarryingGem: 0
+  gemPointIncrease: 1
+  timeUntilScoreIncrease: 4
+--- !u!114 &2104509602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104509584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0172acac44c7c8a4a832f6c3246dfa12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bashForce: 2000000
 --- !u!1 &2111107599 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3243008922125952777, guid: 2bef73e00b6cf4b41bdce71443461e91, type: 3}
