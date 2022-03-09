@@ -6,11 +6,12 @@ public class HoneyGrenade : MonoBehaviour
 {
 
     float activeDuration = 3f;
+    [SerializeField] float throwForce = 5f;
     [SerializeField] Transform HoneySplat;
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame

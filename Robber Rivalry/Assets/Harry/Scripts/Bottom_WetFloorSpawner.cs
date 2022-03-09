@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bottom_WetFloorSpawner : MonoBehaviour
 {
-    public Transform prefab;
+    [SerializeField] public Transform prefab;
+    [SerializeField] public Transform HoneyGrenadePowerup;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,13 @@ public class Bottom_WetFloorSpawner : MonoBehaviour
                 clone = Instantiate(prefab, transform.position, prefab.rotation);
                 clone.transform.parent = transform;
                 clone.gameObject.tag = "PowerUp";
+            }
+            else
+            {
+                Transform grenade;
+                grenade = Instantiate(HoneyGrenadePowerup, transform.position, HoneyGrenadePowerup.rotation);
+               // grenade.transform.parent = transform;
+                grenade.gameObject.tag = "PowerUpHoney";
             }
         }
     }

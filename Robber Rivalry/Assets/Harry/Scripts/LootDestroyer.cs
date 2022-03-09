@@ -20,6 +20,10 @@ public class LootDestroyer : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.transform.tag == "PowerUpHoney")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
 

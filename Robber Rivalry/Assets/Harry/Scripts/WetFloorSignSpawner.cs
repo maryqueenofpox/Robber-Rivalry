@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WetFloorSignSpawner : MonoBehaviour
 {
-    public Transform prefab;
+    [SerializeField] public Transform prefab;
+    [SerializeField] public Transform HoneyGrenadePowerup;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,8 +14,15 @@ public class WetFloorSignSpawner : MonoBehaviour
             //Wet floor prefab is spawned at location of spawner
             Transform clone;
             clone = Instantiate(prefab, transform.position, prefab.rotation);
-            clone.transform.parent = transform;
+           // clone.transform.parent = transform;
             clone.gameObject.tag = "PowerUp";
+        }
+        else
+        {
+            Transform grenade;
+            grenade = Instantiate(HoneyGrenadePowerup, transform.position, HoneyGrenadePowerup.rotation);
+            grenade.transform.parent = transform;
+            grenade.gameObject.tag = "PowerUpHoney";
         }
     }
 
@@ -29,6 +37,13 @@ public class WetFloorSignSpawner : MonoBehaviour
                 clone = Instantiate(prefab, transform.position, prefab.rotation);
                 clone.transform.parent = transform;
                 clone.gameObject.tag = "PowerUp";
+            }
+            else
+            {
+                Transform grenade;
+                grenade = Instantiate(HoneyGrenadePowerup, transform.position, HoneyGrenadePowerup.rotation);
+              //  grenade.transform.parent = transform;
+                grenade.gameObject.tag = "PowerUpHoney";
             }
         }
     }
