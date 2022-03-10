@@ -54,6 +54,9 @@ public class SwapParts : MonoBehaviour
     float[] rotationDegrees = { 0.0f, 90.0f, 180.0f, 270.0f };
     int rotationArrayLength;
 
+    public bool endGame { get; private set; }
+    [SerializeField] Timer timer;
+
     private void Start()
     {
         originalTimer = swapTimer;
@@ -64,30 +67,40 @@ public class SwapParts : MonoBehaviour
 
         toDropAllPlatforms = false;
         rotationArrayLength = rotationDegrees.Length;
+
+        endGame = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetInput(); // keeps checking for any sort of input
-        SwapGroundPieces(); // keeps updating the position of the ground piece
-        SwapSkyPieces(); // keeps updating the position of the swap piece
+        if (timer.timer <= 0f && !isSwapping)
+            endGame = true;
 
-        if (warning)
+        if (!endGame)
         {
-            warningTimer -= Time.deltaTime;
+            GetInput(); // keeps checking for any sort of input
+            SwapGroundPieces(); // keeps updating the position of the ground piece
+            SwapSkyPieces(); // keeps updating the position of the swap piece
 
-            FlashTheWarning();
-        }
+            if (warning)
+            {
+                warningTimer -= Time.deltaTime;
 
-        if (warningTimer <= 0)
-        {
-            isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
-            warningTimer = originalWarningTimer;
-            warning = false;
-            changedColour = false;
-            StopAllCoroutines();
+                FlashTheWarning();
+            }
+
+            if (warningTimer <= 0)
+            {
+                isSwapping = true; // sets the bool to be true which will stop further swapping until set to false
+                warningTimer = originalWarningTimer;
+                warning = false;
+                changedColour = false;
+                StopAllCoroutines();
+            }
         }
+        else
+            return;
     }
 
     void GetInput()
