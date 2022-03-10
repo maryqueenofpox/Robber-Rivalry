@@ -75,7 +75,7 @@ public class EndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timer.timer <= movePlatformTimer && timer.timer > 0)
+        if (timer.timer <= movePlatformTimer && timer.timer > 0)
         {
             escapeWall.SetActive(false);
             transform.position = Vector3.MoveTowards(transform.position, platformMoveToLocation, platformSpeed * Time.deltaTime);
