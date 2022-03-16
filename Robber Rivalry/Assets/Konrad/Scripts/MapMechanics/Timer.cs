@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     public float timer;
-    [SerializeField] TextMeshProUGUI text;
-
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +17,6 @@ public class Timer : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        text.text = timer.ToString("0.00");
 
         if (timer <= 0)
             timer = 0;

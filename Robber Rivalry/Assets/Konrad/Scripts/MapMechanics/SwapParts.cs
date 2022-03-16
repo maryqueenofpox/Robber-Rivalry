@@ -56,6 +56,7 @@ public class SwapParts : MonoBehaviour
 
     public bool endGame { get; private set; }
     [SerializeField] Timer timer;
+    [SerializeField] EndGame endGameScript;
 
     private void Start()
     {
@@ -74,7 +75,7 @@ public class SwapParts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer.timer <= 0f && !isSwapping)
+        if (timer.timer <= endGameScript.fuseTimer && !isSwapping)
             endGame = true;
 
         if (!endGame)

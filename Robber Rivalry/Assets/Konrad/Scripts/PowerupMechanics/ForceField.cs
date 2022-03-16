@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ForceField : MonoBehaviour
 {
+    [SerializeField] GameObject forceField;
     private void OnEnable()
     {
-        Debug.Log("Hello, I have been enabled");
-        // Play animation
+        forceField.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        forceField.SetActive(false);
     }
 }

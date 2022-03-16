@@ -55,7 +55,7 @@ public class LootGrabber : MonoBehaviour
                     clone.gameObject.tag = "Loot";
 
                     clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
-                    loot -= pointsToRemove;
+                    loot--;
                     score.text = loot.ToString();
                 }
 
