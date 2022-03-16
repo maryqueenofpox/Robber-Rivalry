@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+
 
 public class LootGrabber : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class LootGrabber : MonoBehaviour
                 else if (loot < 5)
                 {
 
-                    for (int i = 0; i <= loot; i++)
+                    for (int i = 0; i < loot; i++)
                     {
                         clone = Instantiate(Loot, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Loot.rotation);
                         clone.gameObject.tag = "Loot";
@@ -90,7 +91,7 @@ public class LootGrabber : MonoBehaviour
             transform.position = respawnpoint.position;
             if (loot > 0)
             {
-                float pointsToRemove = Mathf.Round(loot / percentageToRemoveSpace);
+                float pointsToRemove = Mathf.Ceil((loot * percentageToRemoveSpace) / 100);
                 loot -= pointsToRemove;
                 score.text = loot.ToString();
             }

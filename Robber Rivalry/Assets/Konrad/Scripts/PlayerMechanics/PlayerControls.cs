@@ -105,7 +105,7 @@ public class PlayerControls : MonoBehaviour
     public void Slap(InputAction.CallbackContext ctx)
     {
         if (!isStunned)
-            slapMechanicScript.DoTheSlap();
+            slapMechanicScript.doTheSlap=true;
         else
             return;
     }

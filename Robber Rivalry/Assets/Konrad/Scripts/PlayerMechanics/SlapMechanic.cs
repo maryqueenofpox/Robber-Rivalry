@@ -9,7 +9,7 @@ public class SlapMechanic : MonoBehaviour
     bool canSlap;
     [SerializeField] float timeToSetSlapToFalse = 1f;
     float originalSlapToFalse;
-    bool doTheSlap = false;
+    public bool doTheSlap = false;
     float originalSlapCooldown;
 
     PlayerAnimations playerAnimationsScript;
@@ -95,7 +95,7 @@ public class SlapMechanic : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
