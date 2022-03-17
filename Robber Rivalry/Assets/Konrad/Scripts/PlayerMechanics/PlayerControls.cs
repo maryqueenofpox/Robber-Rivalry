@@ -81,10 +81,15 @@ public class PlayerControls : MonoBehaviour
     public void Dash(InputAction.CallbackContext ctx)
     {
         if (!isStunned)
-            if (ctx.performed)
+            if (ctx.performed && playerMovementScript.canDash)
                 playerMovementScript.isDashing = true;
             else
+            {
                 playerMovementScript.isDashing = false;
+
+                if (playerMovementScript.dashDuration < playerMovementScript.maxDashTime)
+                    playerMovementScript.canDash = false;
+            }
         else
             return;
     }

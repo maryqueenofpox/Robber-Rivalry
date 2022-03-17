@@ -77,11 +77,12 @@ public class SlapMechanic : MonoBehaviour
                     else
                     {
                         playerMovement.rb.AddForce(transform.forward * slapFoce);
+                        playerMovement.rb.AddForce(transform.up * 1000000f);
                         controls.isStunned = true;
 
                         if (gemMechanic.isCarryingGem)
                         {
-                            playerMovement.transform.Find("Gem").transform.localPosition = playerMovement.transform.TransformDirection(-Vector3.forward * 2);
+                            gemMechanic.DropGem();
                             playerMovement.transform.Find("Gem").transform.parent = null;
                             gemMechanic.isCarryingGem = false;
                         }

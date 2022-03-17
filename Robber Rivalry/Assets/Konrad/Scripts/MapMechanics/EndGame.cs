@@ -66,6 +66,7 @@ public class EndGame : MonoBehaviour
             AddGemPoints();
             max = Mathf.Max(player_1_Script.loot, player_2_Script.loot, player_3_Script.loot, player_4_Script.loot);
             Scoring();
+            Time.timeScale = 0f;
         }
 
         if (timer.timer <= fuseTimer)

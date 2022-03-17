@@ -16,7 +16,7 @@ public class Gem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.parent == null && transform.position.y < 0)
+        if(transform.parent == null && transform.position.y < 0f)
         {
             transform.parent = parentPlatform.transform;
             transform.position = originalPos.position;

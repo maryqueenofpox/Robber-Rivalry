@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     PlayerControls playerControlsScript;
     PlayerAnimations playerAnimationsScript;
 
+    public bool canDash { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         maxDashTime = dashDuration;
         playerControlsScript = GetComponent<PlayerControls>();
         playerAnimationsScript = GetComponent<PlayerAnimations>();
+
+        canDash = true;
     }
 
     private void Update()
@@ -49,7 +53,11 @@ public class PlayerMovement : MonoBehaviour
         {
             dashDuration += durationToIncreaseBy * Time.deltaTime;
             if (dashDuration >= maxDashTime)
+            {
                 dashDuration = maxDashTime;
+                canDash = true;
+
+            }
         }
     }
 
