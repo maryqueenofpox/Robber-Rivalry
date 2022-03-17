@@ -6,35 +6,118 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
-    [SerializeField] GameObject powerUpUI;
+    //[SerializeField] GameObject powerUpUI;
     [SerializeField] Image sprintBar;
 
     PlayerAbilities playerAbilities;
     PlayerMovement playerMovement;
 
+    [SerializeField] Image signImage;
+    [SerializeField] Image pewImage;
+    [SerializeField] Image shieldImage;
+    [SerializeField] Image magnetImage;
+    [SerializeField] Image honeyImage;
+
+    public int number { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
         menuPanel.SetActive(false);
-        powerUpUI.SetActive(false);
 
         playerAbilities = GetComponent<PlayerAbilities>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        signImage.enabled = false;
+        pewImage.enabled = false;
+        shieldImage.enabled = false;
+        magnetImage.enabled = false;
+        honeyImage.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (playerAbilities.canUseAbility)
-            powerUpUI.SetActive(true);
-        else
-            powerUpUI.SetActive(false);
-
+    { 
         sprintBar.fillAmount = playerMovement.dashDuration / playerMovement.maxDashTime;
         if ((playerMovement.dashDuration / playerMovement.maxDashTime) < 0.5f)
             sprintBar.color = Color.red;
         else
             sprintBar.color = Color.green;
+
+        if (playerAbilities.canUseAbility)
+        {
+            switch (number)
+            {
+                case 0:
+                    PewGun();
+                    break;
+                case 1:
+                    Sign();
+                    break;
+                case 2:
+                    Honey();
+                    break;
+                case 3:
+                    Shield();
+                    break;
+                case 4:
+                    Magnet();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+    }
+
+    public void PewGun()
+    {
+        pewImage.enabled = true;
+
+        signImage.enabled = false;
+        shieldImage.enabled = false;
+        magnetImage.enabled = false;
+        honeyImage.enabled = false;
+    }
+
+    public void Sign()
+    {
+        signImage.enabled = true;
+
+        pewImage.enabled = false;
+        shieldImage.enabled = false;
+        magnetImage.enabled = false;
+        honeyImage.enabled = false;
+    }
+
+    public void Honey()
+    {
+        honeyImage.enabled = true;
+
+        signImage.enabled = false;
+        pewImage.enabled = false;
+        shieldImage.enabled = false;
+        magnetImage.enabled = false;
+    }
+
+    public void Shield()
+    {
+        shieldImage.enabled = true;
+
+        signImage.enabled = false;
+        pewImage.enabled = false;
+        magnetImage.enabled = false;
+        honeyImage.enabled = false;
+    }
+
+    public void Magnet()
+    {
+        magnetImage.enabled = true;
+
+        signImage.enabled = false;
+        pewImage.enabled = false;
+        shieldImage.enabled = false;
+        honeyImage.enabled = false;
     }
 
     public void DoShitToMenu()

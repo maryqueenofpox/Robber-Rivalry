@@ -682,7 +682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &45153659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &46152640
 RectTransform:
   m_ObjectHideFlags: 0
@@ -896,7 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0bf085f43767f4abb826ee57bb2529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpBox: {fileID: 0}
+  powerUpBox: {fileID: 7946113147574474300, guid: c93e5c078421cf7469718886bd8b42c3, type: 3}
 --- !u!23 &60481442
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4015,7 +4015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &190863330
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5849,7 +5849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &282940840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8563,7 +8563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -9872,7 +9872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -11987,38 +11987,6 @@ MonoBehaviour:
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 440957281}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: PickUpGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 98ad50ff-a53f-4556-afa4-fc39b5508035
-    m_ActionName: Player/PickUpGem[/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 440957281}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: DropGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0996415f-8187-42b8-9c99-f00eaa603aec
-    m_ActionName: Player/DropGem[/XInputControllerWindows/buttonNorth]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 734bc919-4c91-49e7-b95d-c199ecf08fe9
     m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad]
@@ -12497,8 +12465,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 0}
   sprintBar: {fileID: 2017026348}
+  signImage: {fileID: 1266329531}
+  pewImage: {fileID: 1122273000}
+  shieldImage: {fileID: 1639474931}
+  magnetImage: {fileID: 1244686526}
+  honeyImage: {fileID: 190863331}
 --- !u!114 &440957292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13831,7 +13803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &530040872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20787,6 +20759,7 @@ MonoBehaviour:
   positionToFallTo: {fileID: 2040004508}
   fallSpeed: 50
   endGameObject: {fileID: 919132148087473451}
+  killzone: {fileID: 854395186}
 --- !u!4 &813891649
 Transform:
   m_ObjectHideFlags: 0
@@ -20965,7 +20938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &825389905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24341,11 +24314,11 @@ Transform:
   m_Children:
   - {fileID: 1869733089}
   - {fileID: 1051559170}
-  - {fileID: 1090353825}
   - {fileID: 639432890}
+  - {fileID: 1090353825}
   - {fileID: 1330991127}
-  - {fileID: 1491880412}
   - {fileID: 66895072}
+  - {fileID: 1491880412}
   - {fileID: 331476866}
   - {fileID: 1248195474}
   - {fileID: 1616038808}
@@ -25833,7 +25806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1067787936
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28873,7 +28846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1122272999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29928,7 +29901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1175242914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31498,7 +31471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1244686525
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31923,7 +31896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1266329530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33319,38 +33292,6 @@ MonoBehaviour:
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1330635593}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: PickUpGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 98ad50ff-a53f-4556-afa4-fc39b5508035
-    m_ActionName: Player/PickUpGem[/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1330635593}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: DropGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0996415f-8187-42b8-9c99-f00eaa603aec
-    m_ActionName: Player/DropGem[/XInputControllerWindows/buttonNorth]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 734bc919-4c91-49e7-b95d-c199ecf08fe9
     m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad]
@@ -33794,8 +33735,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 0}
   sprintBar: {fileID: 632982592}
+  signImage: {fileID: 1612750665}
+  pewImage: {fileID: 2094266266}
+  shieldImage: {fileID: 2023670817}
+  magnetImage: {fileID: 282940841}
+  honeyImage: {fileID: 1986410242}
 --- !u!114 &1330635604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34829,7 +34774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0bf085f43767f4abb826ee57bb2529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpBox: {fileID: 0}
+  powerUpBox: {fileID: 7946113147574474300, guid: c93e5c078421cf7469718886bd8b42c3, type: 3}
 --- !u!23 &1389488990
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36543,7 +36488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1485529388
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37354,7 +37299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1505641020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39486,7 +39431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1551149376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41284,7 +41229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1612750664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41796,38 +41741,6 @@ MonoBehaviour:
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1622927491}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: PickUpGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 98ad50ff-a53f-4556-afa4-fc39b5508035
-    m_ActionName: Player/PickUpGem[/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1622927491}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: DropGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0996415f-8187-42b8-9c99-f00eaa603aec
-    m_ActionName: Player/DropGem[/XInputControllerWindows/buttonNorth]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 734bc919-4c91-49e7-b95d-c199ecf08fe9
     m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad]
@@ -42301,8 +42214,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 0}
   sprintBar: {fileID: 850146656}
+  signImage: {fileID: 1926080290}
+  pewImage: {fileID: 45153660}
+  shieldImage: {fileID: 1551149377}
+  magnetImage: {fileID: 1067787937}
+  honeyImage: {fileID: 1485529389}
 --- !u!114 &1622927501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43001,7 +42918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1639474930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44594,7 +44511,7 @@ PrefabInstance:
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: gemPlatform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 639432891}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: warningTimer
       value: 3
@@ -44670,11 +44587,11 @@ PrefabInstance:
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: startingPieces.Array.data[6]
       value: 
-      objectReference: {fileID: 370253129}
+      objectReference: {fileID: 1412222408}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: startingPieces.Array.data[7]
       value: 
-      objectReference: {fileID: 1412222408}
+      objectReference: {fileID: 370253129}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: startingPieces.Array.data[8]
       value: 
@@ -44694,51 +44611,51 @@ PrefabInstance:
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1869733090}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1051559171}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 639432891}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1090353826}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1330991128}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[5]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 66895073}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[6]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1491880413}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[7]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 331476867}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[8]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1248195475}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[9]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1616038809}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[10]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 984912352}
     - target: {fileID: 3569903671435871878, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: swappablePieces.Array.data[11]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 377511345}
     - target: {fileID: 3569903671435871879, guid: 0f3e9e01d99a7de498405ea1e9b3f004, type: 3}
       propertyPath: m_RootOrder
       value: 38
@@ -44890,7 +44807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -46689,7 +46606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3270ebf72f79f04eb31a4b631f69ab8, type: 3}
       propertyPath: m_TagString
@@ -50196,7 +50113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1926080289
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51313,7 +51230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1986410241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51924,7 +51841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2023670816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52852,7 +52769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2094266265
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53023,38 +52940,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0f70675b-9e64-4576-8df3-795f59ee7548
     m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2104509586}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: PickUpGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 98ad50ff-a53f-4556-afa4-fc39b5508035
-    m_ActionName: Player/PickUpGem[/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2104509586}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: DropGem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0996415f-8187-42b8-9c99-f00eaa603aec
-    m_ActionName: Player/DropGem[/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 734bc919-4c91-49e7-b95d-c199ecf08fe9
@@ -53499,8 +53384,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 107693526}
-  powerUpUI: {fileID: 0}
   sprintBar: {fileID: 1791729757}
+  signImage: {fileID: 825389906}
+  pewImage: {fileID: 1505641021}
+  shieldImage: {fileID: 530040873}
+  magnetImage: {fileID: 1175242915}
+  honeyImage: {fileID: 46152641}
 --- !u!114 &2104509597
 MonoBehaviour:
   m_ObjectHideFlags: 0

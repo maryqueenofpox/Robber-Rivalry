@@ -12,12 +12,13 @@ public class PlayerAbilities : MonoBehaviour
     public bool canUseAbility { get; set; }
     bool pickRandomAbility;
 
-    int randomAbility;
+    public int randomAbility { get; set; }
 
     [SerializeField] AudioSource powerUpAudio;
 
     ForceField forceFieldScript;
 
+    PlayerUI playerUIScript;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class PlayerAbilities : MonoBehaviour
         rayGun.SetActive(false);
         forceFieldScript = GetComponent<ForceField>();
         forceFieldScript.enabled = false;
+        playerUIScript = GetComponent<PlayerUI>();
         //forceFieldScript.enabled = true;
     }
 
@@ -36,6 +38,7 @@ public class PlayerAbilities : MonoBehaviour
         if (pickRandomAbility)
         {
             randomAbility = Random.Range(0, 5);
+            playerUIScript.number = randomAbility;
             pickRandomAbility = false;
             canUseAbility = true;
         }

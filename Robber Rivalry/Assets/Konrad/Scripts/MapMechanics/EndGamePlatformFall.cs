@@ -22,32 +22,23 @@ public class EndGamePlatformFall : MonoBehaviour
 
     public GameObject winningPlatform { get; private set; }
 
-    EndGame endGameScript;
-    bool once;
+    [SerializeField] GameObject killzone;
 
     // Start is called before the first frame update
     void Start()
     {
-        endGameScript = GetComponent<EndGame>();
+       
         index = 0;
         colourIndex = 0;
         getPlatforms = true;
         pickedRandom = false;
         nextPlatform = false;
-        once = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (endGameScript.fuse.enabled && !once)
-        {
-            Material[] materialsRed = platforms[++colourIndex].GetComponent<Renderer>().materials;
-            materialsRed[1].color = Color.red;
-            materialsRed[2].color = Color.red;
-
-            once = true;
-        }
+        
 
         if (swapPartsScript.endGame && getPlatforms)
         {
@@ -57,6 +48,7 @@ public class EndGamePlatformFall : MonoBehaviour
             }
 
             getPlatforms = false;
+            killzone.SetActive(false);
         }
 
         if (!pickedRandom && !getPlatforms)
@@ -77,16 +69,15 @@ public class EndGamePlatformFall : MonoBehaviour
 
         if (swapPartsScript.endGame && !getPlatforms && pickedRandom && index < platforms.Count)
         {
+            
+            MakePlatformsFall();
+
             if (nextPlatform)
             {
-                Material[] materialsRed = platforms[++colourIndex].GetComponent<Renderer>().materials;
+                Material[] materialsRed = platforms[colourIndex + 1].GetComponent<Renderer>().materials;
                 materialsRed[1].color = Color.red;
                 materialsRed[2].color = Color.red;
             }
-            
-
-            
-            MakePlatformsFall();
         }
     }
 
@@ -99,6 +90,7 @@ public class EndGamePlatformFall : MonoBehaviour
         {
             nextPlatform = true;
             index++;
+            colourIndex++;
         }
     }
 }
