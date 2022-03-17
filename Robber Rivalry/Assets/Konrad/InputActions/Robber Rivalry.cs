@@ -43,22 +43,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""interactions"": ""Hold""
                 },
                 {
-                    ""name"": ""PickUpGem"",
-                    ""type"": ""Button"",
-                    ""id"": ""98ad50ff-a53f-4556-afa4-fc39b5508035"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""DropGem"",
-                    ""type"": ""Button"",
-                    ""id"": ""0996415f-8187-42b8-9c99-f00eaa603aec"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Slap"",
                     ""type"": ""Button"",
                     ""id"": ""61a60055-6319-4318-b605-7df2c1296645"",
@@ -216,72 +200,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Switch"",
                     ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9bb1a85f-3b93-43a9-866a-ce02e6ffe997"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""PickUpGem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""80473402-caac-4cc3-9ebf-b6ca6ad739b4"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""PickUpGem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c1b58407-abe4-4057-8290-5412751314b6"",
-                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Switch"",
-                    ""action"": ""PickUpGem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fef35388-988d-428b-826a-8d062ce93303"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""DropGem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""485ffc7e-1484-4825-8adc-374df2e4fcb9"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""DropGem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""46d96d95-990a-4883-bbe5-614b9b1bbce1"",
-                    ""path"": ""<SwitchProControllerHID>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Switch"",
-                    ""action"": ""DropGem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -681,8 +599,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_PickUpGem = m_Player.FindAction("PickUpGem", throwIfNotFound: true);
-        m_Player_DropGem = m_Player.FindAction("DropGem", throwIfNotFound: true);
         m_Player_Slap = m_Player.FindAction("Slap", throwIfNotFound: true);
         m_Player_MainMenu = m_Player.FindAction("MainMenu", throwIfNotFound: true);
         // UI
@@ -749,8 +665,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Ability;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_PickUpGem;
-    private readonly InputAction m_Player_DropGem;
     private readonly InputAction m_Player_Slap;
     private readonly InputAction m_Player_MainMenu;
     public struct PlayerActions
@@ -760,8 +674,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Ability => m_Wrapper.m_Player_Ability;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @PickUpGem => m_Wrapper.m_Player_PickUpGem;
-        public InputAction @DropGem => m_Wrapper.m_Player_DropGem;
         public InputAction @Slap => m_Wrapper.m_Player_Slap;
         public InputAction @MainMenu => m_Wrapper.m_Player_MainMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -782,12 +694,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @PickUpGem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
-                @PickUpGem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
-                @PickUpGem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUpGem;
-                @DropGem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
-                @DropGem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
-                @DropGem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGem;
                 @Slap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
                 @Slap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
                 @Slap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlap;
@@ -807,12 +713,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @PickUpGem.started += instance.OnPickUpGem;
-                @PickUpGem.performed += instance.OnPickUpGem;
-                @PickUpGem.canceled += instance.OnPickUpGem;
-                @DropGem.started += instance.OnDropGem;
-                @DropGem.performed += instance.OnDropGem;
-                @DropGem.canceled += instance.OnDropGem;
                 @Slap.started += instance.OnSlap;
                 @Slap.performed += instance.OnSlap;
                 @Slap.canceled += instance.OnSlap;
@@ -960,8 +860,6 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnAbility(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnPickUpGem(InputAction.CallbackContext context);
-        void OnDropGem(InputAction.CallbackContext context);
         void OnSlap(InputAction.CallbackContext context);
         void OnMainMenu(InputAction.CallbackContext context);
     }
