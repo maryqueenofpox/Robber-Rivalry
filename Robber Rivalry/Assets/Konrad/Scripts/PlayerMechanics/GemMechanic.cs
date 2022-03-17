@@ -13,6 +13,8 @@ public class GemMechanic : MonoBehaviour
     Transform gemChild;
     LootGrabber lootGrabber;
 
+    // This is test for github
+
     // Start is called before the first frame update
     void Start()
     {
