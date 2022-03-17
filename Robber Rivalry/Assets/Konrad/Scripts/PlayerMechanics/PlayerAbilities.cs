@@ -16,6 +16,8 @@ public class PlayerAbilities : MonoBehaviour
 
     [SerializeField] AudioSource powerUpAudio;
 
+    ForceField forceFieldScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,8 @@ public class PlayerAbilities : MonoBehaviour
         pickRandomAbility = false;
         canUseAbility = false;
         rayGun.SetActive(false);
+        forceFieldScript = GetComponent<ForceField>();
+        forceFieldScript.enabled = false;
         //forceFieldScript.enabled = true;
     }
 
@@ -56,11 +60,11 @@ public class PlayerAbilities : MonoBehaviour
                     canUseAbility = false;
                     break;
                 case 3:
-                    Debug.Log("Ability 4");
+                    forceFieldScript.enabled = true;
                     canUseAbility = false;
                     break;
                 case 4:
-                    Debug.Log("Ability 5");
+                    Debug.Log("Magnet");
                     canUseAbility = false;
                     break;
                 default:
@@ -94,6 +98,11 @@ public class PlayerAbilities : MonoBehaviour
         GameObject grenade;
         grenade = Instantiate(honeyGrenade, transform.position, transform.rotation);
         grenade.GetComponent<Rigidbody>().AddForce(transform.up * 5000);
+    }
+
+    void EnableForcefield()
+    {
+
     }
 
     private void OnCollisionEnter(Collision collision)
