@@ -94,19 +94,6 @@ public class PlayerControls : MonoBehaviour
             return;
     }
 
-    public void PickUpGem(InputAction.CallbackContext ctx)
-    {
-        if (!isStunned)
-            gemMechanicScript.PickUpGem();
-        else
-            return;
-    }
-
-    public void DropGem(InputAction.CallbackContext ctx)
-    {
-        gemMechanicScript.DropGem();
-    }
-
     public void Slap(InputAction.CallbackContext ctx)
     {
         if (!isStunned)

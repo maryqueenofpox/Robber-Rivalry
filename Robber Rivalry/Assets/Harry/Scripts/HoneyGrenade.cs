@@ -22,7 +22,7 @@ public class HoneyGrenade : MonoBehaviour
         {
             Transform clone;
             clone = Instantiate(HoneySplat, transform.position, HoneySplat.rotation);
-            clone.gameObject.tag = "HoneySplat";
+            //clone.gameObject.tag = "HoneySplat";
         }
         if (activeDuration <= 0.0f)
         {

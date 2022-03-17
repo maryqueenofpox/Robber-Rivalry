@@ -67,20 +67,13 @@ public class GemMechanic : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Gem"))
+        if (collision.gameObject.CompareTag("Gem"))
         {
-            gemTransform = other.GetComponent<Transform>();
+            gemTransform = collision.gameObject.GetComponent<Transform>();
             isGem = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Gem"))
-        {
-            isGem = false;
+            PickUpGem();
         }
     }
 }

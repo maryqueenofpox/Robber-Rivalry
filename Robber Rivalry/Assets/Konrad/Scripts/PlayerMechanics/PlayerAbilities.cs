@@ -10,16 +10,18 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField] GameObject rayBullet;
     [SerializeField] float bulletVelocity = 50f;
     public bool canUseAbility { get; set; }
+    bool pickRandomAbility;
 
-    public bool canUseHoneyAbility { get; set; }
+    int randomAbility;
+
     [SerializeField] AudioSource powerUpAudio;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        pickRandomAbility = false;
         canUseAbility = false;
-        canUseHoneyAbility = false;
         rayGun.SetActive(false);
         //forceFieldScript.enabled = true;
     }
@@ -27,20 +29,43 @@ public class PlayerAbilities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (pickRandomAbility)
+        {
+            randomAbility = Random.Range(0, 5);
+            pickRandomAbility = false;
+            canUseAbility = true;
+        }
     }
 
     public void Ability()
     {
         if (canUseAbility)
         {
-            SpawnObject();
-            canUseAbility = false;
-        }
-        if (canUseHoneyAbility)
-        {
-            ThrowGrenade();
-            canUseHoneyAbility = false;
+            switch (randomAbility)
+            {
+                case 0:
+                    ShootRayGun();
+                    canUseAbility = false;
+                    break;
+                case 1:
+                    SpawnObject();
+                    canUseAbility = false;
+                    break;
+                case 2:
+                    ThrowGrenade();
+                    canUseAbility = false;
+                    break;
+                case 3:
+                    Debug.Log("Ability 4");
+                    canUseAbility = false;
+                    break;
+                case 4:
+                    Debug.Log("Ability 5");
+                    canUseAbility = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -52,7 +77,7 @@ public class PlayerAbilities : MonoBehaviour
             GameObject bullet;
             bullet = Instantiate(rayBullet, rayGun.transform.position, transform.rotation);
 
-           // bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * Time.deltaTime);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * Time.deltaTime);
 
             rayGun.SetActive(false);
         }
@@ -60,7 +85,7 @@ public class PlayerAbilities : MonoBehaviour
 
     void SpawnObject()
     {
-        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 0f, transform.position.z + transform.forward.z), transform.rotation); //wetFloorSign.transform.rotation);
+        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 0f, transform.position.z + transform.forward.z), transform.rotation);
         AstarPath.active.Scan();
     }
 
@@ -76,15 +101,7 @@ public class PlayerAbilities : MonoBehaviour
         if (collision.collider.CompareTag("PowerUp"))
         {
             powerUpAudio.Play();
-            canUseHoneyAbility = false;
-            canUseAbility = true;
-        }
-
-        if (collision.collider.CompareTag("PowerUpHoney"))
-        {
-            powerUpAudio.Play();
-            canUseAbility = false;
-            canUseHoneyAbility = true;
+            pickRandomAbility = true;
         }
     }
 }

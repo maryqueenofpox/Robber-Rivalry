@@ -55,6 +55,7 @@ public class EndGame : MonoBehaviour
         doOnce = true;
         doGemAddOnce = true;
         fuse.enabled = false;
+        Time.timeScale = 1f;
     }
     
     // Update is called once per frame
