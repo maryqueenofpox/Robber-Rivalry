@@ -10,7 +10,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] Timer timer;
     [SerializeField] GameObject endGamePanel;
     [SerializeField] float gemRewardAmount;
-    [SerializeField] Image fuse;
+    public Image fuse;
     public float fuseTimer = 20f;
     [SerializeField] float penalty = 5f;
 

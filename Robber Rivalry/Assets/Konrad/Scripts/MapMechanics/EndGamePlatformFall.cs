@@ -16,23 +16,39 @@ public class EndGamePlatformFall : MonoBehaviour
     bool pickedRandom;
 
     int index;
+    int colourIndex;
 
-    bool createOneCollider;
+    bool nextPlatform;
 
     public GameObject winningPlatform { get; private set; }
+
+    EndGame endGameScript;
+    bool once;
 
     // Start is called before the first frame update
     void Start()
     {
+        endGameScript = GetComponent<EndGame>();
         index = 0;
+        colourIndex = 0;
         getPlatforms = true;
         pickedRandom = false;
-        createOneCollider = false;
+        nextPlatform = false;
+        once = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (endGameScript.fuse.enabled && !once)
+        {
+            Material[] materialsRed = platforms[++colourIndex].GetComponent<Renderer>().materials;
+            materialsRed[1].color = Color.red;
+            materialsRed[2].color = Color.red;
+
+            once = true;
+        }
+
         if (swapPartsScript.endGame && getPlatforms)
         {
             foreach (GameObject item in cubes)
@@ -60,14 +76,29 @@ public class EndGamePlatformFall : MonoBehaviour
         }
 
         if (swapPartsScript.endGame && !getPlatforms && pickedRandom && index < platforms.Count)
+        {
+            if (nextPlatform)
+            {
+                Material[] materialsRed = platforms[++colourIndex].GetComponent<Renderer>().materials;
+                materialsRed[1].color = Color.red;
+                materialsRed[2].color = Color.red;
+            }
+            
+
+            
             MakePlatformsFall();
+        }
     }
 
     void MakePlatformsFall()
     {
         platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
+        nextPlatform = false;
 
         if (platforms[index].transform.position == positionToFallTo.position)
+        {
+            nextPlatform = true;
             index++;
+        }
     }
 }
