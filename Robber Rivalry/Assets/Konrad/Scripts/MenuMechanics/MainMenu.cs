@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchMaps()
     {
-        SceneManager.LoadScene("Maps");
+        SceneManager.LoadScene("ScaledMapForJoseph");
     }
 
     public void Options()

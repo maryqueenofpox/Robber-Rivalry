@@ -12,6 +12,8 @@ public class EndGame : MonoBehaviour
     [SerializeField] float gemRewardAmount;
     public Image fuse;
     public float fuseTimer = 20f;
+
+    [SerializeField] AudioSource fuseSound;
     [SerializeField] float penalty = 5f;
 
     [Header("Crown Objects")]
@@ -41,7 +43,7 @@ public class EndGame : MonoBehaviour
     float max;
     bool doOnce;
     bool doGemAddOnce;
-
+    bool playOnce;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,7 @@ public class EndGame : MonoBehaviour
         player_3_Crown.SetActive(false);
         player_4_Crown.SetActive(false);
 
+        playOnce = false;
         doOnce = true;
         doGemAddOnce = true;
         fuse.enabled = false;
@@ -63,15 +66,47 @@ public class EndGame : MonoBehaviour
     {
         if (timer.timer <= 0)
         {
+            fuseSound.Stop();
             endGamePanel.SetActive(true);
             AddGemPoints();
             max = Mathf.Max(player_1_Script.loot, player_2_Script.loot, player_3_Script.loot, player_4_Script.loot);
             Scoring();
+            if (player_1_Script.loot < 0)
+            {
+                player_1_Script.loot = 0;
+                player_1_Score.text = player_1_Script.loot.ToString();
+            }
+
+            if (player_2_Script.loot < 0)
+            {
+                player_2_Script.loot = 0;
+                player_2_Score.text = player_2_Script.loot.ToString();
+            }
+
+            if (player_3_Script.loot < 0)
+            {
+                player_3_Script.loot = 0;
+                player_3_Score.text = player_3_Script.loot.ToString();
+            }
+
+            if (player_4_Script.loot < 0)
+            {
+                player_4_Script.loot = 0;
+                player_4_Score.text = player_4_Script.loot.ToString();
+            }
             Time.timeScale = 0f;
         }
 
         if (timer.timer <= fuseTimer)
+        {
             fuse.enabled = true;
+            if (!playOnce)
+            {
+                fuseSound.Play();
+                playOnce = true;
+            }
+        }
+         
 
         if (fuse.enabled == true)
         {
