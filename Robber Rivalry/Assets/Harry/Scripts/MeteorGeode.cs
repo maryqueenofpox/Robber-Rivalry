@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class MeteorGeode : MonoBehaviour
 {
-
-    public float speed = 10.0f;
-    [SerializeField] float rotationSpeed = 60f;
+    [SerializeField]
+    public float yspeed = 10.0f;
+    [SerializeField]
+    public float xspeed = 10.0f;
+    [SerializeField]
+    public float Negativexspeed = 10.0f;
+    [SerializeField]
+    float rotationSpeed = 60f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +22,8 @@ public class MeteorGeode : MonoBehaviour
     void FixedUpdate()
     {
         transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
-        GetComponent<Rigidbody>().AddForce(Vector2.up * -speed * Time.deltaTime);
-        GetComponent<Rigidbody>().AddForce(Vector2.right * speed * Time.deltaTime);
+        GetComponent<Rigidbody>().AddForce(Vector2.up * -yspeed * Time.deltaTime);
+        GetComponent<Rigidbody>().AddForce(Vector2.right * xspeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -29,9 +34,16 @@ public class MeteorGeode : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (other.gameObject.tag == "Loot" || other.gameObject.tag == "Wall")
+        {
+            xspeed = 0;
+            rotationSpeed = 60;
+        }
+
         else
         {
-            speed = 0;
+            xspeed = 0;
+            yspeed = 0;
         }
     }
 }

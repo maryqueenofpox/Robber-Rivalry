@@ -11,8 +11,11 @@ public class PowerUp : MonoBehaviour
         transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject);
+        if (other.transform.tag == "Player")
+        {
+           Destroy(gameObject);
+        }
     }
 }

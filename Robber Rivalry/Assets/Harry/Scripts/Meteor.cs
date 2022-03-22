@@ -10,14 +10,14 @@ public class Meteor : MonoBehaviour
  
     void Start()
     {
-        StartCoroutine(SpawnEnemies(32, 15));
+        StartCoroutine(SpawnEnemies(15, 2));
     }
 
     IEnumerator SpawnEnemies(int count, float delay)
     {
         for (int i = 0; i < count; i++)
         {
-            if (Random.Range(0, 10) >= 0)
+            if (Random.Range(0, 10) >= 9)
             {
                 Transform clone;
                 clone = Instantiate(Geode, transform.position, Geode.rotation);
