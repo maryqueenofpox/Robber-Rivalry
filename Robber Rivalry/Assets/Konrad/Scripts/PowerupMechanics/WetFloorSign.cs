@@ -15,6 +15,7 @@ public class WetFloorSign : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
         transform.Rotate(-90f, transform.rotation.y, transform.rotation.z);
         gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
         doOnce = false;

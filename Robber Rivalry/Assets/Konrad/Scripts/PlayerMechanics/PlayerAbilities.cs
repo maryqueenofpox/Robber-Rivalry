@@ -29,7 +29,7 @@ public class PlayerAbilities : MonoBehaviour
         forceFieldScript = GetComponent<ForceField>();
         forceFieldScript.enabled = false;
         playerUIScript = GetComponent<PlayerUI>();
-        //forceFieldScript.enabled = true;
+        rayGun.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,6 +41,9 @@ public class PlayerAbilities : MonoBehaviour
             playerUIScript.number = randomAbility;
             pickRandomAbility = false;
             canUseAbility = true;
+
+            if (randomAbility == 0)
+                rayGun.SetActive(true);
         }
     }
 

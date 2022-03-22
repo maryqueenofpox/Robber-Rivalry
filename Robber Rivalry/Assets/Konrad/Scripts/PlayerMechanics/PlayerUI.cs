@@ -37,12 +37,17 @@ public class PlayerUI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
         sprintBar.fillAmount = playerMovement.dashDuration / playerMovement.maxDashTime;
         if ((playerMovement.dashDuration / playerMovement.maxDashTime) < 0.5f)
             sprintBar.color = Color.red;
         else
             sprintBar.color = Color.green;
+
+        if (playerMovement.dashDuration < playerMovement.maxDashTime)
+            sprintBar.enabled = true;
+        else
+            sprintBar.enabled = false;
 
         if (playerAbilities.canUseAbility)
         {
@@ -67,7 +72,11 @@ public class PlayerUI : MonoBehaviour
                     break;
             }
         }
-        
+    }
+
+    private void LateUpdate()
+    {
+        sprintBar.transform.rotation = new Quaternion(0, 0, 0, 1);
     }
 
     public void PewGun()

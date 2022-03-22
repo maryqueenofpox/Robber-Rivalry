@@ -13,12 +13,15 @@ public class PlayerControls : MonoBehaviour
     PlayerAnimations playerAnimationsScript;
 
     [SerializeField] float stunDuration = 1f;
+    [SerializeField] float gotShotStunDuration = 2f;
     float originalStunDuration;
     public bool isStunned;
     
     public bool vulnerable { get; set; }
     [SerializeField] float vulnerableTimer = 1f;
     float originalVulnerableTimer;
+
+    public bool gotShot { get; set; }
 
     private void Start()
     {
@@ -27,10 +30,18 @@ public class PlayerControls : MonoBehaviour
         originalStunDuration = stunDuration;
         originalVulnerableTimer = vulnerableTimer;
         vulnerable = true;
+        gotShot = false;
     }
 
     private void Update()
     {
+        if (gotShot)
+        {
+            stunDuration = gotShotStunDuration;
+            gotShot = false;
+        }
+
+
         if (isStunned && vulnerable)
         {
             stunDuration -= Time.deltaTime;

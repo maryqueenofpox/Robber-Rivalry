@@ -18,8 +18,10 @@ public class RayGun : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerControls controls = other.GetComponent<PlayerControls>();
+            controls.gotShot = true;
+            controls.isStunned = true;
             Destroy(gameObject);
-            Debug.Log("Player Hit");
         }
     }
 }
