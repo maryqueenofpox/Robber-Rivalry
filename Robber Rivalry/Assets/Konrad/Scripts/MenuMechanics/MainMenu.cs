@@ -23,6 +23,11 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchMaps()
     {
+        SceneManager.LoadScene("ControlsScreen");
+    }
+
+    public void LaunchGame()
+    {
         SceneManager.LoadScene("ScaledMapForJoseph");
     }
 
@@ -45,7 +50,6 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-    
+ 
 }
 
