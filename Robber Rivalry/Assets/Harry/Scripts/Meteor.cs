@@ -10,7 +10,7 @@ public class Meteor : MonoBehaviour
  
     void Start()
     {
-        StartCoroutine(SpawnEnemies(15, 1));
+        StartCoroutine(SpawnEnemies(19, 1));
     }
 
     IEnumerator SpawnEnemies(int count, float delay)
