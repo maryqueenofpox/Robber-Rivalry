@@ -76,7 +76,14 @@ public class SwapParts : MonoBehaviour
     void Update()
     {
         if (timer.timer <= endGameScript.fuseTimer && !isSwapping)
+        {
             endGame = true;
+
+            Material[] materials = index.GetComponent<Renderer>().materials;
+
+            materials[1].color = originalColour;
+            materials[2].color = originalColour2;
+        }
 
         if (!endGame)
         {
@@ -177,7 +184,6 @@ public class SwapParts : MonoBehaviour
 
             Material[] materials = index.GetComponent<Renderer>().materials;
 
-            //index.GetComponent<Renderer>().material.color = originalColour;
             materials[1].color = originalColour;
             materials[2].color = originalColour2;
             swap -= Time.deltaTime;

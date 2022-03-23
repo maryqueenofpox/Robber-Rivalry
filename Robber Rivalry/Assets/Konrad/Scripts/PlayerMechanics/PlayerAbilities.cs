@@ -116,7 +116,7 @@ public class PlayerAbilities : MonoBehaviour
 
     void SpawnObject()
     {
-        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x, 0f, transform.position.z + transform.forward.z), transform.rotation);
+        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x + 1f, 0f, transform.position.z + transform.forward.z + 1f), transform.rotation);
         AstarPath.active.Scan();
         playerUIScript.Sign(false);
     }
