@@ -12,6 +12,8 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField] float bulletVelocity = 50f;
     [SerializeField] float magnetTimer;
     float originalTimerMaget;
+    [SerializeField] float grenadeUpwardForce = 1000000f;
+    [SerializeField] float grenadeForwardForce = 1000000f;
     public bool canUseAbility { get; set; }
     bool pickRandomAbility;
 
@@ -42,7 +44,8 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (pickRandomAbility)
         {
-            randomAbility = Random.Range(0, 5);
+            //randomAbility = Random.Range(0, 5);
+            randomAbility = 2;
             playerUIScript.number = randomAbility;
             pickRandomAbility = false;
             canUseAbility = true;
@@ -116,7 +119,8 @@ public class PlayerAbilities : MonoBehaviour
 
     void SpawnObject()
     {
-        Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x + 1f, 0f, transform.position.z + transform.forward.z + 1f), transform.rotation);
+        //Instantiate(wetFloorSign, new Vector3(transform.position.x + transform.forward.x + 1f, 0f, transform.position.z + transform.forward.z + 1f), transform.rotation);
+        Instantiate(wetFloorSign, transform.position + (transform.forward * 2f), transform.rotation);
         AstarPath.active.Scan();
         playerUIScript.Sign(false);
     }
@@ -124,8 +128,9 @@ public class PlayerAbilities : MonoBehaviour
     void ThrowGrenade()
     {
         GameObject grenade;
-        grenade = Instantiate(honeyGrenade, transform.position, transform.rotation);
-        grenade.GetComponent<Rigidbody>().AddForce(transform.up * 5000);
+        grenade = Instantiate(honeyGrenade, transform.position + (transform.forward * 2f), transform.rotation);
+        grenade.GetComponent<Rigidbody>().AddForce(transform.up * grenadeUpwardForce * Time.deltaTime);
+        grenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadeForwardForce * Time.deltaTime);
         playerUIScript.Honey(false);
     }
     
