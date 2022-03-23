@@ -33,7 +33,7 @@ public class PlayerAbilities : MonoBehaviour
         forceFieldScript.enabled = false;
         playerUIScript = GetComponent<PlayerUI>();
         rayGun.SetActive(false);
-        magnetField.SetActive(true);
+        magnetField.SetActive(false);
         originalTimerMaget = magnetTimer;
     }
 
