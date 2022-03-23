@@ -58,7 +58,7 @@ public class WetFloorSign : MonoBehaviour
 
     void ChangeScale()
     {
-        transform.localScale = new Vector3((hit.distance + hit2.distance) * 2, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3((hit.distance + hit2.distance), transform.localScale.y, transform.localScale.z);
     }
 
     private void OnTriggerEnter(Collider other)
