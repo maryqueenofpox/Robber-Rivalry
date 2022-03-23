@@ -34,17 +34,23 @@ public class MeteorGeode : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "Loot" || other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Wall")
+        {
+            xspeed = 60;
+            rotationSpeed = 60;
+           // transform.parent = other.transform;
+        }
+        else if (other.gameObject.tag == "Loot")
         {
             xspeed = 0;
-            rotationSpeed = 60;
-            transform.parent = other.transform;
-        }
 
+        }
         else
         {
+
             xspeed = 0;
             yspeed = 0;
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
             transform.parent = other.transform;
         }
     }
