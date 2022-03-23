@@ -8,6 +8,7 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField] GameObject honeyGrenade;
     public GameObject rayGun;
     [SerializeField] GameObject rayBullet;
+    [SerializeField] Transform magnetField;
     [SerializeField] float bulletVelocity = 50f;
     public bool canUseAbility { get; set; }
     bool pickRandomAbility;
@@ -70,7 +71,7 @@ public class PlayerAbilities : MonoBehaviour
                     canUseAbility = false;
                     break;
                 case 4:
-                    Debug.Log("Magnet");
+                    UseMagnet();
                     canUseAbility = false;
                     break;
                 default:
@@ -108,6 +109,15 @@ public class PlayerAbilities : MonoBehaviour
 
     void EnableForcefield()
     {
+
+    }
+    
+    void UseMagnet()
+    {
+        Transform clone;
+        clone = Instantiate(magnetField, transform.position, transform.rotation);
+        clone.transform.tag = "MagnetField";
+        clone.transform.parent = transform;
 
     }
 

@@ -38,12 +38,14 @@ public class MeteorGeode : MonoBehaviour
         {
             xspeed = 0;
             rotationSpeed = 60;
+            transform.parent = other.transform;
         }
 
         else
         {
             xspeed = 0;
             yspeed = 0;
+            transform.parent = other.transform;
         }
     }
 }
