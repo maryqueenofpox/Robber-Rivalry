@@ -4,30 +4,14 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
+    [SerializeField] float pullSpeed = 50f;
 
-    float activeDuration = 10f;
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerStay(Collider other)
     {
-        gameObject.tag = "MagnetField";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        activeDuration -= Time.deltaTime;
-        if (activeDuration <= 0.0f)
+        if (other.gameObject.CompareTag("Loot"))
         {
-            Destroy(gameObject);
+            Debug.Log("I AM DETECTING LOOT BITCH");
+            other.transform.position = Vector3.MoveTowards(other.transform.position, transform.position, pullSpeed * Time.deltaTime);
         }
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.tag == "Loot")
-        {
-            Debug.Log("LOOT GRABBED");
-        }
-    }
-
 }

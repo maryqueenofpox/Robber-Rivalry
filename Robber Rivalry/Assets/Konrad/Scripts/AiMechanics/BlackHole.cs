@@ -23,7 +23,7 @@ public class BlackHole : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, suckPower * Time.deltaTime);
+            other.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, suckPower * Time.deltaTime);
         }
     }
 

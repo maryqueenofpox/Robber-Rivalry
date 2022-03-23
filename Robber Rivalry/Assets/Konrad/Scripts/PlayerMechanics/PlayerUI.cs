@@ -54,19 +54,19 @@ public class PlayerUI : MonoBehaviour
             switch (number)
             {
                 case 0:
-                    PewGun();
+                    PewGun(true);
                     break;
                 case 1:
-                    Sign();
+                    Sign(true);
                     break;
                 case 2:
-                    Honey();
+                    Honey(true);
                     break;
                 case 3:
-                    Shield();
+                    Shield(true);
                     break;
                 case 4:
-                    Magnet();
+                    Magnet(true);
                     break;
                 default:
                     break;
@@ -79,9 +79,9 @@ public class PlayerUI : MonoBehaviour
         sprintBar.transform.rotation = new Quaternion(0, 0, 0, 1);
     }
 
-    public void PewGun()
+    public void PewGun(bool enabled)
     {
-        pewImage.enabled = true;
+        pewImage.enabled = enabled;
 
         signImage.enabled = false;
         shieldImage.enabled = false;
@@ -89,9 +89,9 @@ public class PlayerUI : MonoBehaviour
         honeyImage.enabled = false;
     }
 
-    public void Sign()
+    public void Sign(bool enabled)
     {
-        signImage.enabled = true;
+        signImage.enabled = enabled;
 
         pewImage.enabled = false;
         shieldImage.enabled = false;
@@ -99,9 +99,9 @@ public class PlayerUI : MonoBehaviour
         honeyImage.enabled = false;
     }
 
-    public void Honey()
+    public void Honey(bool enabled)
     {
-        honeyImage.enabled = true;
+        honeyImage.enabled = enabled;
 
         signImage.enabled = false;
         pewImage.enabled = false;
@@ -109,9 +109,9 @@ public class PlayerUI : MonoBehaviour
         magnetImage.enabled = false;
     }
 
-    public void Shield()
+    public void Shield(bool enabled)
     {
-        shieldImage.enabled = true;
+        shieldImage.enabled = enabled;
 
         signImage.enabled = false;
         pewImage.enabled = false;
@@ -119,9 +119,9 @@ public class PlayerUI : MonoBehaviour
         honeyImage.enabled = false;
     }
 
-    public void Magnet()
+    public void Magnet(bool enabled)
     {
-        magnetImage.enabled = true;
+        magnetImage.enabled = enabled;
 
         signImage.enabled = false;
         pewImage.enabled = false;
