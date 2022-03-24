@@ -5,6 +5,8 @@ using UnityEngine;
 public class GuardSmack : MonoBehaviour
 {
     Vector3 originalPos;
+    [SerializeField]
+    Transform guardSpawner;
 
     private void Start()
     {
@@ -25,6 +27,10 @@ public class GuardSmack : MonoBehaviour
             }
             else
                 lg.transform.position = lg.respawnpoint.position;
+        }
+        else if (collision.transform.tag == "Killzone")
+        {
+            transform.position = guardSpawner.position;
         }
     }
 }
