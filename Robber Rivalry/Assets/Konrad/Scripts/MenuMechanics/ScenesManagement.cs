@@ -12,6 +12,7 @@ public class ScenesManagement : MonoBehaviour
     [SerializeField] int optionsIndex;
     [SerializeField] int characterSelectIndex;
     [SerializeField] int controlsScreenIndex;
+    [SerializeField] int tutorialScreenIndex;
 
     public void Launch3x3Map()
     {
@@ -56,5 +57,10 @@ public class ScenesManagement : MonoBehaviour
     public void Remach()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void TutorialScreen()
+    {
+        SceneManager.LoadScene(tutorialScreenIndex);
     }
 }
