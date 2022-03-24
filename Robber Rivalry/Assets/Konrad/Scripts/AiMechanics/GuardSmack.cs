@@ -28,7 +28,11 @@ public class GuardSmack : MonoBehaviour
             else
                 lg.transform.position = lg.respawnpoint.position;
         }
-        else if (collision.transform.tag == "Killzone")
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Killzone")
         {
             transform.position = guardSpawner.position;
         }

@@ -57,14 +57,15 @@ public class EndGamePlatformFall : MonoBehaviour
             winningPlatform = platforms[random];
 
             Material[] materials = winningPlatform.GetComponent<Renderer>().materials;
-            materials[1].color = Color.green;
-            materials[2].color = Color.green;
-
+            
             platforms.RemoveAt(random);
             pickedRandom = true;
 
             endGameObject.transform.parent = winningPlatform.transform;
             endGameObject.transform.position = winningPlatform.transform.position;
+
+            materials[1].color = Color.green;
+            materials[2].color = Color.green;
         }
 
         if (swapPartsScript.endGame && !getPlatforms && pickedRandom && index < platforms.Count)

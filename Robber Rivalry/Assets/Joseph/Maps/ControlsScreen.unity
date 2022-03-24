@@ -149,9 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 279598455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418476383d031db42ae631d480fee2c9, type: 3}
+  m_Script: {fileID: 11500000, guid: d690a96dbbc39e44da0cec60e1c06748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenesStuff: {fileID: 11400000, guid: 7ba2b9cabfaa16640bd892855d4a314c, type: 2}
 --- !u!4 &279598457
 Transform:
   m_ObjectHideFlags: 0
@@ -463,7 +464,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 279598456}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: ScenesManagement, Assembly-CSharp
         m_MethodName: LaunchMainMenu
         m_Mode: 1
         m_Arguments:
@@ -774,8 +775,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 279598456}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: LaunchGame
+        m_TargetAssemblyTypeName: ScenesManagement, Assembly-CSharp
+        m_MethodName: Launch3x4Map
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -5,43 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManagement : MonoBehaviour
 {
-    [SerializeField] int mainMenuIndex;
-    [SerializeField] int smallMapIndex;
-    [SerializeField] int originalMapIndex;
-    [SerializeField] int mapsIndex;
-    [SerializeField] int optionsIndex;
-    [SerializeField] int characterSelectIndex;
-    [SerializeField] int controlsScreenIndex;
-    [SerializeField] int tutorialScreenIndex;
+    [SerializeField] ScenesStuff scenesStuff;
 
     public void Launch3x3Map()
     {
-        SceneManager.LoadScene(smallMapIndex);
+        SceneManager.LoadScene(scenesStuff.smallMapIndex);
     }
 
     public void Launch3x4Map()
     {
-        SceneManager.LoadScene(originalMapIndex);
+        SceneManager.LoadScene(scenesStuff.originalMapIndex);
     }
 
     public void LaunchMainMenu()
     {
-        SceneManager.LoadScene(mainMenuIndex);
+        SceneManager.LoadScene(scenesStuff.mainMenuIndex);
     }
 
     public void MapsSelect()
     {
-        SceneManager.LoadScene(mapsIndex);
+        SceneManager.LoadScene(scenesStuff.mapsIndex);
     }
 
     public void Controls()
     {
-        SceneManager.LoadScene(controlsScreenIndex);
+        SceneManager.LoadScene(scenesStuff.controlsScreenIndex);
     }
 
     public void Options()
     {
-        SceneManager.LoadScene(optionsIndex);
+        SceneManager.LoadScene(scenesStuff.optionsIndex);
     }
 
     public void Quit()
@@ -51,7 +44,7 @@ public class ScenesManagement : MonoBehaviour
 
     public void CharacterSelect()
     {
-        SceneManager.LoadScene(characterSelectIndex);
+        SceneManager.LoadScene(scenesStuff.characterSelectIndex);
     }
 
     public void Remach()
@@ -61,6 +54,6 @@ public class ScenesManagement : MonoBehaviour
 
     public void TutorialScreen()
     {
-        SceneManager.LoadScene(tutorialScreenIndex);
+        SceneManager.LoadScene(scenesStuff.tutorialScreenIndex);
     }
 }

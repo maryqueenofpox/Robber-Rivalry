@@ -6,49 +6,43 @@ public class Meteor : MonoBehaviour
 {
     [SerializeField]
     Transform Geode;
-    float timeToStart = 20f;
+    [SerializeField] float lowRange = 50.0f;
+    [SerializeField] float highRange = 71.0f;
+    float pickedRange;
     bool doShower = true;
 
-    void Start()
+    private void Start()
     {
-     //   StartCoroutine(SpawnEnemies(19, 1));
+        pickedRange = Random.Range(lowRange, highRange);
     }
 
     IEnumerator SpawnEnemies(int count, float delay)
     {
-        
-            for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
+        {
+            if (Random.Range(0, 10) >= 9)
             {
-                if (Random.Range(0, 10) >= 9)
-                {
-                    Transform clone;
-                    clone = Instantiate(Geode, transform.position, Geode.rotation);
-                    yield return new WaitForSeconds(delay);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(delay);
-                }
+                Transform clone;
+                clone = Instantiate(Geode, transform.position, Geode.rotation);
+                yield return new WaitForSeconds(delay);
             }
+            else
+            {
+                yield return new WaitForSeconds(delay);
+            }
+        }
     }
-
-   
-     
 
     void FixedUpdate()
     {
-        timeToStart -= Time.deltaTime;
-        if (timeToStart <= 0f)
+        if (doShower)
         {
-            if (doShower == true)
+            pickedRange -= Time.deltaTime;
+            if (pickedRange <= 0f)
             {
-
-
                 StartCoroutine(SpawnEnemies(19, 1));
                 doShower = false;
             }
         }
     }
-   
-
 }
