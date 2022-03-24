@@ -44,8 +44,7 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (pickRandomAbility)
         {
-            //randomAbility = Random.Range(0, 5);
-            randomAbility = 2;
+            randomAbility = Random.Range(0, 5);
             playerUIScript.number = randomAbility;
             pickRandomAbility = false;
             canUseAbility = true;
@@ -131,6 +130,8 @@ public class PlayerAbilities : MonoBehaviour
         grenade = Instantiate(honeyGrenade, transform.position + (transform.forward * 2f), transform.rotation);
         grenade.GetComponent<Rigidbody>().AddForce(transform.up * grenadeUpwardForce * Time.deltaTime);
         grenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadeForwardForce * Time.deltaTime);
+        
+       
         playerUIScript.Honey(false);
     }
     

@@ -28,4 +28,13 @@ public class HoneySplat : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Platform")
+        {
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
+        }
+    }
 }
