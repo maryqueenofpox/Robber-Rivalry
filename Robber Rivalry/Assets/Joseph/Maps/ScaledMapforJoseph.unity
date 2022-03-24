@@ -847,7 +847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44322964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.332, y: 0.039, z: -3.82}
+  m_LocalPosition: {x: 10.332, y: 0.044, z: -3.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1524499162}
@@ -1022,7 +1022,6 @@ MonoBehaviour:
   gotShotStunDuration: 2
   isStunned: 0
   vulnerableTimer: 1
-  arrow: {fileID: 0}
 --- !u!114 &44322979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,22 +1167,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1169ec4c-c794-4e21-9e29-788290ef6132
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 44322978}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Rotate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b5c45f7e-c50b-4326-a9d2-c5c84793f2ad
-    m_ActionName: Player/Rotate[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -2560,7 +2543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4ad4145af6e2ac144b22a585e6bbb3f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e13c750ed9f29f46ac0ec7ac4ff644a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2823,7 +2806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2714005841700185379, guid: c7779eae8f8d70c489a6fb1426f03286, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2714005841700185405, guid: c7779eae8f8d70c489a6fb1426f03286, type: 3}
       propertyPath: m_Color.b
@@ -6657,7 +6640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0e36a56ff5d2ef4eb5cf59a083129c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7677dbe53bf5d14e9c83035ff530fbe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9394,8 +9377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 135}
-  m_SizeDelta: {x: 181.09, y: 171.3348}
+  m_AnchoredPosition: {x: -0.001133, y: 0.000015258789}
+  m_SizeDelta: {x: 256.92, y: 272.94}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &300264180
 MonoBehaviour:
@@ -9417,7 +9400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c2034aa9895eb04c98091f72b80c970, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76773688f61fb02428865b249ada2e20, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12703,8 +12686,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16040431, y: 0.9456683, z: 0.1735032}
-  m_Center: {x: -0.006005225, y: 0.49283034, z: 0.0035075925}
+  m_Size: {x: 0.16040431, y: 0.997303, z: 0.1735032}
+  m_Center: {x: -0.006005225, y: 0.46701297, z: 0.0035075925}
 --- !u!95 &430197990
 Animator:
   serializedVersion: 3
@@ -12731,13 +12714,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430197980}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 316eab7c139ad6745bac73749d0058e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 430197990}
-  optimalAnimationTarget: 0.3
+  optimalAnimationTarget: 3.1
 --- !u!114 &430197992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13484,7 +13467,6 @@ MonoBehaviour:
   gotShotStunDuration: 2
   isStunned: 0
   vulnerableTimer: 1
-  arrow: {fileID: 0}
 --- !u!114 &440957282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14330,7 +14312,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17035264, y: 0.89578635, z: 0.15245439}
+  m_Size: {x: 0.17035264, y: 0.997303, z: 0.15245439}
   m_Center: {x: 0.00014814675, y: 0.4889257, z: -0.007625954}
 --- !u!95 &455872172
 Animator:
@@ -14358,13 +14340,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455872162}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 316eab7c139ad6745bac73749d0058e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 430197990}
-  optimalAnimationTarget: 0.3
+  optimalAnimationTarget: 3.1
 --- !u!114 &455872174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25754,8 +25736,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 135}
-  m_SizeDelta: {x: 181.09, y: 171.3348}
+  m_AnchoredPosition: {x: -0.0012074, y: 0.000015258789}
+  m_SizeDelta: {x: 256.92, y: 272.94}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &949373612
 MonoBehaviour:
@@ -25777,7 +25759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c2034aa9895eb04c98091f72b80c970, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58876a534b8598b48aafd0dc6fd76454, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28836,7 +28818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1de05cb63e6c5e647b37a2d821181bab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ad8eca15c3fbe4439fd919f7a63fa9b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32413,7 +32395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1156803443
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36526,7 +36508,6 @@ MonoBehaviour:
   gotShotStunDuration: 2
   isStunned: 0
   vulnerableTimer: 1
-  arrow: {fileID: 0}
 --- !u!114 &1330635594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39053,8 +39034,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 135}
-  m_SizeDelta: {x: 181.09, y: 171.3348}
+  m_AnchoredPosition: {x: -0.001133, y: 0.000015258789}
+  m_SizeDelta: {x: 256.92, y: 272.94}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1438721186
 MonoBehaviour:
@@ -39076,7 +39057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c2034aa9895eb04c98091f72b80c970, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fbe80122852e4447b93665fc69172d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -43239,7 +43220,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.15800427, y: 0.8900331, z: 0.18366438}
+  m_Size: {x: 0.15800427, y: 0.997303, z: 0.18366438}
   m_Center: {x: -0.0007318103, y: 0.4763227, z: -0.0018680411}
 --- !u!95 &1559977121
 Animator:
@@ -43267,13 +43248,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559977111}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 316eab7c139ad6745bac73749d0058e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 430197990}
-  optimalAnimationTarget: 0.3
+  optimalAnimationTarget: 3.1
 --- !u!114 &1559977123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44714,7 +44695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4ae00340cb9eb4e47a39ac92064a2aeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc9683e4d8fd73b4394e131b9189fc96, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -45451,7 +45432,6 @@ MonoBehaviour:
   gotShotStunDuration: 2
   isStunned: 0
   vulnerableTimer: 1
-  arrow: {fileID: 0}
 --- !u!114 &1622927492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45470,8 +45450,8 @@ MonoBehaviour:
   loot: 0
   percentageToRemoveGuard: 10
   percentageToRemoveSpace: 20
-  bonkAudio: {fileID: 0}
-  lootAudio: {fileID: 0}
+  bonkAudio: {fileID: 1622927498}
+  lootAudio: {fileID: 1622927496}
 --- !u!95 &1622927493
 Animator:
   serializedVersion: 3
@@ -48709,7 +48689,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16182171, y: 0.99043465, z: 0.20271893}
+  m_Size: {x: 0.16182171, y: 0.997303, z: 0.20271893}
   m_Center: {x: -0.00103848, y: 0.53172, z: 0.00082878623}
 --- !u!95 &1694056012
 Animator:
@@ -48737,13 +48717,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694056002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 316eab7c139ad6745bac73749d0058e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 430197990}
-  optimalAnimationTarget: 0.3
+  optimalAnimationTarget: 3.1
 --- !u!114 &1694056014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56925,8 +56905,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 135}
-  m_SizeDelta: {x: 181.09, y: 171.3348}
+  m_AnchoredPosition: {x: 0.00073433, y: -0.000015258789}
+  m_SizeDelta: {x: 256.92, y: 272.94}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2080554795
 MonoBehaviour:
@@ -56948,7 +56928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c2034aa9895eb04c98091f72b80c970, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5d2b3b7e72030e42978b3bb50498816, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -57523,7 +57503,6 @@ MonoBehaviour:
   gotShotStunDuration: 2
   isStunned: 0
   vulnerableTimer: 1
-  arrow: {fileID: 0}
 --- !u!114 &2104509587
 MonoBehaviour:
   m_ObjectHideFlags: 0

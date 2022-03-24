@@ -23,8 +23,6 @@ public class PlayerControls : MonoBehaviour
 
     public bool gotShot { get; set; }
 
-    [SerializeField] GameObject arrow;
-
     Vector2 rot;
 
     private void Start()
