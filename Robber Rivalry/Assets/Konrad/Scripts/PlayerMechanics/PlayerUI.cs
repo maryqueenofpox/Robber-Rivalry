@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -17,14 +18,14 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image shieldImage;
     [SerializeField] Image magnetImage;
     [SerializeField] Image honeyImage;
-
     public int number { get; set; }
+
+    //[SerializeField] GameObject pauseButtonFirst;
 
     // Start is called before the first frame update
     void Start()
     {
         menuPanel.SetActive(false);
-
         playerAbilities = GetComponent<PlayerAbilities>();
         playerMovement = GetComponent<PlayerMovement>();
 
@@ -133,13 +134,16 @@ public class PlayerUI : MonoBehaviour
     {
         if (menuPanel.activeInHierarchy == true)
         {
+            Time.timeScale = 1f;
             menuPanel.SetActive(false);
-            Debug.Log("Off");
         }
         else if (menuPanel.activeInHierarchy == false)
         {
+            Time.timeScale = 0f;
             menuPanel.SetActive(true);
-            Debug.Log("On");
+
+            //EventSystem eventSystem = EventSystem.current;
+            //eventSystem.SetSelectedGameObject(pauseButtonFirst);
         }
     }
 }

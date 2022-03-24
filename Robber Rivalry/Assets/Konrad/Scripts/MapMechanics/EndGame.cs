@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class EndGame : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] float gemRewardAmount;
     public Image fuse;
     public float fuseTimer = 20f;
+    [SerializeField] GameObject firstButtonToBeSelected;
 
     [SerializeField] AudioSource fuseSound;
     [SerializeField] float penalty = 5f;
@@ -68,6 +70,10 @@ public class EndGame : MonoBehaviour
         {
             fuseSound.Stop();
             endGamePanel.SetActive(true);
+
+            //EventSystem eventSystem = EventSystem.current;
+            //eventSystem.SetSelectedGameObject(firstButtonToBeSelected);
+
             AddGemPoints();
             max = Mathf.Max(player_1_Script.loot, player_2_Script.loot, player_3_Script.loot, player_4_Script.loot);
             Scoring();
