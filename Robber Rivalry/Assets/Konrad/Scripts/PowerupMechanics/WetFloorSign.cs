@@ -19,6 +19,11 @@ public class WetFloorSign : MonoBehaviour
         transform.Rotate(-90f, transform.rotation.y, transform.rotation.z);
         gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
         doOnce = false;
+
+        foreach (GameObject item in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Physics.IgnoreCollision(item.GetComponent<Collider>(), GetComponent<Collider>());
+        }
     }
 
     // Update is called once per frame
@@ -63,6 +68,7 @@ public class WetFloorSign : MonoBehaviour
     void ChangeScale()
     {
         transform.localScale = new Vector3((hit.distance + hit2.distance), transform.localScale.y, transform.localScale.z);
+        AstarPath.active.Scan();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2492181188376716060}
   - component: {fileID: 1989964533395292362}
   - component: {fileID: 1202880591}
+  - component: {fileID: 1161585866575681853}
   - component: {fileID: 1202880590}
   - component: {fileID: -8126238622049041646}
   m_Layer: 6
@@ -63,6 +64,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1161585866575681853
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492181188376716061}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.4317844, z: 0.43863678}
+  m_Center: {x: 0, y: 0.2841078, z: 0.00077342987}
 --- !u!65 &1202880590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,7 +143,7 @@ GameObject:
   - component: {fileID: 2674215599200870189}
   m_Layer: 6
   m_Name: blockade_v2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +176,7 @@ GameObject:
   - component: {fileID: 7966213235170126195}
   m_Layer: 6
   m_Name: transform2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +206,7 @@ GameObject:
   - component: {fileID: 422740684266220932}
   m_Layer: 6
   m_Name: pCube5Shape1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +237,7 @@ GameObject:
   - component: {fileID: 7499339554350060711}
   m_Layer: 6
   m_Name: transform1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,7 +267,7 @@ GameObject:
   - component: {fileID: 3338686781737754275}
   m_Layer: 6
   m_Name: pCube6
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +300,7 @@ GameObject:
   - component: {fileID: 8823767313669687752}
   m_Layer: 6
   m_Name: Blockade_v1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
