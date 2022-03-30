@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class EndGame : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] float gemRewardAmount;
     public Image fuse;
     public float fuseTimer = 20f;
+    [SerializeField] GameObject firstButtonToBeSelected;
 
     [SerializeField] AudioSource fuseSound;
     [SerializeField] float penalty = 5f;
@@ -40,6 +42,12 @@ public class EndGame : MonoBehaviour
     [SerializeField] LootGrabber player_3_Script;
     [SerializeField] LootGrabber player_4_Script;
 
+    [Header("Player Loss Icon")]
+    [SerializeField] GameObject Player_1_Loss;
+    [SerializeField] GameObject Player_2_Loss;
+    [SerializeField] GameObject Player_3_Loss;
+    [SerializeField] GameObject Player_4_Loss;
+
     float max;
     bool doOnce;
     bool doGemAddOnce;
@@ -53,6 +61,10 @@ public class EndGame : MonoBehaviour
         player_2_Crown.SetActive(false);
         player_3_Crown.SetActive(false);
         player_4_Crown.SetActive(false);
+        Player_1_Loss.SetActive(false);
+        Player_2_Loss.SetActive(false);
+        Player_3_Loss.SetActive(false);
+        Player_4_Loss.SetActive(false);
 
         playOnce = false;
         doOnce = true;
@@ -68,6 +80,10 @@ public class EndGame : MonoBehaviour
         {
             fuseSound.Stop();
             endGamePanel.SetActive(true);
+
+            //EventSystem eventSystem = EventSystem.current;
+            //eventSystem.SetSelectedGameObject(firstButtonToBeSelected);
+
             AddGemPoints();
             max = Mathf.Max(player_1_Script.loot, player_2_Script.loot, player_3_Script.loot, player_4_Script.loot);
             Scoring();
@@ -196,16 +212,33 @@ public class EndGame : MonoBehaviour
     void EnableCrown()
     {
         if (player_1_Script.loot == max)
-                player_1_Crown.SetActive(true);
-
+        {
+            player_1_Crown.SetActive(true);
+            Player_2_Loss.SetActive(true);
+            Player_3_Loss.SetActive(true);
+            Player_4_Loss.SetActive(true);
+        }
         if (player_2_Script.loot == max)
-                player_2_Crown.SetActive(true);
-
+        {
+            player_2_Crown.SetActive(true);
+            Player_1_Loss.SetActive(true);
+            Player_3_Loss.SetActive(true);
+            Player_4_Loss.SetActive(true);
+        }
         if (player_3_Script.loot == max)
-                player_3_Crown.SetActive(true);
-
+        {
+            player_3_Crown.SetActive(true);
+            Player_1_Loss.SetActive(true);
+            Player_2_Loss.SetActive(true);
+            Player_4_Loss.SetActive(true);
+        }
         if (player_4_Script.loot == max)
-                player_4_Crown.SetActive(true);
+        {
+            player_4_Crown.SetActive(true);
+            Player_1_Loss.SetActive(true);
+            Player_2_Loss.SetActive(true);
+            Player_3_Loss.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

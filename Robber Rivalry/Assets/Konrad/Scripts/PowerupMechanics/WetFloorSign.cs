@@ -15,10 +15,15 @@ public class WetFloorSign : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
         transform.Rotate(-90f, transform.rotation.y, transform.rotation.z);
         gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
         doOnce = false;
+
+        foreach (GameObject item in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Physics.IgnoreCollision(item.GetComponent<Collider>(), GetComponent<Collider>());
+        }
     }
 
     // Update is called once per frame
@@ -45,6 +50,10 @@ public class WetFloorSign : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right), Color.red);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left), Color.blue);
+
+
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
@@ -58,7 +67,8 @@ public class WetFloorSign : MonoBehaviour
 
     void ChangeScale()
     {
-        transform.localScale = new Vector3((hit.distance + hit2.distance) * 2, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3((hit.distance + hit2.distance), transform.localScale.y, transform.localScale.z);
+        AstarPath.active.Scan();
     }
 
     private void OnTriggerEnter(Collider other)

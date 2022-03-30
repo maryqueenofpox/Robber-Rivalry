@@ -23,6 +23,8 @@ public class PlayerControls : MonoBehaviour
 
     public bool gotShot { get; set; }
 
+    Vector2 rot;
+
     private void Start()
     {
         GetStartingComponents();

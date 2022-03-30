@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EndGamePlatformFall : MonoBehaviour
 {
@@ -16,9 +17,6 @@ public class EndGamePlatformFall : MonoBehaviour
     bool pickedRandom;
 
     int index;
-    int colourIndex;
-
-    bool nextPlatform;
 
     public GameObject winningPlatform { get; private set; }
 
@@ -27,19 +25,15 @@ public class EndGamePlatformFall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         index = 0;
-        colourIndex = 0;
         getPlatforms = true;
         pickedRandom = false;
-        nextPlatform = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
         if (swapPartsScript.endGame && getPlatforms)
         {
             foreach (GameObject item in cubes)
@@ -54,43 +48,47 @@ public class EndGamePlatformFall : MonoBehaviour
         if (!pickedRandom && !getPlatforms)
         {
             int random = Random.Range(0, platforms.Count);
+
             winningPlatform = platforms[random];
 
             Material[] materials = winningPlatform.GetComponent<Renderer>().materials;
+
             materials[1].color = Color.green;
             materials[2].color = Color.green;
 
             platforms.RemoveAt(random);
-            pickedRandom = true;
+
+            if (random < 6)
+            {
+                platforms.Reverse();
+            }
 
             endGameObject.transform.parent = winningPlatform.transform;
             endGameObject.transform.position = winningPlatform.transform.position;
+
+            pickedRandom = true;
         }
 
-        if (swapPartsScript.endGame && !getPlatforms && pickedRandom && index < platforms.Count)
+        if (!(platforms.Count == 0))
         {
-            
-            MakePlatformsFall();
-
-            if (nextPlatform)
+            if (swapPartsScript.endGame && !getPlatforms && pickedRandom && index <= platforms.Count - 1)
             {
-                Material[] materialsRed = platforms[colourIndex + 1].GetComponent<Renderer>().materials;
-                materialsRed[1].color = Color.red;
-                materialsRed[2].color = Color.red;
+                MakePlatformsFallUpToDown();
             }
+
+            Material[] materialsRed = platforms[index + 1].GetComponent<Renderer>().materials;
+            materialsRed[1].color = Color.red;
+            materialsRed[2].color = Color.red;
         }
     }
 
-    void MakePlatformsFall()
+    void MakePlatformsFallUpToDown()
     {
-        platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
-        nextPlatform = false;
-
         if (platforms[index].transform.position == positionToFallTo.position)
         {
-            nextPlatform = true;
-            index++;
-            colourIndex++;
+            platforms.RemoveAt(index);
         }
+
+        platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
     }
 }

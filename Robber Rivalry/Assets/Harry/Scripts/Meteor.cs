@@ -6,11 +6,14 @@ public class Meteor : MonoBehaviour
 {
     [SerializeField]
     Transform Geode;
+    [SerializeField] float lowRange = 50.0f;
+    [SerializeField] float highRange = 71.0f;
+    float pickedRange;
+    bool doShower = true;
 
- 
-    void Start()
+    private void Start()
     {
-        StartCoroutine(SpawnEnemies(15, 1));
+        pickedRange = Random.Range(lowRange, highRange);
     }
 
     IEnumerator SpawnEnemies(int count, float delay)
@@ -30,11 +33,16 @@ public class Meteor : MonoBehaviour
         }
     }
 
-
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (doShower)
+        {
+            pickedRange -= Time.deltaTime;
+            if (pickedRange <= 0f)
+            {
+                StartCoroutine(SpawnEnemies(19, 1));
+                doShower = false;
+            }
+        }
     }
-   
-
 }

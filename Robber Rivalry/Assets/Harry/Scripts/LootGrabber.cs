@@ -58,14 +58,10 @@ public class LootGrabber : MonoBehaviour
                     loot--;
                     score.text = loot.ToString();
                 }
-
-                transform.position = respawnpoint.position;
-
             }
             else if(loot <= 0)
             {
                 loot = 0;
-                transform.position = respawnpoint.position;
             }
         } 
     }
