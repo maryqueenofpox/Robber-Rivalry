@@ -34,13 +34,15 @@ public class SwapParts : MonoBehaviour
     [SerializeField] float swapSpeed = 50f;
 
     float swap = 0.2f; // for updating the scan only once
-    GameObject index;
+    public GameObject index { get; private set; }
 
     bool warning;
     public float warningTimer = 5f;
     float originalWarningTimer;
-    Color originalColour;
-    Color originalColour2;
+
+    public Color originalColour { get; private set; }
+    public Color originalColour2 { get; private set; }
+
     bool pickedColour;
     bool changedColour;
 
@@ -78,11 +80,6 @@ public class SwapParts : MonoBehaviour
         if (timer.timer <= endGameScript.fuseTimer && !isSwapping)
         {
             endGame = true;
-
-            Material[] materials = index.GetComponent<Renderer>().materials;
-
-            materials[1].color = originalColour;
-            materials[2].color = originalColour2;
         }
 
         if (!endGame)

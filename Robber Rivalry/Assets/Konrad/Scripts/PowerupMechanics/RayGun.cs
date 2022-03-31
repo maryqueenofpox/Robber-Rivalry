@@ -19,9 +19,24 @@ public class RayGun : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerControls controls = other.GetComponent<PlayerControls>();
-            controls.gotShot = true;
-            controls.isStunned = true;
+            ForceField ff = other.GetComponent<ForceField>();
+            if (ff.enabled)
+            {
+                ff.enabled = false;
+            }
+            else
+            {
+                controls.gotShot = true;
+                controls.isStunned = true;
+            }
+            
             Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Guard"))
+        {
+            GuardSmack guardTP = other.GetComponent<GuardSmack>();
+            other.transform.position = guardTP.guardTeleportTo.position;
         }
     }
 }

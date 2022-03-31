@@ -4,12 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     SlapMechanic slapMechanicScript;
-    GemMechanic gemMechanicScript;
-    BashMechanic bashMechanicScript;
     PlayerUI playerUIScript;
     PlayerMovement playerMovementScript;
     PlayerAbilities playerAbilitiesScript;
-    ForceField forceFieldScript;
     PlayerAnimations playerAnimationsScript;
 
     [SerializeField] float stunDuration = 1f;
@@ -118,12 +115,9 @@ public class PlayerControls : MonoBehaviour
     void GetStartingComponents()
     {
         slapMechanicScript = GetComponent<SlapMechanic>();
-        gemMechanicScript = GetComponent<GemMechanic>();
-        bashMechanicScript = GetComponent<BashMechanic>();
         playerUIScript = GetComponent<PlayerUI>();
         playerMovementScript = GetComponent<PlayerMovement>();
         playerAbilitiesScript = GetComponent<PlayerAbilities>();
-        forceFieldScript = GetComponent<ForceField>();
         playerAnimationsScript = GetComponent<PlayerAnimations>();
     }
 }

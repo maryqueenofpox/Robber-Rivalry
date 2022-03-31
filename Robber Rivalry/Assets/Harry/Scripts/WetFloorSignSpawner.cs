@@ -15,7 +15,7 @@ public class WetFloorSignSpawner : MonoBehaviour
             clone.gameObject.tag = "PowerUp";
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "LootReplenish")
         {

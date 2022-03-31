@@ -51,6 +51,10 @@ public class EndGamePlatformFall : MonoBehaviour
 
             winningPlatform = platforms[random];
 
+            Material[] platformThatFucksUpGreen = swapPartsScript.index.GetComponent<Renderer>().materials;
+            platformThatFucksUpGreen[1].color = swapPartsScript.originalColour;
+            platformThatFucksUpGreen[2].color = swapPartsScript.originalColour2;
+
             Material[] materials = winningPlatform.GetComponent<Renderer>().materials;
 
             materials[1].color = Color.green;

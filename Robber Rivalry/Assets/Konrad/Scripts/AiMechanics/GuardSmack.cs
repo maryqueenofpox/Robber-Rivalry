@@ -8,9 +8,12 @@ public class GuardSmack : MonoBehaviour
     [SerializeField]
     Transform guardSpawner;
 
+    public Transform guardTeleportTo { get; private set; }
+
     private void Start()
     {
         originalPos = transform.position;
+        guardTeleportTo = guardSpawner;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -23,7 +26,7 @@ public class GuardSmack : MonoBehaviour
             if (ff.enabled)
             {
                 ff.enabled = false;
-                transform.position = originalPos;
+                transform.position = guardSpawner.position;
             }
             else
                 lg.transform.position = lg.respawnpoint.position;
