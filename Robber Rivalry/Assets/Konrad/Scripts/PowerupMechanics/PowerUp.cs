@@ -8,10 +8,10 @@ public class PowerUp : MonoBehaviour
 
     private void Update()
     {
-        //transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {

@@ -105,7 +105,6 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (rayGun.activeSelf == true)
         {
-            Debug.Log("Gun Active");
             GameObject bullet;
             bullet = Instantiate(rayBullet, rayGun.transform.position, transform.rotation);
 
@@ -141,9 +140,9 @@ public class PlayerAbilities : MonoBehaviour
         playerUIScript.Magnet(false);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.CompareTag("PowerUp"))
+        if (collision.CompareTag("PowerUp"))
         {
             powerUpAudio.Play();
             pickRandomAbility = true;

@@ -10,7 +10,6 @@ public class Magnet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Loot"))
         {
-            Debug.Log("I AM DETECTING LOOT BITCH");
             other.transform.position = Vector3.MoveTowards(other.transform.position, transform.position, pullSpeed * Time.deltaTime);
         }
     }

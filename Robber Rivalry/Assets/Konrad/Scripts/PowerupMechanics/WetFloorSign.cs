@@ -15,7 +15,7 @@ public class WetFloorSign : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
         transform.Rotate(-90f, transform.rotation.y, transform.rotation.z);
         gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
         doOnce = false;
@@ -77,11 +77,20 @@ public class WetFloorSign : MonoBehaviour
         {
             PlayerControls controls;
             controls = other.gameObject.GetComponent<PlayerControls>();
+            ForceField ff;
+            ff = other.gameObject.GetComponent<ForceField>();
 
-            if (controls.vulnerable)
-                controls.isStunned = true;
+            if (ff.enabled)
+            {
+                ff.enabled = false;
+            }
             else
-                Debug.Log("Not vulnerable");
+            {
+                if (controls.vulnerable)
+                    controls.isStunned = true;
+                else
+                    Debug.Log("Not vulnerable");
+            }
         }
     }
 }
