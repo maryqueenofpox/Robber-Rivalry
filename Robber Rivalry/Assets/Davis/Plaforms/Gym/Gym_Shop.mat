@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5086654625570347816
+--- !u!114 &-5788815005651735951
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,10 +20,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Salon_Tile_2_BaseColor 9
+  m_Name: Gym_Shop
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: _SPECULAR_SETUP
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _EMISSION _SPECULARHIGHLIGHTS_OFF _SPECULAR_SETUP
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 8231f545ce366454aaefb751ae04af54, type: 3}
+        m_Texture: {fileID: 2800000, guid: 37dffa0f1c0423843a0183171d298969, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -54,11 +54,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 582c4302646062649bd3a0b42280fad0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8231f545ce366454aaefb751ae04af54, type: 3}
+        m_Texture: {fileID: 2800000, guid: 37dffa0f1c0423843a0183171d298969, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -112,7 +112,7 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
+    - _SpecularHighlights: 0
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 0
@@ -120,6 +120,6 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+    - _EmissionColor: {r: 1.9766746, g: 1.9766746, b: 1.9766746, a: 1}
+    - _SpecColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_BuildTextureStacks: []
