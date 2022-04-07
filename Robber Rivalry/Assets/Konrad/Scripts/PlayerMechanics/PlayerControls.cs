@@ -119,7 +119,5 @@ public class PlayerControls : MonoBehaviour
         playerMovementScript = GetComponent<PlayerMovement>();
         playerAbilitiesScript = GetComponent<PlayerAbilities>();
         playerAnimationsScript = GetComponent<PlayerAnimations>();
-        var script = gameObject.AddComponent<PlayerCheats>();
-
     }
 }

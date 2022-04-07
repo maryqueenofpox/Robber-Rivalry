@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.Controls;
 
 public class PlayerCheats : MonoBehaviour
 {
-    ButtonControl[] scoreCheat = new ButtonControl[]
+    ButtonControl[] scoreCheat =
     {
         Gamepad.current.buttonSouth,
         Gamepad.current.buttonNorth,
@@ -17,13 +17,13 @@ public class PlayerCheats : MonoBehaviour
 
     int buttonIndex;
     float timeForNextButton = 2f;
-    [SerializeField] GameObject Player;
+    float amongTimer = 0.5f;
+    [SerializeField] GameObject amongus;
     float originalTimeForNextButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        
         buttonIndex = 0;
         originalTimeForNextButton = timeForNextButton;
     }
@@ -36,28 +36,42 @@ public class PlayerCheats : MonoBehaviour
 
     void ScoreCheat()
     {
-        
-
-        if (scoreCheat[buttonIndex].isPressed)
+        if (Gamepad.current != null)
         {
-            timeForNextButton = originalTimeForNextButton;
-            Player.SetActive(true);
-            buttonIndex++;
-
-            if (buttonIndex > scoreCheat.Length - 1)
+            if (scoreCheat[buttonIndex].isPressed)
             {
-                LootGrabber lg = GetComponent<LootGrabber>();
-                lg.loot -= 100;
-                lg.score.text = lg.loot.ToString();
-                buttonIndex = 0;
-            
+                timeForNextButton = originalTimeForNextButton;
+                buttonIndex++;
+
+                if (buttonIndex > scoreCheat.Length - 1)
+                {
+                    LootGrabber lg = GetComponent<LootGrabber>();
+                    lg.loot += 100;
+                    lg.score.text = lg.loot.ToString();
+                    buttonIndex = 0;
+                    amongus.SetActive(true);
+                }
+            }
+            else
+            {
+                timeForNextButton -= Time.deltaTime;
+                if (timeForNextButton <= 0)
+                {
+                    buttonIndex = 0;
+                }
             }
         }
         else
+            return;
+
+        if (amongus.activeSelf)
         {
-            timeForNextButton -= Time.deltaTime;
-            if (timeForNextButton <= 0)
-                buttonIndex = 0;
+            amongTimer -= Time.deltaTime;
+            if (amongTimer <= 0)
+            {
+                amongus.SetActive(false);
+                amongTimer = 0.5f;
+            }
         }
     }
 }
