@@ -17,11 +17,13 @@ public class PlayerCheats : MonoBehaviour
 
     int buttonIndex;
     float timeForNextButton = 2f;
+    [SerializeField] GameObject Player;
     float originalTimeForNextButton;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         buttonIndex = 0;
         originalTimeForNextButton = timeForNextButton;
     }
@@ -34,19 +36,21 @@ public class PlayerCheats : MonoBehaviour
 
     void ScoreCheat()
     {
+        
+
         if (scoreCheat[buttonIndex].isPressed)
         {
             timeForNextButton = originalTimeForNextButton;
-
+            Player.SetActive(true);
             buttonIndex++;
 
             if (buttonIndex > scoreCheat.Length - 1)
             {
                 LootGrabber lg = GetComponent<LootGrabber>();
-                lg.loot += 100;
+                lg.loot -= 100;
                 lg.score.text = lg.loot.ToString();
-
                 buttonIndex = 0;
+            
             }
         }
         else

@@ -61,6 +61,30 @@ public class EndGame : MonoBehaviour
     [SerializeField] GameObject Player_3_Fourth;
     [SerializeField] GameObject Player_4_Fourth;
 
+    [Header("Player Shared Crown Icons")]
+    [SerializeField] GameObject Player_1_Shared_Crown;
+    [SerializeField] GameObject Player_2_Shared_Crown;
+    [SerializeField] GameObject Player_3_Shared_Crown;
+    [SerializeField] GameObject Player_4_Shared_Crown;
+
+    [Header("Player Shared Second Icons")]
+    [SerializeField] GameObject Player_1_Shared_Second;
+    [SerializeField] GameObject Player_2_Shared_Second;
+    [SerializeField] GameObject Player_3_Shared_Second;
+    [SerializeField] GameObject Player_4_Shared_Second;
+
+    [Header("Player Shared Third Icons")]
+    [SerializeField] GameObject Player_1_Shared_Third;
+    [SerializeField] GameObject Player_2_Shared_Third;
+    [SerializeField] GameObject Player_3_Shared_Third;
+    [SerializeField] GameObject Player_4_Shared_Third;
+
+    [Header("Player Shared Fourth Icons")]
+    [SerializeField] GameObject Player_1_Shared_Fourth;
+    [SerializeField] GameObject Player_2_Shared_Fourth;
+    [SerializeField] GameObject Player_3_Shared_Fourth;
+    [SerializeField] GameObject Player_4_Shared_Fourth;
+
     float max;
     bool doOnce;
     bool doGemAddOnce;
@@ -73,6 +97,10 @@ public class EndGame : MonoBehaviour
     GameObject[] Player3Rankings = new GameObject[4];
     GameObject[] Player4Rankings = new GameObject[4];
     TextMeshProUGUI[] ScoreRanking = new TextMeshProUGUI[4];
+    GameObject[] Player1SharedSprites = new GameObject[4];
+    GameObject[] Player2SharedSprites = new GameObject[4];
+    GameObject[] Player3SharedSprites = new GameObject[4];
+    GameObject[] Player4SharedSprites = new GameObject[4];
 
     // Start is called before the first frame update
     void Start()
@@ -84,20 +112,42 @@ public class EndGame : MonoBehaviour
         player_3_Crown.SetActive(false);
         player_4_Crown.SetActive(false);
 
+        Player_1_Shared_Crown.SetActive(false);
+        Player_2_Shared_Crown.SetActive(false);
+        Player_3_Shared_Crown.SetActive(false);
+        Player_4_Shared_Crown.SetActive(false);
+
         Player_1_Second.SetActive(false);
         Player_2_Second.SetActive(false);
         Player_3_Second.SetActive(false);
         Player_4_Second.SetActive(false);
+
+        Player_1_Shared_Second.SetActive(false);
+        Player_2_Shared_Second.SetActive(false);
+        Player_3_Shared_Second.SetActive(false);
+        Player_4_Shared_Second.SetActive(false);
 
         Player_1_Third.SetActive(false);
         Player_2_Third.SetActive(false);
         Player_3_Third.SetActive(false);
         Player_4_Third.SetActive(false);
 
+        Player_1_Shared_Third.SetActive(false);
+        Player_2_Shared_Third.SetActive(false);
+        Player_3_Shared_Third.SetActive(false);
+        Player_4_Shared_Third.SetActive(false);
+
         Player_1_Fourth.SetActive(false);
         Player_2_Fourth.SetActive(false);
         Player_3_Fourth.SetActive(false);
         Player_4_Fourth.SetActive(false);
+
+        Player_1_Shared_Fourth.SetActive(false);
+        Player_2_Shared_Fourth.SetActive(false);
+        Player_3_Shared_Fourth.SetActive(false);
+        Player_4_Shared_Fourth.SetActive(false);
+
+
 
         playOnce = false;
         doOnce = true;
@@ -290,6 +340,27 @@ public class EndGame : MonoBehaviour
         Player4Rankings[2] = Player_4_Second;
         Player4Rankings[3] = player_4_Crown;
 
+        // Assigns the shared sprites to their respective arrays
+        Player1SharedSprites[0] = Player_1_Shared_Fourth;
+        Player1SharedSprites[1] = Player_1_Shared_Third;
+        Player1SharedSprites[2] = Player_1_Shared_Second;
+        Player1SharedSprites[3] = Player_1_Shared_Crown;
+
+        Player2SharedSprites[0] = Player_2_Shared_Fourth;
+        Player2SharedSprites[1] = Player_2_Shared_Third;
+        Player2SharedSprites[2] = Player_2_Shared_Second;
+        Player2SharedSprites[3] = Player_2_Shared_Crown;
+
+        Player3SharedSprites[0] = Player_3_Shared_Fourth;
+        Player3SharedSprites[1] = Player_3_Shared_Third;
+        Player3SharedSprites[2] = Player_3_Shared_Second;
+        Player3SharedSprites[3] = Player_3_Shared_Crown;
+
+        Player4SharedSprites[0] = Player_4_Shared_Fourth;
+        Player4SharedSprites[1] = Player_4_Shared_Third;
+        Player4SharedSprites[2] = Player_4_Shared_Second;
+        Player4SharedSprites[3] = Player_4_Shared_Crown;
+
         // For loop that will run until i is one less than array length
         for (int i = 0; i < ranking.Length; i++)
         {
@@ -325,6 +396,97 @@ public class EndGame : MonoBehaviour
             }
         }
 
+        //For Loop for player 1 shared sprite activation what runs until i = ranking.length
+        for (int i = 0; i < ranking.Length; i++)
+        {
+            //Checks for player 1 loot and player 2 loot to be equal to the same ranking, ranking changes based on integer
+            if (player_1_Script.loot == ranking[i] && player_2_Script.loot == ranking[i])
+            {
+                //if (Player1SharedSprites[i-1] && Player2SharedSprites[i-1])
+                    //Activates the corresponding sprite for the related rank
+                    Player1SharedSprites[i].SetActive(true);
+                    Player2SharedSprites[i].SetActive(true);
+                    Player1Rankings[i].SetActive(false);
+                    Player2Rankings[i].SetActive(false);
+                
+            }
+
+            //Checks for player 1 loot and player 3 loot to be equal to the same ranking
+            if (player_1_Script.loot == ranking[i] && player_3_Script.loot == ranking[i])
+            {
+                Player1SharedSprites[i].SetActive(true);
+                Player3SharedSprites[i].SetActive(true);
+                Player1Rankings[i].SetActive(false);
+                Player3Rankings[i].SetActive(false);
+            }
+
+            //Checks for player 1 loot and player 4 loot to be equal to the same ranking
+            if (player_1_Script.loot == ranking[i] && player_4_Script.loot == ranking[i])
+            {
+                Player1SharedSprites[i].SetActive(true);
+                Player4SharedSprites[i].SetActive(true);
+                Player1Rankings[i].SetActive(false);
+                Player4Rankings[i].SetActive(false);
+            }
+        }
+
+        //For Loop for player 2 shared sprite activation what runs until i = ranking.length
+        for (int i = 0; i < ranking.Length; i++)
+        {
+            if (player_2_Script.loot == ranking[i] && player_1_Script.loot == ranking[i])
+            {
+                Player2SharedSprites[i].SetActive(true);
+                Player1SharedSprites[i].SetActive(true);
+                Player2Rankings[i].SetActive(false);
+                Player1Rankings[i].SetActive(false);
+            }
+
+            if (player_2_Script.loot == ranking[i] && player_3_Script.loot == ranking[i])
+            {
+                Player2SharedSprites[i].SetActive(true);
+                Player3SharedSprites[i].SetActive(true);
+                Player2Rankings[i].SetActive(false);
+                Player3Rankings[i].SetActive(false);
+            }
+
+            if (player_2_Script.loot == ranking[i] && player_4_Script.loot == ranking[i])
+            {
+                Player2SharedSprites[i].SetActive(true);
+                Player4SharedSprites[i].SetActive(true);
+                Player2Rankings[i].SetActive(false);
+                Player4Rankings[i].SetActive(false);
+            }
+        }
+
+        //For Loop for player 3 shared sprite activation what runs until i = ranking.length
+        for (int i = 0; i < ranking.Length; i++)
+        {
+            if (player_3_Script.loot == ranking[i] && player_1_Script.loot == ranking[i])
+            {
+                Player3SharedSprites[i].SetActive(true);
+                Player1SharedSprites[i].SetActive(true);
+                Player3Rankings[i].SetActive(false);
+                Player1Rankings[i].SetActive(false);
+            }
+
+            if (player_3_Script.loot == ranking[i] && player_2_Script.loot == ranking[i])
+            {
+                Player3SharedSprites[i].SetActive(true);
+                Player2SharedSprites[i].SetActive(true);
+                Player3Rankings[i].SetActive(false);
+                Player2Rankings[i].SetActive(false);
+            }
+
+            if (player_3_Script.loot == ranking[i] && player_4_Script.loot == ranking[i])
+            {
+                Player3SharedSprites[i].SetActive(true);
+                Player4SharedSprites[i].SetActive(true);
+                Player3Rankings[i].SetActive(false);
+                Player4Rankings[i].SetActive(false);
+            }
+        }
+
+        //Player 4 wouldnt need a for loop since they will be covered by all previous loops
 
     }
 
