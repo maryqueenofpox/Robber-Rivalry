@@ -11,7 +11,9 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField] GameObject magnetField;
     [SerializeField] float bulletVelocity = 50f;
     [SerializeField] float magnetTimer;
+    [SerializeField] float shieldTimer;
     float originalTimerMaget;
+    float originalTimerShield;
     [SerializeField] float grenadeUpwardForce = 1000000f;
     [SerializeField] float grenadeForwardForce = 1000000f;
     public bool canUseAbility { get; set; }
@@ -37,6 +39,7 @@ public class PlayerAbilities : MonoBehaviour
         rayGun.SetActive(false);
         magnetField.SetActive(false);
         originalTimerMaget = magnetTimer;
+        originalTimerShield = shieldTimer;
     }
 
     // Update is called once per frame
@@ -64,8 +67,19 @@ public class PlayerAbilities : MonoBehaviour
                 
             }
         }
+
+        if (forceFieldScript.enabled == true)
+        {
+            shieldTimer -= Time.deltaTime;
+            if (shieldTimer < 0)
+            {
+                forceFieldScript.enabled = false;
+            }
+        }
+
         else
             magnetTimer = originalTimerMaget;
+            originalTimerShield = shieldTimer;
     }
 
     public void Ability()
