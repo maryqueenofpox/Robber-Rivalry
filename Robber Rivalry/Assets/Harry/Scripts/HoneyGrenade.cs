@@ -5,7 +5,7 @@ using UnityEngine;
 public class HoneyGrenade : MonoBehaviour
 {
 
-    float activeDuration = 3f;
+    float activeDuration = 1.75f;
     [SerializeField] float throwForce = 5f;
     [SerializeField] Transform HoneySplat;
     [SerializeField]

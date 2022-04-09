@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAbilities : MonoBehaviour
 {
@@ -80,6 +81,12 @@ public class PlayerAbilities : MonoBehaviour
         else
             magnetTimer = originalTimerMaget;
             originalTimerShield = shieldTimer;
+
+        if (Keyboard.current.hKey.isPressed)
+        {
+            randomAbility = 2;
+            canUseAbility = true;
+        }
     }
 
     public void Ability()
@@ -140,9 +147,9 @@ public class PlayerAbilities : MonoBehaviour
     void ThrowGrenade()
     {
         GameObject grenade;
-        grenade = Instantiate(honeyGrenade, transform.position + (transform.forward * 2f), transform.rotation);
-        grenade.GetComponent<Rigidbody>().AddForce(transform.up * grenadeUpwardForce * Time.deltaTime);
-        grenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadeForwardForce * Time.deltaTime);
+        grenade = Instantiate(honeyGrenade, transform.position + (transform.forward * 0.5f), transform.rotation);
+        grenade.GetComponent<Rigidbody>().AddForce(transform.up * grenadeUpwardForce * 0.4f);
+        grenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadeForwardForce * 0.4f);
         
        
         playerUIScript.Honey(false);
