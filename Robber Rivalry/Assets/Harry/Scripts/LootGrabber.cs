@@ -22,6 +22,7 @@ public class LootGrabber : MonoBehaviour
     [SerializeField] AudioSource lootAudio;
 
     GemMechanic gemMechanic;
+    [SerializeField] GameObject scorePopUp;
 
     private void Start()
     {
@@ -36,6 +37,8 @@ public class LootGrabber : MonoBehaviour
             loot++;
             score.text = loot.ToString();
             Destroy(other.gameObject);
+            ScoreTextPopUp();
+            Debug.Log("Copper");
         }
 
 
@@ -82,5 +85,10 @@ public class LootGrabber : MonoBehaviour
                 loot = 0;
             }
         }
+    }
+
+    void ScoreTextPopUp()
+    {
+        Instantiate(scorePopUp, transform.position, scorePopUp.transform.rotation);
     }
 }

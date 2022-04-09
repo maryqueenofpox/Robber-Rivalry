@@ -102,6 +102,9 @@ public class EndGame : MonoBehaviour
     GameObject[] Player3SharedSprites = new GameObject[4];
     GameObject[] Player4SharedSprites = new GameObject[4];
 
+    [Header("AnimationWarning")]
+    [SerializeField] GameObject animationWarning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -227,6 +230,13 @@ public class EndGame : MonoBehaviour
                 fuseSound.Play();
                 playOnce = true;
             }
+        }
+
+        if(timer.timer <= fuseTimer + 4)
+        {
+            animationWarning.SetActive(true);
+
+            Destroy(animationWarning, 4);
         }
          
 
