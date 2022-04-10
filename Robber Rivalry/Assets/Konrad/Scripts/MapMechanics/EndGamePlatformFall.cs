@@ -27,12 +27,15 @@ public class EndGamePlatformFall : MonoBehaviour
 
     int indexForColour;
 
+    bool doFall;
+
     // Start is called before the first frame update
     void Start()
     {
         index = 0;
         getPlatforms = true;
         pickedRandom = false;
+        doFall = false;
     }
 
     // Update is called once per frame
@@ -78,9 +81,10 @@ public class EndGamePlatformFall : MonoBehaviour
             endGameObject.transform.position = winningPlatform.transform.position;
 
             pickedRandom = true;
-            StartCoroutine(FlashingColours());
+            StartCoroutine(FlashTheSequence());
         }
 
+        /*
         if (!(platforms.Count == 0))
         {
             if (swapPartsScript.endGame && !getPlatforms && pickedRandom && index <= platforms.Count - 1)
@@ -92,6 +96,7 @@ public class EndGamePlatformFall : MonoBehaviour
             //materialsRed[1].color = Color.red;
             //materialsRed[2].color = Color.red;
         }
+        */
     }
 
     void MakePlatformsFallUpToDown()
@@ -107,15 +112,45 @@ public class EndGamePlatformFall : MonoBehaviour
         */
     }
 
-    IEnumerator FlashingColours()
+    IEnumerator LondonPlatformsAreFallingDown()
+    {
+        while(!doFall)
+        {
+            if ((platforms.Count < 0))
+                StopCoroutine(LondonPlatformsAreFallingDown());
+
+            Material[] mats = platforms[index].GetComponent<Renderer>().materials;
+
+            mats[1] = swapPartsScript.warningForEndGamePlatformFall;
+            mats[2] = swapPartsScript.warningForEndGamePlatformFall;
+
+            platforms[index].GetComponent<Renderer>().materials = mats;
+
+            yield return new WaitForSeconds(1f);
+            doFall = true;
+        }
+
+        while(doFall)
+        {
+            if (platforms[index].transform.position == positionToFallTo.position)
+            {
+                platforms.RemoveAt(index);
+                yield return new WaitForSeconds(1f);
+                doFall = false;
+            }
+
+            platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
+        }
+    }
+
+    IEnumerator FlashTheSequence()
     {
         if (index > platforms.Count - 1)
         {
-            StopCoroutine(FlashingColours());
-
+            index = 0;
+            StopCoroutine(FlashTheSequence());
+            StartCoroutine(LondonPlatformsAreFallingDown());
         }
-
-        Debug.Log("IEnumerator is running");
 
         Material[] mats = platforms[index].GetComponent<Renderer>().materials;
 
@@ -126,8 +161,6 @@ public class EndGamePlatformFall : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        Debug.Log("yield return has yielded");
-
         mats[1] = swapPartsScript.originalMaterialOnPlatform1st;
         mats[2] = swapPartsScript.originalMaterialOnPlatform2nd;
 
@@ -135,6 +168,6 @@ public class EndGamePlatformFall : MonoBehaviour
 
         index++;
 
-        StartCoroutine(FlashingColours());
+        StartCoroutine(FlashTheSequence());
     }
 }
