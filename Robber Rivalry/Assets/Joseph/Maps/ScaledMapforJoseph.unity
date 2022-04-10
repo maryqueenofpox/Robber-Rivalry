@@ -15254,11 +15254,11 @@ MonoBehaviour:
   rayGun: {fileID: 330826856}
   rayBullet: {fileID: 3392781504071638126, guid: ee4460957b97f48448ef9d8e09814a73, type: 3}
   magnetField: {fileID: 1046078645}
-  bulletVelocity: 50000
+  bulletVelocity: 7000
   magnetTimer: 6
   shieldTimer: 20
-  grenadeUpwardForce: 80000
-  grenadeForwardForce: 10000
+  grenadeUpwardForce: 15000
+  grenadeForwardForce: 1250
   powerUpAudio: {fileID: 440957288}
 --- !u!114 &440957296
 MonoBehaviour:
@@ -30618,7 +30618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70df79c980b912b4798f0735a46ff900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 50
+  timer: 120
 --- !u!114 &1040461253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32885,7 +32885,7 @@ MonoBehaviour:
   Player_1_Shared_Third: {fileID: 1542399421}
   Player_2_Shared_Third: {fileID: 460264161}
   Player_3_Shared_Third: {fileID: 1118317191}
-  Player_4_Shared_Third: {fileID: 1495892826}
+  Player_4_Shared_Third: {fileID: 630729534}
   Player_1_Shared_Fourth: {fileID: 240788562}
   Player_2_Shared_Fourth: {fileID: 674726693}
   Player_3_Shared_Fourth: {fileID: 2029682661}
@@ -68409,6 +68409,18 @@ PrefabInstance:
       propertyPath: shieldTimer
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 90966709322210965, guid: 0dc37dd22e7e8b747abde3756311a1fd, type: 3}
+      propertyPath: bulletVelocity
+      value: 7000
+      objectReference: {fileID: 0}
+    - target: {fileID: 90966709322210965, guid: 0dc37dd22e7e8b747abde3756311a1fd, type: 3}
+      propertyPath: grenadeUpwardForce
+      value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 90966709322210965, guid: 0dc37dd22e7e8b747abde3756311a1fd, type: 3}
+      propertyPath: grenadeForwardForce
+      value: 1250
+      objectReference: {fileID: 0}
     - target: {fileID: 90966709322210966, guid: 0dc37dd22e7e8b747abde3756311a1fd, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -68663,6 +68675,18 @@ PrefabInstance:
       propertyPath: shieldTimer
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7999849266480117401, guid: 188aadc43fd0c3048a08cf6a7666b8e9, type: 3}
+      propertyPath: bulletVelocity
+      value: 7000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999849266480117401, guid: 188aadc43fd0c3048a08cf6a7666b8e9, type: 3}
+      propertyPath: grenadeUpwardForce
+      value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999849266480117401, guid: 188aadc43fd0c3048a08cf6a7666b8e9, type: 3}
+      propertyPath: grenadeForwardForce
+      value: 1250
+      objectReference: {fileID: 0}
     - target: {fileID: 8888319116830572604, guid: 188aadc43fd0c3048a08cf6a7666b8e9, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -68687,6 +68711,18 @@ PrefabInstance:
     - target: {fileID: 8171347110281221192, guid: 4710a5c5f7d23354ea27e3eb1fc44289, type: 3}
       propertyPath: shieldTimer
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171347110281221192, guid: 4710a5c5f7d23354ea27e3eb1fc44289, type: 3}
+      propertyPath: bulletVelocity
+      value: 7000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171347110281221192, guid: 4710a5c5f7d23354ea27e3eb1fc44289, type: 3}
+      propertyPath: grenadeUpwardForce
+      value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171347110281221192, guid: 4710a5c5f7d23354ea27e3eb1fc44289, type: 3}
+      propertyPath: grenadeForwardForce
+      value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: 8171347110281221193, guid: 4710a5c5f7d23354ea27e3eb1fc44289, type: 3}
       propertyPath: scorePopUp

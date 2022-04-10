@@ -129,7 +129,7 @@ public class PlayerAbilities : MonoBehaviour
             GameObject bullet;
             bullet = Instantiate(rayBullet, rayGun.transform.position, transform.rotation);
 
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * Time.deltaTime);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * 0.3f);
 
             rayGun.SetActive(false);
             playerUIScript.PewGun(false);
