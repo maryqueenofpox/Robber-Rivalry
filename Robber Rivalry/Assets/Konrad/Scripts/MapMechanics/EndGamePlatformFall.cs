@@ -19,13 +19,17 @@ public class EndGamePlatformFall : MonoBehaviour
     int index;
 
     public GameObject winningPlatform { get; private set; }
+    [SerializeField] Material winningPlatformMaterial;
 
     [SerializeField] GameObject killzone;
+
+    bool changedColour;
+
+    int indexForColour;
 
     // Start is called before the first frame update
     void Start()
     {
-
         index = 0;
         getPlatforms = true;
         pickedRandom = false;
@@ -51,14 +55,17 @@ public class EndGamePlatformFall : MonoBehaviour
 
             winningPlatform = platforms[random];
 
-            Material[] platformThatFucksUpGreen = swapPartsScript.index.GetComponent<Renderer>().materials;
-            platformThatFucksUpGreen[1].color = swapPartsScript.originalColour;
-            platformThatFucksUpGreen[2].color = swapPartsScript.originalColour2;
+            Material[] platformThatBreaksGreen = swapPartsScript.index.GetComponent<Renderer>().materials;
+            platformThatBreaksGreen[1] = swapPartsScript.originalMaterialOnPlatform1st;
+            platformThatBreaksGreen[2] = swapPartsScript.originalMaterialOnPlatform2nd;
+            swapPartsScript.index.GetComponent<Renderer>().materials = platformThatBreaksGreen;
 
             Material[] materials = winningPlatform.GetComponent<Renderer>().materials;
 
-            materials[1].color = Color.green;
-            materials[2].color = Color.green;
+            materials[1] = winningPlatformMaterial;
+            materials[2] = winningPlatformMaterial;
+
+            winningPlatform.GetComponent<Renderer>().materials = materials;
 
             platforms.RemoveAt(random);
 
@@ -71,6 +78,7 @@ public class EndGamePlatformFall : MonoBehaviour
             endGameObject.transform.position = winningPlatform.transform.position;
 
             pickedRandom = true;
+            StartCoroutine(FlashingColours());
         }
 
         if (!(platforms.Count == 0))
@@ -80,19 +88,53 @@ public class EndGamePlatformFall : MonoBehaviour
                 MakePlatformsFallUpToDown();
             }
 
-            Material[] materialsRed = platforms[index + 1].GetComponent<Renderer>().materials;
-            materialsRed[1].color = Color.red;
-            materialsRed[2].color = Color.red;
+            //Material[] materialsRed = platforms[index + 1].GetComponent<Renderer>().materials;
+            //materialsRed[1].color = Color.red;
+            //materialsRed[2].color = Color.red;
         }
     }
 
     void MakePlatformsFallUpToDown()
     {
+        Debug.Log("EHhhhhh");
+        /*
         if (platforms[index].transform.position == positionToFallTo.position)
         {
             platforms.RemoveAt(index);
         }
 
         platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
+        */
+    }
+
+    IEnumerator FlashingColours()
+    {
+        if (index > platforms.Count - 1)
+        {
+            StopCoroutine(FlashingColours());
+
+        }
+
+        Debug.Log("IEnumerator is running");
+
+        Material[] mats = platforms[index].GetComponent<Renderer>().materials;
+
+        mats[1] = swapPartsScript.warningForEndGamePlatformFall;
+        mats[2] = swapPartsScript.warningForEndGamePlatformFall;
+
+        platforms[index].GetComponent<Renderer>().materials = mats;
+
+        yield return new WaitForSeconds(0.1f);
+
+        Debug.Log("yield return has yielded");
+
+        mats[1] = swapPartsScript.originalMaterialOnPlatform1st;
+        mats[2] = swapPartsScript.originalMaterialOnPlatform2nd;
+
+        platforms[index].GetComponent<Renderer>().materials = mats;
+
+        index++;
+
+        StartCoroutine(FlashingColours());
     }
 }

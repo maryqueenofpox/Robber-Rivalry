@@ -40,10 +40,10 @@ public class SwapParts : MonoBehaviour
     public float warningTimer = 5f;
     float originalWarningTimer;
 
-    public Color originalColour { get; private set; }
-    public Color originalColour2 { get; private set; }
+    //public Color originalColour { get; private set; }
+    //public Color originalColour2 { get; private set; }
 
-    bool pickedColour;
+    //bool pickedColour;
     bool changedColour;
 
 
@@ -60,18 +60,26 @@ public class SwapParts : MonoBehaviour
     [SerializeField] Timer timer;
     [SerializeField] EndGame endGameScript;
 
+    [SerializeField] Material platformWarningMaterial;
+    public Material warningForEndGamePlatformFall { get; private set; }
+    public Material originalMaterialOnPlatform1st { get; private set; }
+    public Material originalMaterialOnPlatform2nd { get; private set; }
+    bool oncehehe = true;
+
     private void Start()
     {
         originalTimer = swapTimer;
         warning = false;
         originalWarningTimer = warningTimer;
-        pickedColour = false;
+        //pickedColour = false;
         changedColour = false;
 
         toDropAllPlatforms = false;
         rotationArrayLength = rotationDegrees.Length;
 
         endGame = false;
+
+        warningForEndGamePlatformFall = platformWarningMaterial;
     }
 
     // Update is called once per frame
@@ -125,6 +133,7 @@ public class SwapParts : MonoBehaviour
         PickRandomGround(); // picks a random cube to swap
         PickRandomSwap(); // picks a random swap cube to swap with
 
+        /*
         if (!pickedColour)
         {
             Material[] materials = index.GetComponent<Renderer>().materials;
@@ -132,7 +141,7 @@ public class SwapParts : MonoBehaviour
             originalColour2 = materials[2].color;
             pickedColour = true;
         }
-
+        */
 
         warning = true;
     }
@@ -143,6 +152,11 @@ public class SwapParts : MonoBehaviour
         index = startingPieces[randomIndex]; // sets the index to be the random picked object from the list
         groundPiece = index.transform; // makes the groundPiece hold the value of the transform
         groundPieceVector = groundPiece.position; // the vector will hold a constant value of the current position
+
+        Material[] materials = index.GetComponent<Renderer>().materials;
+
+        originalMaterialOnPlatform1st = materials[1];
+        originalMaterialOnPlatform2nd = materials[2];
 
         /*if (groundPiece.gameObject.GetComponent<CheckCollision>().isColliding) // if the player is on the box that got picked
             PickRandomGround(); // redo the random generation*/
@@ -181,8 +195,11 @@ public class SwapParts : MonoBehaviour
 
             Material[] materials = index.GetComponent<Renderer>().materials;
 
-            materials[1].color = originalColour;
-            materials[2].color = originalColour2;
+            materials[1] = originalMaterialOnPlatform1st;
+            materials[2] = originalMaterialOnPlatform2nd;
+
+            index.GetComponent<Renderer>().materials = materials;
+
             swap -= Time.deltaTime;
             if (swap <= 0f)
             {
@@ -248,15 +265,17 @@ public class SwapParts : MonoBehaviour
         {
             if (!changedColour)
             {
-                if (materials[1].color == originalColour)
+                if (materials[1] == originalMaterialOnPlatform1st)
                 {
-                    materials[1].color = Color.red;
-                    materials[2].color = Color.red;
+                    materials[1] = platformWarningMaterial;
+                    materials[2] = platformWarningMaterial;
+                    index.GetComponent<Renderer>().materials = materials;
                 }
                 else
                 {
-                    materials[1].color = originalColour;
-                    materials[2].color = originalColour2;
+                    materials[1] = originalMaterialOnPlatform1st;
+                    materials[2] = originalMaterialOnPlatform2nd;
+                    index.GetComponent<Renderer>().materials = materials;
                 }
                 StartCoroutine(FlashingColours());
             }

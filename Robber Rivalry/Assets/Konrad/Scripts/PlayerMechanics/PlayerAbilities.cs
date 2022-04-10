@@ -68,6 +68,8 @@ public class PlayerAbilities : MonoBehaviour
                 
             }
         }
+        else
+            magnetTimer = originalTimerMaget;
 
         if (forceFieldScript.enabled == true)
         {
@@ -77,10 +79,9 @@ public class PlayerAbilities : MonoBehaviour
                 forceFieldScript.enabled = false;
             }
         }
-
         else
-            magnetTimer = originalTimerMaget;
-            originalTimerShield = shieldTimer;
+            shieldTimer = originalTimerShield;
+            
 
         if (Keyboard.current.hKey.isPressed)
         {
