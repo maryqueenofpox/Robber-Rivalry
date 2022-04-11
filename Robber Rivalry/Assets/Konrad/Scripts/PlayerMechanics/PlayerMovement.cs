@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float originalmoveSpeed = 250.0f;
     [SerializeField] float dashForce = 10f;
 
+    [SerializeField] GameObject DashTrail; 
     public float dashDuration = 2f;
     public bool isDashing { get; set; }
     public float maxDashTime { get; set; }
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         isDashing = false;
+        DashTrail.SetActive(false);
         rb = GetComponent<Rigidbody>();
         maxDashTime = dashDuration;
         playerControlsScript = GetComponent<PlayerControls>();
@@ -38,25 +40,29 @@ public class PlayerMovement : MonoBehaviour
         if (dashDuration <= 0)
         {
             playerAnimationsScript.IsDashingAnimation(false);
+            DashTrail.SetActive(false);
         }
 
         if (isDashing)
         {
             dashDuration -= Time.deltaTime;
+            DashTrail.SetActive(true);
 
             if (dashDuration <= 0)
             {
                 isDashing = false;
+                DashTrail.SetActive(false);
             }
         }
         else
         {
             dashDuration += durationToIncreaseBy * Time.deltaTime;
+            DashTrail.SetActive(false);
             if (dashDuration >= maxDashTime)
             {
                 dashDuration = maxDashTime;
                 canDash = true;
-
+                DashTrail.SetActive(false);
             }
         }
     }

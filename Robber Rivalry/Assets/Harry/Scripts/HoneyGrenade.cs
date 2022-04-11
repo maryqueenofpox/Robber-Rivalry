@@ -16,7 +16,10 @@ public class HoneyGrenade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        foreach (GameObject item in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Physics.IgnoreCollision(item.GetComponent<Collider>(), GetComponent<Collider>());
+        }
     }
 
     // Update is called once per frame

@@ -11,6 +11,8 @@ public class SlapMechanic : MonoBehaviour
     float originalSlapToFalse;
     public bool doTheSlap = false;
     float originalSlapCooldown;
+    [SerializeField] GameObject SlapTrail;
+    [SerializeField] GameObject SlapTrail2;
 
     PlayerAnimations playerAnimationsScript;
 
@@ -24,6 +26,9 @@ public class SlapMechanic : MonoBehaviour
     void Start()
     {
         playerAnimationsScript = GetComponent<PlayerAnimations>();
+
+        SlapTrail.SetActive(false);
+        SlapTrail2.SetActive(false);
 
         originalSlapToFalse = timeToSetSlapToFalse;
         originalSlapCooldown = slapCooldown;
@@ -41,6 +46,8 @@ public class SlapMechanic : MonoBehaviour
             {
                 timeToSetSlapToFalse = originalSlapToFalse;
                 playerAnimationsScript.IsSlappingAnimation(false);
+                SlapTrail.SetActive(false);
+                SlapTrail2.SetActive(false);
             }
         }
         if (!canSlap)
@@ -63,6 +70,9 @@ public class SlapMechanic : MonoBehaviour
         if (canSlap)
         {
             playerAnimationsScript.IsSlappingAnimation(true);
+            SlapTrail.SetActive(true);
+            SlapTrail2.SetActive(true);
+
             if (timeToSetSlapToFalse <= 0.1f)
             {
                 if (isPlayer && controls.vulnerable)
@@ -91,7 +101,7 @@ public class SlapMechanic : MonoBehaviour
                         doTheSlap = false;
                     }
                 }
-                doTheSlap = false;
+                doTheSlap = false;            
             }
         }
     }
