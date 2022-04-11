@@ -21,7 +21,7 @@ public class GemMechanic : MonoBehaviour
     void Start()
     {
         lootGrabber = GetComponent<LootGrabber>();
-
+        // so there is a change
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
     }
 
