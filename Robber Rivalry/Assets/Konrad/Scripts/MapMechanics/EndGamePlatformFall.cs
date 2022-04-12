@@ -23,10 +23,6 @@ public class EndGamePlatformFall : MonoBehaviour
 
     [SerializeField] GameObject killzone;
 
-    bool changedColour;
-
-    int indexForColour;
-
     bool doFall;
 
     // Start is called before the first frame update
@@ -81,43 +77,66 @@ public class EndGamePlatformFall : MonoBehaviour
             endGameObject.transform.position = winningPlatform.transform.position;
 
             pickedRandom = true;
+            Debug.Log("Before calling thingy thingy, this should appear only ocne");
             StartCoroutine(FlashTheSequence());
         }
 
-        /*
-        if (!(platforms.Count == 0))
+        if (!(platforms.Count == 0) && doFall)
         {
             if (swapPartsScript.endGame && !getPlatforms && pickedRandom && index <= platforms.Count - 1)
             {
                 MakePlatformsFallUpToDown();
             }
-
-            //Material[] materialsRed = platforms[index + 1].GetComponent<Renderer>().materials;
-            //materialsRed[1].color = Color.red;
-            //materialsRed[2].color = Color.red;
         }
-        */
+
+        Material[] mats = platforms[index + 1].GetComponent<Renderer>().materials;
+
+        mats[1] = swapPartsScript.warningForEndGamePlatformFall;
+        mats[2] = swapPartsScript.warningForEndGamePlatformFall;
+
+        platforms[index + 1].GetComponent<Renderer>().materials = mats;
     }
 
     void MakePlatformsFallUpToDown()
     {
-        Debug.Log("EHhhhhh");
-        /*
+        Debug.Log("Index: " + index);
+
+        if (index > 0)
+            index = 0;
+
         if (platforms[index].transform.position == positionToFallTo.position)
         {
             platforms.RemoveAt(index);
         }
 
         platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
-        */
     }
 
-    IEnumerator LondonPlatformsAreFallingDown()
+    IEnumerator FlashTheSequence()
     {
         while(!doFall)
         {
-            if ((platforms.Count < 0))
-                StopCoroutine(LondonPlatformsAreFallingDown());
+            Debug.Log("While is calling");
+
+            Debug.Log("FlashTheSequence Total Count");
+
+            if (index > platforms.Count - 1)
+            {
+                Debug.Log("FlashTheSequence Stop Count");
+
+                index = 0;
+
+                Material[] mats2 = platforms[index].GetComponent<Renderer>().materials;
+
+                mats2[1] = swapPartsScript.warningForEndGamePlatformFall;
+                mats2[2] = swapPartsScript.warningForEndGamePlatformFall;
+
+                platforms[index].GetComponent<Renderer>().materials = mats2;
+
+                yield return new WaitForSeconds(1.0f);
+                StopCoroutine(FlashTheSequence());
+                doFall = true;
+            }
 
             Material[] mats = platforms[index].GetComponent<Renderer>().materials;
 
@@ -126,48 +145,14 @@ public class EndGamePlatformFall : MonoBehaviour
 
             platforms[index].GetComponent<Renderer>().materials = mats;
 
-            yield return new WaitForSeconds(1f);
-            doFall = true;
+            yield return new WaitForSeconds(0.1f);
+
+            mats[1] = swapPartsScript.originalMaterialOnPlatform1st;
+            mats[2] = swapPartsScript.originalMaterialOnPlatform2nd;
+
+            platforms[index].GetComponent<Renderer>().materials = mats;
+
+            index++;
         }
-
-        while(doFall)
-        {
-            if (platforms[index].transform.position == positionToFallTo.position)
-            {
-                platforms.RemoveAt(index);
-                yield return new WaitForSeconds(1f);
-                doFall = false;
-            }
-
-            platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
-        }
-    }
-
-    IEnumerator FlashTheSequence()
-    {
-        if (index > platforms.Count - 1)
-        {
-            index = 0;
-            StopCoroutine(FlashTheSequence());
-            StartCoroutine(LondonPlatformsAreFallingDown());
-        }
-
-        Material[] mats = platforms[index].GetComponent<Renderer>().materials;
-
-        mats[1] = swapPartsScript.warningForEndGamePlatformFall;
-        mats[2] = swapPartsScript.warningForEndGamePlatformFall;
-
-        platforms[index].GetComponent<Renderer>().materials = mats;
-
-        yield return new WaitForSeconds(0.1f);
-
-        mats[1] = swapPartsScript.originalMaterialOnPlatform1st;
-        mats[2] = swapPartsScript.originalMaterialOnPlatform2nd;
-
-        platforms[index].GetComponent<Renderer>().materials = mats;
-
-        index++;
-
-        StartCoroutine(FlashTheSequence());
     }
 }

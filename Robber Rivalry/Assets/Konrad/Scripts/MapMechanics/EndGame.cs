@@ -64,22 +64,12 @@ public class EndGame : MonoBehaviour
 
     
 
-    float max;
-    bool doOnce;
     bool doGemAddOnce;
     bool playOnce;
 
     [Header("Arrays")]
     float[] ranking = new float[4];
-    GameObject[] Player1Rankings = new GameObject[4];
-    GameObject[] Player2Rankings = new GameObject[4];
-    GameObject[] Player3Rankings = new GameObject[4];
-    GameObject[] Player4Rankings = new GameObject[4];
     TextMeshProUGUI[] ScoreRanking = new TextMeshProUGUI[4];
-    GameObject[] Player1SharedSprites = new GameObject[4];
-    GameObject[] Player2SharedSprites = new GameObject[4];
-    GameObject[] Player3SharedSprites = new GameObject[4];
-    GameObject[] Player4SharedSprites = new GameObject[4];
 
     [Header("AnimationWarning")]
     [SerializeField] GameObject animationWarning;
@@ -123,7 +113,6 @@ public class EndGame : MonoBehaviour
         Player_4_Fourth.SetActive(false);
 
         playOnce = false;
-        doOnce = true;
         doGemAddOnce = true;
         fuse.enabled = false;
         Time.timeScale = 1f;
@@ -168,7 +157,6 @@ public class EndGame : MonoBehaviour
             //eventSystem.SetSelectedGameObject(firstButtonToBeSelected);
 
             AddGemPoints();
-            max = Mathf.Max(player_1_Script.loot, player_2_Script.loot, player_3_Script.loot, player_4_Script.loot);
 
             //Assigns player scores to an array, and sorts them lowest (0) to highest (3)
             ranking[3] = player_1_Script.loot;
@@ -198,7 +186,6 @@ public class EndGame : MonoBehaviour
             for (int i = 0; i < ranking.Length; i++)
             {
                 string key = sortedDict.FirstOrDefault(x => x.Value == ranking[i]).Key;
-                Debug.Log("Values bla: " + sortedDict.FirstOrDefault(x => x.Value == ranking[i]).Value);
 
                 switch (key)
                 {
