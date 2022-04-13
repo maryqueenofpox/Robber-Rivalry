@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimationsScript.IsDashingAnimation(false);
             DashTrail.SetActive(false);
+            canDash = false;
         }
 
         if (isDashing)

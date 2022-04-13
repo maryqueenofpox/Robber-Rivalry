@@ -96,9 +96,6 @@ public class PlayerControls : MonoBehaviour
             else
             {
                 playerMovementScript.isDashing = false;
-
-                if (playerMovementScript.dashDuration < playerMovementScript.maxDashTime)
-                    playerMovementScript.canDash = false;
             }
         else
             return;
