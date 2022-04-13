@@ -34,4 +34,29 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetBool("isMoving", isMoving);
     }
+
+    public void ShieldPickUpAnimation(bool shieldPickup)
+    {
+
+    }
+
+    public void HoneyGrenadePickUpAnimation(bool shieldPickup)
+    {
+
+    }
+
+    public void SignPickUpAnimation(bool shieldPickup)
+    {
+
+    }
+
+    public void RayGunPickUpAnimation(bool shieldPickup)
+    {
+
+    }
+
+    public void MagnetPickUpAnimation(bool shieldPickup)
+    {
+
+    }
 }
