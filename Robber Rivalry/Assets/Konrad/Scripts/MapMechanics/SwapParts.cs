@@ -51,6 +51,8 @@ public class SwapParts : MonoBehaviour
     [SerializeField] float lowTimeFlashTimerSpeed;
     [SerializeField] float whenToMakeFastFlash;
 
+    public float lowTimeFlashForEndFall { get; private set; }
+
     bool toDropAllPlatforms;
 
     float[] rotationDegrees = { 0.0f, 90.0f, 180.0f, 270.0f };
@@ -64,7 +66,6 @@ public class SwapParts : MonoBehaviour
     public Material warningForEndGamePlatformFall { get; private set; }
     public Material originalMaterialOnPlatform1st { get; private set; }
     public Material originalMaterialOnPlatform2nd { get; private set; }
-    bool oncehehe = true;
 
     private void Start()
     {
@@ -80,6 +81,7 @@ public class SwapParts : MonoBehaviour
         endGame = false;
 
         warningForEndGamePlatformFall = platformWarningMaterial;
+        lowTimeFlashForEndFall = lowTimeFlashTimerSpeed;
     }
 
     // Update is called once per frame

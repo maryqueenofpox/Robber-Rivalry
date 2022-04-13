@@ -250,6 +250,7 @@ public class EndGame : MonoBehaviour
                 player_4_Script.loot = 0;
                 player_4_Score.text = player_4_Script.loot.ToString();
             }
+            endGamePlatformFallScript.flashingWarning = false;
             Time.timeScale = 0f;
         }
 

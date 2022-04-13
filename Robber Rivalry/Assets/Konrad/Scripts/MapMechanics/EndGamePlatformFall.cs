@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class EndGamePlatformFall : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class EndGamePlatformFall : MonoBehaviour
     bool rearrangedList;
     int loopTracker;
     bool doFlashingOnce;
+    public bool flashingWarning;
 
     [Header("Platform Fall Paterns")]
     [SerializeField] List<int> ifPlatform1 = new List<int>(11);
@@ -54,6 +54,7 @@ public class EndGamePlatformFall : MonoBehaviour
         doFall = false;
         rearrangedList = false;
         doFlashingOnce = false;
+        flashingWarning = false;
     }
 
     // Update is called once per frame
@@ -154,14 +155,10 @@ public class EndGamePlatformFall : MonoBehaviour
             {
                 MakePlatformsFall();
             }
-
-            Material[] mats = platforms[index + 1].GetComponent<Renderer>().materials;
-
-            mats[1] = swapPartsScript.warningForEndGamePlatformFall;
-            mats[2] = swapPartsScript.warningForEndGamePlatformFall;
-
-            platforms[index + 1].GetComponent<Renderer>().materials = mats;
         }
+
+        if (platforms.Count == 0)
+            StopAllCoroutines();
     }
 
     void RearrangeTheListToFallInSpecifiedOrder(List<int> listToOrderBy)
@@ -193,6 +190,30 @@ public class EndGamePlatformFall : MonoBehaviour
         platforms[index].transform.position = Vector3.MoveTowards(platforms[index].transform.position, positionToFallTo.position, fallSpeed * Time.deltaTime);
     }
 
+    IEnumerator WarningFlashSystem()
+    {
+        while (flashingWarning)
+        {
+            Material[] mats = platforms[index + 1].GetComponent<Renderer>().materials;
+
+            mats[1] = swapPartsScript.warningForEndGamePlatformFall;
+            mats[2] = swapPartsScript.warningForEndGamePlatformFall;
+
+            platforms[index + 1].GetComponent<Renderer>().materials = mats;
+
+            yield return new WaitForSeconds(swapPartsScript.lowTimeFlashForEndFall);
+
+            Material[] bats = platforms[index + 1].GetComponent<Renderer>().materials;
+
+            bats[1] = swapPartsScript.originalMaterialOnPlatform1st;
+            bats[2] = swapPartsScript.originalMaterialOnPlatform2nd;
+
+            platforms[index + 1].GetComponent<Renderer>().materials = bats;
+
+            yield return new WaitForSeconds(swapPartsScript.lowTimeFlashForEndFall);
+        }
+    }
+
     IEnumerator FlashTheSequence()
     {
         while(!doFall)
@@ -211,6 +232,8 @@ public class EndGamePlatformFall : MonoBehaviour
                 yield return new WaitForSeconds(1.0f);
                 StopCoroutine(FlashTheSequence());
                 doFall = true;
+                flashingWarning = true;
+                StartCoroutine(WarningFlashSystem());
             }
 
             Material[] mats = platforms[index].GetComponent<Renderer>().materials;
