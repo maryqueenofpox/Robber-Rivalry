@@ -22,14 +22,22 @@ public class GuardSmack : MonoBehaviour
         {
             ForceField ff = collision.gameObject.GetComponent<ForceField>();
             LootGrabber lg = collision.gameObject.GetComponent<LootGrabber>();
+            PlayerControls pc = collision.gameObject.GetComponent<PlayerControls>();
 
             if (ff.enabled)
             {
                 ff.enabled = false;
                 transform.position = guardSpawner.position;
             }
-            else
+            else if (pc.vulnerable)
+            {
+                pc.vulnerable = false;
                 lg.transform.position = lg.respawnpoint.position;
+            }
+            else
+            {
+                return;
+            }
         }
     }
 

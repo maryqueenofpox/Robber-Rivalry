@@ -15,7 +15,7 @@ public class PlayerControls : MonoBehaviour
     public bool isStunned;
     
     public bool vulnerable { get; set; }
-    [SerializeField] float vulnerableTimer = 1f;
+    [SerializeField] float vulnerableTimer = 2f;
     float originalVulnerableTimer;
 
     public bool gotShot { get; set; }
@@ -41,7 +41,7 @@ public class PlayerControls : MonoBehaviour
         }
 
 
-        if (isStunned && vulnerable)
+        if (isStunned)
         {
             stunDuration -= Time.deltaTime;
             playerAnimationsScript.GotSlappedAnim(true);

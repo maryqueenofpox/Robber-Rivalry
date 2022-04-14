@@ -53,6 +53,8 @@ public class PlayerAbilities : MonoBehaviour
             pickRandomAbility = false;
             canUseAbility = true;
 
+            randomAbility = 0;
+
             if (randomAbility == 0)
                 rayGun.SetActive(true);
             else

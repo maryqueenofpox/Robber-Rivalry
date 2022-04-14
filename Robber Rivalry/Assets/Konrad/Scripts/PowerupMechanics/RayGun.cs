@@ -24,11 +24,14 @@ public class RayGun : MonoBehaviour
             {
                 ff.enabled = false;
             }
-            else
+            else if (controls.vulnerable)
             {
                 controls.gotShot = true;
                 controls.isStunned = true;
+                controls.vulnerable = false;
             }
+            else
+                return;
             
             Destroy(gameObject);
         }

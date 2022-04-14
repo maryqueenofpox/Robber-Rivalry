@@ -41,7 +41,7 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         sprintBar.fillAmount = playerMovement.dashDuration / playerMovement.maxDashTime;
-        if ((playerMovement.dashDuration / playerMovement.maxDashTime) < 0.5f)
+        if ((!playerMovement.canDash))
             sprintBar.color = Color.red;
         else
             sprintBar.color = Color.green;

@@ -24,9 +24,12 @@ public class LootGrabber : MonoBehaviour
     GemMechanic gemMechanic;
     [SerializeField] GameObject scorePopUp;
 
+    PlayerControls playerControlsScript;
+
     private void Start()
     {
         gemMechanic = GetComponent<GemMechanic>();
+        playerControlsScript = GetComponent<PlayerControls>();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -38,35 +41,49 @@ public class LootGrabber : MonoBehaviour
             score.text = loot.ToString();
             Destroy(other.gameObject);
             ScoreTextPopUp();
-            Debug.Log("Copper");
         }
-
 
         if (other.transform.tag == "Guard")
         {
-            bonkAudio.Play();
-            Transform clone;
-            gemMechanic.DropGem();
-
-            if (loot > 0)
+            if (playerControlsScript.vulnerable)
             {
-                float pointsToRemove = Mathf.Ceil((loot * percentageToRemoveGuard) / 100);
-                
-                for (int i = 0; i < pointsToRemove; i++)
-                {
-                    clone = Instantiate(Loot, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Loot.rotation);
-                    clone.gameObject.tag = "Loot";
+                Debug.Log("THE AODSIBHRFO£WBGTIUGB£EI(U£EBGTIU£WGBTBW£IUW£BU(WE");
+                PlayAudio();
+                Transform clone;
+                gemMechanic.DropGem();
+                playerControlsScript.vulnerable = false;
 
-                    clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
-                    loot--;
-                    score.text = loot.ToString();
+                if (loot > 0)
+                {
+                    float pointsToRemove = Mathf.Ceil((loot * percentageToRemoveGuard) / 100);
+
+                    for (int i = 0; i < pointsToRemove; i++)
+                    {
+                        clone = Instantiate(Loot, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Loot.rotation);
+                        clone.gameObject.tag = "Loot";
+
+                        clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
+                        loot--;
+                        score.text = loot.ToString();
+                    }
+                }
+                else if (loot <= 0)
+                {
+                    loot = 0;
                 }
             }
-            else if(loot <= 0)
-            {
-                loot = 0;
-            }
-        } 
+        }
+    }
+
+    void PlayAudio()
+    {
+        Debug.Log("AUDIO IS BEING PLAYED DUMB DUMB");
+        bonkAudio.Play();
+        bonkAudio.Play();
+        bonkAudio.Play();
+        bonkAudio.Play();
+        bonkAudio.Play();
+        bonkAudio.Play();
     }
 
     private void OnTriggerEnter(Collider other)
