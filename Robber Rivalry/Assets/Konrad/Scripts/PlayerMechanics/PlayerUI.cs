@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
+    [SerializeField] Canvas canvas;
     //[SerializeField] GameObject powerUpUI;
     [SerializeField] Image sprintBar;
 
@@ -77,7 +78,8 @@ public class PlayerUI : MonoBehaviour
 
     private void LateUpdate()
     {
-        sprintBar.transform.rotation = new Quaternion(0, 0, 0, 1);
+        //sprintBar.transform.rotation = new Quaternion(0, 0, 0, 1);
+        canvas.transform.rotation = new Quaternion(0, 0, 0, 1);
     }
 
     public void PewGun(bool enabled)

@@ -16,6 +16,9 @@ public class EndGame : MonoBehaviour
     public Image fuse;
     public float fuseTimer = 20f;
 
+    [SerializeField] Button remachButton;
+    [SerializeField] Button menuButton;
+
 
     [SerializeField] AudioSource fuseSound;
     [SerializeField] float penalty = 5f;
@@ -84,6 +87,8 @@ public class EndGame : MonoBehaviour
     bool oncePlease;
     System.Linq.IOrderedEnumerable<System.Collections.Generic.KeyValuePair<string, float>> sortedDict;
     GameObject[][] arrayOfArrays = new GameObject[4][];
+
+    float buttonDisableDuration = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -251,7 +256,18 @@ public class EndGame : MonoBehaviour
                 player_4_Score.text = player_4_Script.loot.ToString();
             }
             endGamePlatformFallScript.flashingWarning = false;
+
+
+            remachButton.enabled = false;
+            menuButton.enabled = false;
             Time.timeScale = 0f;
+
+            buttonDisableDuration -= Time.unscaledDeltaTime;
+            if (buttonDisableDuration <= 0)
+            {
+                remachButton.enabled = true;
+                menuButton.enabled = true;
+            }
         }
 
         if (timer.timer <= fuseTimer)
