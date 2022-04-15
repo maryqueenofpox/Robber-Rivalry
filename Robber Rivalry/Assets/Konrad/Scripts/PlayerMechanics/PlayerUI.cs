@@ -10,6 +10,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Canvas canvas;
     //[SerializeField] GameObject powerUpUI;
     [SerializeField] Image sprintBar;
+    bool pleaseDoOnce = true;
+
+    [SerializeField] GameObject Shield_Effect;
 
     PlayerAbilities playerAbilities;
     PlayerMovement playerMovement;
@@ -20,6 +23,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image magnetImage;
     [SerializeField] Image honeyImage;
     public int number { get; set; }
+    float ShieldETimer = 2;
 
     //[SerializeField] GameObject pauseButtonFirst;
 
@@ -53,27 +57,52 @@ public class PlayerUI : MonoBehaviour
 
         if (playerAbilities.canUseAbility)
         {
-            switch (number)
+            if (pleaseDoOnce)
             {
-                case 0:
-                    PewGun(true);
-                    break;
-                case 1:
-                    Sign(true);
-                    break;
-                case 2:
-                    Honey(true);
-                    break;
-                case 3:
-                    Shield(true);
-                    break;
-                case 4:
-                    Magnet(true);
-                    break;
-                default:
-                    break;
+                switch (number)
+                {
+                    case 0:
+                        PewGun(true);
+                        pleaseDoOnce = false;
+                        break;
+                    case 1:
+                        Sign(true);
+                        pleaseDoOnce = false;
+                        break;
+                    case 2:
+                        Honey(true);
+                        pleaseDoOnce = false;
+                        break;
+                    case 3:
+                        Shield(true);
+                        Shield_Effect.SetActive(true);
+                        Debug.Log("am called");
+                        pleaseDoOnce = false;
+                        break;
+                    case 4:
+                        Magnet(true);
+                        pleaseDoOnce = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+        else
+            pleaseDoOnce = true;
+
+        /*if (Shield_Effect.activeSelf == true)
+        {
+            ShieldETimer -= Time.deltaTime;
+            if (ShieldETimer < 0)
+            {
+                Shield_Effect.SetActive(false);
+            }
+        }
+        else
+            ShieldETimer = 2;
+        */ 
+
     }
 
     private void LateUpdate()

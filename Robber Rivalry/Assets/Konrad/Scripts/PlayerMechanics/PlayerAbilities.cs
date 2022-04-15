@@ -48,12 +48,12 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (pickRandomAbility)
         {
-            randomAbility = Random.Range(0, 5);
+            //randomAbility = Random.Range(0, 5);
             playerUIScript.number = randomAbility;
             pickRandomAbility = false;
             canUseAbility = true;
 
-            randomAbility = 0;
+            randomAbility = 3;
 
             if (randomAbility == 0)
                 rayGun.SetActive(true);
