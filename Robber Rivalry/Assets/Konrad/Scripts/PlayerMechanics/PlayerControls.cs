@@ -11,6 +11,7 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] float stunDuration = 1f;
     [SerializeField] float gotShotStunDuration = 2f;
+    [SerializeField] GameObject DashTrail;
     float originalStunDuration;
     public bool isStunned;
     
@@ -45,9 +46,11 @@ public class PlayerControls : MonoBehaviour
         {
             stunDuration -= Time.deltaTime;
             playerAnimationsScript.GotSlappedAnim(true);
+            DashTrail.SetActive(true);
             if (stunDuration <= 0)
             {
                 playerAnimationsScript.GotSlappedAnim(false);
+                DashTrail.SetActive(false);
                 isStunned = false;
                 vulnerable = false;
                 stunDuration = originalStunDuration;
