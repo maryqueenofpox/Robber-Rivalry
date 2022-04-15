@@ -10,7 +10,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Canvas canvas;
     //[SerializeField] GameObject powerUpUI;
     [SerializeField] Image sprintBar;
-    bool pleaseDoOnce = true;
+
+    [HideInInspector] public bool pleaseDoOnce = true;
 
     [SerializeField] GameObject Shield_Effect;
 
@@ -91,17 +92,17 @@ public class PlayerUI : MonoBehaviour
         else
             pleaseDoOnce = true;
 
-        /*if (Shield_Effect.activeSelf == true)
+        if (Shield_Effect.activeInHierarchy)
         {
             ShieldETimer -= Time.deltaTime;
             if (ShieldETimer < 0)
             {
+                Debug.Log("Setting shiled to false you plebian, srry Ican't spill");
                 Shield_Effect.SetActive(false);
             }
         }
         else
             ShieldETimer = 2;
-        */ 
 
     }
 

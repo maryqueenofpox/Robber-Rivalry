@@ -52,6 +52,7 @@ public class PlayerAbilities : MonoBehaviour
             playerUIScript.number = randomAbility;
             pickRandomAbility = false;
             canUseAbility = true;
+            playerUIScript.pleaseDoOnce = true;
 
             randomAbility = 3;
 
