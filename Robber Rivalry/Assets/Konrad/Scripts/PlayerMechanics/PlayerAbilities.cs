@@ -101,14 +101,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 case 0:
                     ShootRayGun();
+                    playerUIScript.PewGun(false);
                     canUseAbility = false;
                     break;
                 case 1:
                     SpawnObject();
+                    playerUIScript.Sign(false);
                     canUseAbility = false;
                     break;
                 case 2:
                     ThrowGrenade();
+                    playerUIScript.Honey(false);
                     canUseAbility = false;
                     break;
                 case 3:
@@ -118,6 +121,7 @@ public class PlayerAbilities : MonoBehaviour
                     break;
                 case 4:
                     UseMagnet();
+                    playerUIScript.Magnet(false);
                     canUseAbility = false;
                     break;
                 default:

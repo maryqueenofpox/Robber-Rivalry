@@ -14,6 +14,10 @@ public class PlayerUI : MonoBehaviour
     [HideInInspector] public bool pleaseDoOnce = true;
 
     [SerializeField] GameObject Shield_Effect;
+    [SerializeField] GameObject Fence_Effect;
+    [SerializeField] GameObject Raygun_Effect;
+    [SerializeField] GameObject Honey_Effect;
+    [SerializeField] GameObject Magnet_Effect;
 
     PlayerAbilities playerAbilities;
     PlayerMovement playerMovement;
@@ -25,6 +29,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image honeyImage;
     public int number { get; set; }
     float ShieldETimer = 2;
+    float RaygunTimer = 2;
+    float FenceTimer = 2;
+    float HoneyTimer = 2;
+    float MagnetTimer = 2;
 
     //[SerializeField] GameObject pauseButtonFirst;
 
@@ -64,14 +72,17 @@ public class PlayerUI : MonoBehaviour
                 {
                     case 0:
                         PewGun(true);
+                        Raygun_Effect.SetActive(true);
                         pleaseDoOnce = false;
                         break;
                     case 1:
                         Sign(true);
+                        Fence_Effect.SetActive(true);
                         pleaseDoOnce = false;
                         break;
                     case 2:
                         Honey(true);
+                        Honey_Effect.SetActive(true);
                         pleaseDoOnce = false;
                         break;
                     case 3:
@@ -82,6 +93,7 @@ public class PlayerUI : MonoBehaviour
                         break;
                     case 4:
                         Magnet(true);
+                        Magnet_Effect.SetActive(true);
                         pleaseDoOnce = false;
                         break;
                     default:
@@ -91,6 +103,39 @@ public class PlayerUI : MonoBehaviour
         }
         else
             pleaseDoOnce = true;
+
+        if (Raygun_Effect.activeInHierarchy)
+        {
+            RaygunTimer -= Time.deltaTime;
+            if (RaygunTimer < 0)
+            {
+                Raygun_Effect.SetActive(false);
+            }
+        }
+        else
+            RaygunTimer = 2;
+
+        if (Fence_Effect.activeInHierarchy)
+        {
+            FenceTimer -= Time.deltaTime;
+            if (FenceTimer < 0)
+            {
+                Fence_Effect.SetActive(false);
+            }
+        }
+        else
+            FenceTimer = 2;
+
+        if (Honey_Effect.activeInHierarchy)
+        {
+            HoneyTimer -= Time.deltaTime;
+            if (HoneyTimer < 0)
+            {
+                Honey_Effect.SetActive(false);
+            }
+        }
+        else
+            HoneyTimer = 2;
 
         if (Shield_Effect.activeInHierarchy)
         {
@@ -104,6 +149,16 @@ public class PlayerUI : MonoBehaviour
         else
             ShieldETimer = 2;
 
+        if (Magnet_Effect.activeInHierarchy)
+        {
+            MagnetTimer -= Time.deltaTime;
+            if (MagnetTimer < 0)
+            {
+                Magnet_Effect.SetActive(false);
+            }
+        }
+        else
+            MagnetTimer = 2;
     }
 
     private void LateUpdate()
