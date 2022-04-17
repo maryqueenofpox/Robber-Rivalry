@@ -29,10 +29,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image honeyImage;
     public int number { get; set; }
     float ShieldETimer = 2;
-    float RaygunTimer = 2;
-    float FenceTimer = 2;
-    float HoneyTimer = 2;
-    float MagnetTimer = 2;
+    float RaygunTimer = 1.7f;
+    float FenceTimer = 1.7f;
+    float HoneyTimer = 1.7f;
+    float MagnetTimer = 1.7f;
 
     //[SerializeField] GameObject pauseButtonFirst;
 
@@ -113,7 +113,7 @@ public class PlayerUI : MonoBehaviour
             }
         }
         else
-            RaygunTimer = 2;
+            RaygunTimer = 1.7f;
 
         if (Fence_Effect.activeInHierarchy)
         {
@@ -124,7 +124,7 @@ public class PlayerUI : MonoBehaviour
             }
         }
         else
-            FenceTimer = 2;
+            FenceTimer = 1.7f;
 
         if (Honey_Effect.activeInHierarchy)
         {
@@ -135,7 +135,7 @@ public class PlayerUI : MonoBehaviour
             }
         }
         else
-            HoneyTimer = 2;
+            HoneyTimer = 1.7f;
 
         if (Shield_Effect.activeInHierarchy)
         {
@@ -158,7 +158,7 @@ public class PlayerUI : MonoBehaviour
             }
         }
         else
-            MagnetTimer = 2;
+            MagnetTimer = 1.7f;
     }
 
     private void LateUpdate()
