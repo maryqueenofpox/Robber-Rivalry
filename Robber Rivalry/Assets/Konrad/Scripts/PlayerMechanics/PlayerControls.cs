@@ -21,7 +21,7 @@ public class PlayerControls : MonoBehaviour
 
     public bool gotShot { get; set; }
 
-    public bool slapOncePleaseForTheLoveOfGod;
+    //public bool slapOncePleaseForTheLoveOfGod;
 
     private void Start()
     {
@@ -32,11 +32,13 @@ public class PlayerControls : MonoBehaviour
         vulnerable = true;
         gotShot = false;
 
-        slapOncePleaseForTheLoveOfGod = true;
+        //slapOncePleaseForTheLoveOfGod = true;
     }
 
     private void Update()
     {
+        //Debug.Log("slapOncePleaseForTheLoveOfGod: " + slapOncePleaseForTheLoveOfGod);
+        
         if (gotShot)
         {
             stunDuration = gotShotStunDuration;
@@ -108,13 +110,17 @@ public class PlayerControls : MonoBehaviour
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        if (!isStunned && slapOncePleaseForTheLoveOfGod)
+        if (ctx.performed)
         {
-            slapMechanicScript.doTheSlap = true;
-            slapOncePleaseForTheLoveOfGod = false;
+            if (!isStunned && !slapMechanicScript.doingSlap)
+            {
+                slapMechanicScript.DoTheSlap();
+                //slapMechanicScript.doTheSlap = true;
+                //slapOncePleaseForTheLoveOfGod = false;
+            }
+            else
+                return;
         }
-        else
-            return;
     }
 
     void GetStartingComponents()
