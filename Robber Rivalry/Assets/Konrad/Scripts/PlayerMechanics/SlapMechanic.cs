@@ -21,7 +21,6 @@ public class SlapMechanic : MonoBehaviour
     ForceField forceField;
     GemMechanic gemMechanic;
     bool isPlayer;
-    bool doingSlap;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +34,6 @@ public class SlapMechanic : MonoBehaviour
         originalSlapCooldown = slapCooldown;
 
         canSlap = true;
-        doingSlap = false;
     }
 
     // Update is called once per frame
@@ -71,50 +69,40 @@ public class SlapMechanic : MonoBehaviour
     {
         if (canSlap)
         {
-            if (!doingSlap)
+            playerAnimationsScript.IsSlappingAnimation(true);
+            SlapTrail.SetActive(true);
+            SlapTrail2.SetActive(true);
+
+            if (timeToSetSlapToFalse <= 0.1f)
             {
-                doingSlap = true;
-
-                playerAnimationsScript.IsSlappingAnimation(true);
-                SlapTrail.SetActive(true);
-                SlapTrail2.SetActive(true);
-
-                if (timeToSetSlapToFalse <= 0.1f)
+                if (isPlayer && controls.vulnerable)
                 {
-                    if (isPlayer && controls.vulnerable)
+                    if (forceField.enabled == true)
                     {
-                        if (forceField.enabled == true)
-                        {
-                            forceField.enabled = false;
-                            canSlap = false;
-                            doTheSlap = false;
-                            doingSlap = false;
-                            return;
-                        }
-                        else
-                        {
-                            playerMovement.rb.AddForce(transform.forward * slapFoce);
-                            playerMovement.rb.AddForce(transform.up * 1000000f);
-                            controls.isStunned = true;
-
-                            if (gemMechanic.isCarryingGem)
-                            {
-                                gemMechanic.DropGem();
-                                playerMovement.transform.Find("Gem").transform.parent = null;
-                                gemMechanic.isCarryingGem = false;
-                            }
-
-                            canSlap = false;
-                            doTheSlap = false;
-                            doingSlap = false;
-                        }
+                        forceField.enabled = false;
+                        canSlap = false;
+                        doTheSlap = false;
+                        return;
                     }
-                    doTheSlap = false;
-                    doingSlap = false;
+                    else
+                    {
+                        playerMovement.rb.AddForce(transform.forward * slapFoce);
+                        playerMovement.rb.AddForce(transform.up * 1000000f);
+                        controls.isStunned = true;
+
+                        if (gemMechanic.isCarryingGem)
+                        {
+                            gemMechanic.DropGem();
+                            playerMovement.transform.Find("Gem").transform.parent = null;
+                            gemMechanic.isCarryingGem = false;
+                        }
+
+                        canSlap = false;
+                        doTheSlap = false;
+                    }
                 }
+                doTheSlap = false;            
             }
-            else
-                return;
         }
     }
 
