@@ -62,7 +62,10 @@ public class SlapMechanic : MonoBehaviour
         }
 
         if (doTheSlap)
+        {
             DoTheSlap();
+            controls.slapOncePleaseForTheLoveOfGod = true;
+        }
     }
 
     public void DoTheSlap()

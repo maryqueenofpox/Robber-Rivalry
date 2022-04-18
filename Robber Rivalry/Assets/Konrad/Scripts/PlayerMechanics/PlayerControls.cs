@@ -21,6 +21,8 @@ public class PlayerControls : MonoBehaviour
 
     public bool gotShot { get; set; }
 
+    public bool slapOncePleaseForTheLoveOfGod;
+
     private void Start()
     {
         GetStartingComponents();
@@ -29,6 +31,8 @@ public class PlayerControls : MonoBehaviour
         originalVulnerableTimer = vulnerableTimer;
         vulnerable = true;
         gotShot = false;
+
+        slapOncePleaseForTheLoveOfGod = true;
     }
 
     private void Update()
@@ -104,8 +108,11 @@ public class PlayerControls : MonoBehaviour
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        if (!isStunned && !slapMechanicScript.doTheSlap)
-            slapMechanicScript.doTheSlap=true;
+        if (!isStunned && slapOncePleaseForTheLoveOfGod)
+        {
+            slapMechanicScript.doTheSlap = true;
+            slapOncePleaseForTheLoveOfGod = false;
+        }
         else
             return;
     }
