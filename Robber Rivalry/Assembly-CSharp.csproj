@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2021.1.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\PlayerInputHandler.cs" />
     <Compile Include="Assets\Konrad\Scripts\PlayerMechanics\PlayerControls.cs" />
     <Compile Include="Assets\Harry\Scripts\HoneyExit.cs" />
@@ -79,6 +76,7 @@
     <Compile Include="Assets\Konrad\Scripts\PlayerMechanics\PlayerUI.cs" />
     <Compile Include="Assets\Harry\Scripts\Helper.cs" />
     <Compile Include="Assets\Harry\Scripts\Meteor.cs" />
+    <Compile Include="Assets\Daniel\DestroyPointUp.cs" />
     <Compile Include="Assets\Harry\Scripts\Guard_Pathfinding.cs" />
     <Compile Include="Assets\Konrad\Scripts\AiMechanics\GuardSmack.cs" />
     <Compile Include="Assets\Konrad\Scripts\CharacterSelectScripts\InputManager.cs" />
@@ -115,11 +113,14 @@
     <Compile Include="Assets\Konrad\Scripts\PowerupMechanics\ForceField.cs" />
     <Compile Include="Assets\Konrad\ScriptableObjects\ScenesStuff.cs" />
     <Compile Include="Assets\Konrad\Scripts\MapMechanics\EndGame.cs" />
+    <Compile Include="Assets\Colorblind Effect\Assets\Scripts\Colorblind.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Colorblind Effect\Documentation\ReadMe.txt" />
+    <None Include="Assets\Colorblind Effect\Assets\Shaders\Colorblind.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
