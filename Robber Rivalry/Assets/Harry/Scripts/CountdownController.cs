@@ -5,5 +5,8 @@ using UnityEngine.UI;
 
 public class CountdownController : MonoBehaviour
 {
-   
+   void Start()
+    {
+        Destroy(gameObject, 3.3f);
+    }
 }
