@@ -7,8 +7,17 @@ using UnityEngine.EventSystems;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
+    [SerializeField] Canvas canvas;
     //[SerializeField] GameObject powerUpUI;
     [SerializeField] Image sprintBar;
+
+    [HideInInspector] public bool pleaseDoOnce = true;
+
+    [SerializeField] GameObject Shield_Effect;
+    [SerializeField] GameObject Fence_Effect;
+    [SerializeField] GameObject Raygun_Effect;
+    [SerializeField] GameObject Honey_Effect;
+    [SerializeField] GameObject Magnet_Effect;
 
     PlayerAbilities playerAbilities;
     PlayerMovement playerMovement;
@@ -19,6 +28,11 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image magnetImage;
     [SerializeField] Image honeyImage;
     public int number { get; set; }
+    float ShieldETimer = 2;
+    float RaygunTimer = 1.7f;
+    float FenceTimer = 1.7f;
+    float HoneyTimer = 1.7f;
+    float MagnetTimer = 1.7f;
 
     //[SerializeField] GameObject pauseButtonFirst;
 
@@ -40,7 +54,7 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         sprintBar.fillAmount = playerMovement.dashDuration / playerMovement.maxDashTime;
-        if ((playerMovement.dashDuration / playerMovement.maxDashTime) < 0.5f)
+        if ((!playerMovement.canDash))
             sprintBar.color = Color.red;
         else
             sprintBar.color = Color.green;
@@ -52,32 +66,105 @@ public class PlayerUI : MonoBehaviour
 
         if (playerAbilities.canUseAbility)
         {
-            switch (number)
+            if (pleaseDoOnce)
             {
-                case 0:
-                    PewGun(true);
-                    break;
-                case 1:
-                    Sign(true);
-                    break;
-                case 2:
-                    Honey(true);
-                    break;
-                case 3:
-                    Shield(true);
-                    break;
-                case 4:
-                    Magnet(true);
-                    break;
-                default:
-                    break;
+                switch (number)
+                {
+                    case 0:
+                        PewGun(true);
+                        Raygun_Effect.SetActive(true);
+                        pleaseDoOnce = false;
+                        break;
+                    case 1:
+                        Sign(true);
+                        Fence_Effect.SetActive(true);
+                        pleaseDoOnce = false;
+                        break;
+                    case 2:
+                        Honey(true);
+                        Honey_Effect.SetActive(true);
+                        pleaseDoOnce = false;
+                        break;
+                    case 3:
+                        Shield(true);
+                        Shield_Effect.SetActive(true);
+                        Debug.Log("am called");
+                        pleaseDoOnce = false;
+                        break;
+                    case 4:
+                        Magnet(true);
+                        Magnet_Effect.SetActive(true);
+                        pleaseDoOnce = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+        else
+            pleaseDoOnce = true;
+
+        if (Raygun_Effect.activeInHierarchy)
+        {
+            RaygunTimer -= Time.deltaTime;
+            if (RaygunTimer < 0)
+            {
+                Raygun_Effect.SetActive(false);
+            }
+        }
+        else
+            RaygunTimer = 1.7f;
+
+        if (Fence_Effect.activeInHierarchy)
+        {
+            FenceTimer -= Time.deltaTime;
+            if (FenceTimer < 0)
+            {
+                Fence_Effect.SetActive(false);
+            }
+        }
+        else
+            FenceTimer = 1.7f;
+
+        if (Honey_Effect.activeInHierarchy)
+        {
+            HoneyTimer -= Time.deltaTime;
+            if (HoneyTimer < 0)
+            {
+                Honey_Effect.SetActive(false);
+            }
+        }
+        else
+            HoneyTimer = 1.7f;
+
+        if (Shield_Effect.activeInHierarchy)
+        {
+            ShieldETimer -= Time.deltaTime;
+            if (ShieldETimer < 0)
+            {
+                Debug.Log("Setting shiled to false you plebian, srry Ican't spill");
+                Shield_Effect.SetActive(false);
+            }
+        }
+        else
+            ShieldETimer = 2;
+
+        if (Magnet_Effect.activeInHierarchy)
+        {
+            MagnetTimer -= Time.deltaTime;
+            if (MagnetTimer < 0)
+            {
+                Magnet_Effect.SetActive(false);
+            }
+        }
+        else
+            MagnetTimer = 1.7f;
     }
 
     private void LateUpdate()
     {
-        sprintBar.transform.rotation = new Quaternion(0, 0, 0, 1);
+        //sprintBar.transform.rotation = new Quaternion(0, 0, 0, 1);
+        canvas.transform.rotation = new Quaternion(0, 0, 0, 1);
     }
 
     public void PewGun(bool enabled)

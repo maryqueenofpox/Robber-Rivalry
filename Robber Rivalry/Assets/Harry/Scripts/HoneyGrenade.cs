@@ -5,7 +5,7 @@ using UnityEngine;
 public class HoneyGrenade : MonoBehaviour
 {
 
-    float activeDuration = 3f;
+    float activeDuration = 1.75f;
     [SerializeField] float throwForce = 5f;
     [SerializeField] Transform HoneySplat;
     [SerializeField]
@@ -16,7 +16,10 @@ public class HoneyGrenade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        foreach (GameObject item in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Physics.IgnoreCollision(item.GetComponent<Collider>(), GetComponent<Collider>());
+        }
     }
 
     // Update is called once per frame

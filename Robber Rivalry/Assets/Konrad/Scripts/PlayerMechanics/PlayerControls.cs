@@ -4,26 +4,24 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     SlapMechanic slapMechanicScript;
-    GemMechanic gemMechanicScript;
-    BashMechanic bashMechanicScript;
     PlayerUI playerUIScript;
     PlayerMovement playerMovementScript;
     PlayerAbilities playerAbilitiesScript;
-    ForceField forceFieldScript;
     PlayerAnimations playerAnimationsScript;
 
     [SerializeField] float stunDuration = 1f;
     [SerializeField] float gotShotStunDuration = 2f;
+    [SerializeField] GameObject DashTrail;
     float originalStunDuration;
     public bool isStunned;
     
     public bool vulnerable { get; set; }
-    [SerializeField] float vulnerableTimer = 1f;
+    [SerializeField] float vulnerableTimer = 2f;
     float originalVulnerableTimer;
 
     public bool gotShot { get; set; }
 
-    Vector2 rot;
+    //public bool slapOncePleaseForTheLoveOfGod;
 
     private void Start()
     {
@@ -33,10 +31,14 @@ public class PlayerControls : MonoBehaviour
         originalVulnerableTimer = vulnerableTimer;
         vulnerable = true;
         gotShot = false;
+
+        //slapOncePleaseForTheLoveOfGod = true;
     }
 
     private void Update()
     {
+        //Debug.Log("slapOncePleaseForTheLoveOfGod: " + slapOncePleaseForTheLoveOfGod);
+        
         if (gotShot)
         {
             stunDuration = gotShotStunDuration;
@@ -44,13 +46,15 @@ public class PlayerControls : MonoBehaviour
         }
 
 
-        if (isStunned && vulnerable)
+        if (isStunned)
         {
             stunDuration -= Time.deltaTime;
             playerAnimationsScript.GotSlappedAnim(true);
+            DashTrail.SetActive(true);
             if (stunDuration <= 0)
             {
                 playerAnimationsScript.GotSlappedAnim(false);
+                DashTrail.SetActive(false);
                 isStunned = false;
                 vulnerable = false;
                 stunDuration = originalStunDuration;
@@ -99,9 +103,6 @@ public class PlayerControls : MonoBehaviour
             else
             {
                 playerMovementScript.isDashing = false;
-
-                if (playerMovementScript.dashDuration < playerMovementScript.maxDashTime)
-                    playerMovementScript.canDash = false;
             }
         else
             return;
@@ -109,21 +110,25 @@ public class PlayerControls : MonoBehaviour
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        if (!isStunned)
-            slapMechanicScript.doTheSlap=true;
-        else
-            return;
+        if (ctx.performed)
+        {
+            if (!isStunned && !slapMechanicScript.doingSlap)
+            {
+                slapMechanicScript.DoTheSlap();
+                //slapMechanicScript.doTheSlap = true;
+                //slapOncePleaseForTheLoveOfGod = false;
+            }
+            else
+                return;
+        }
     }
 
     void GetStartingComponents()
     {
         slapMechanicScript = GetComponent<SlapMechanic>();
-        gemMechanicScript = GetComponent<GemMechanic>();
-        bashMechanicScript = GetComponent<BashMechanic>();
         playerUIScript = GetComponent<PlayerUI>();
         playerMovementScript = GetComponent<PlayerMovement>();
         playerAbilitiesScript = GetComponent<PlayerAbilities>();
-        forceFieldScript = GetComponent<ForceField>();
         playerAnimationsScript = GetComponent<PlayerAnimations>();
     }
 }

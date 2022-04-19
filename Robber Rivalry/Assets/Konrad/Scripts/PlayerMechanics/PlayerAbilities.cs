@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAbilities : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField] GameObject magnetField;
     [SerializeField] float bulletVelocity = 50f;
     [SerializeField] float magnetTimer;
+    [SerializeField] float shieldTimer;
     float originalTimerMaget;
+    float originalTimerShield;
     [SerializeField] float grenadeUpwardForce = 1000000f;
     [SerializeField] float grenadeForwardForce = 1000000f;
     public bool canUseAbility { get; set; }
@@ -37,6 +40,7 @@ public class PlayerAbilities : MonoBehaviour
         rayGun.SetActive(false);
         magnetField.SetActive(false);
         originalTimerMaget = magnetTimer;
+        originalTimerShield = shieldTimer;
     }
 
     // Update is called once per frame
@@ -48,6 +52,9 @@ public class PlayerAbilities : MonoBehaviour
             playerUIScript.number = randomAbility;
             pickRandomAbility = false;
             canUseAbility = true;
+            playerUIScript.pleaseDoOnce = true;
+
+            //randomAbility = 3;
 
             if (randomAbility == 0)
                 rayGun.SetActive(true);
@@ -66,6 +73,24 @@ public class PlayerAbilities : MonoBehaviour
         }
         else
             magnetTimer = originalTimerMaget;
+
+        if (forceFieldScript.enabled == true)
+        {
+            shieldTimer -= Time.deltaTime;
+            if (shieldTimer < 0)
+            {
+                forceFieldScript.enabled = false;
+            }
+        }
+        else
+            shieldTimer = originalTimerShield;
+            
+
+        if (Keyboard.current.hKey.isPressed)
+        {
+            randomAbility = 2;
+            canUseAbility = true;
+        }
     }
 
     public void Ability()
@@ -76,14 +101,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 case 0:
                     ShootRayGun();
+                    playerUIScript.PewGun(false);
                     canUseAbility = false;
                     break;
                 case 1:
                     SpawnObject();
+                    playerUIScript.Sign(false);
                     canUseAbility = false;
                     break;
                 case 2:
                     ThrowGrenade();
+                    playerUIScript.Honey(false);
                     canUseAbility = false;
                     break;
                 case 3:
@@ -93,6 +121,7 @@ public class PlayerAbilities : MonoBehaviour
                     break;
                 case 4:
                     UseMagnet();
+                    playerUIScript.Magnet(false);
                     canUseAbility = false;
                     break;
                 default:
@@ -105,11 +134,10 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (rayGun.activeSelf == true)
         {
-            Debug.Log("Gun Active");
             GameObject bullet;
             bullet = Instantiate(rayBullet, rayGun.transform.position, transform.rotation);
 
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * Time.deltaTime);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * 0.3f);
 
             rayGun.SetActive(false);
             playerUIScript.PewGun(false);
@@ -127,9 +155,9 @@ public class PlayerAbilities : MonoBehaviour
     void ThrowGrenade()
     {
         GameObject grenade;
-        grenade = Instantiate(honeyGrenade, transform.position + (transform.forward * 2f), transform.rotation);
-        grenade.GetComponent<Rigidbody>().AddForce(transform.up * grenadeUpwardForce * Time.deltaTime);
-        grenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadeForwardForce * Time.deltaTime);
+        grenade = Instantiate(honeyGrenade, transform.position + (transform.forward * 0.5f), transform.rotation);
+        grenade.GetComponent<Rigidbody>().AddForce(transform.up * grenadeUpwardForce * 0.4f);
+        grenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadeForwardForce * 0.4f);
         
        
         playerUIScript.Honey(false);
@@ -141,9 +169,9 @@ public class PlayerAbilities : MonoBehaviour
         playerUIScript.Magnet(false);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.CompareTag("PowerUp"))
+        if (collision.CompareTag("PowerUp"))
         {
             powerUpAudio.Play();
             pickRandomAbility = true;

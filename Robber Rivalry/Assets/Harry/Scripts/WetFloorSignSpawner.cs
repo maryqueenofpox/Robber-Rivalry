@@ -8,22 +8,27 @@ public class WetFloorSignSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            //Wet floor prefab is spawned at location of spawner
-            Transform clone;
-            clone = Instantiate(powerUpBox, transform.position, powerUpBox.rotation);
-            clone.transform.parent = transform;
-            clone.gameObject.tag = "PowerUp";
+        //Wet floor prefab is spawned at location of spawner
+        Transform clone;
+        clone = Instantiate(powerUpBox, transform.position, powerUpBox.rotation);
+        clone.transform.parent = transform;
+        clone.gameObject.tag = "PowerUp";
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "LootReplenish")
         {
+            if (gameObject.transform.childCount > 0)
+                return;
+            else
+            {
                 //Loot prefab is spawned at location of spawner
                 Transform clone;
                 clone = Instantiate(powerUpBox, transform.position, powerUpBox.rotation);
                 clone.transform.parent = transform;
                 clone.gameObject.tag = "PowerUp";
+            }
         }
     }
 }

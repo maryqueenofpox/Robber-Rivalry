@@ -13,13 +13,15 @@ public class GemMechanic : MonoBehaviour
     Transform gemChild;
     LootGrabber lootGrabber;
 
+    [SerializeField] GameObject scorePopUp;
+
     // This is test for github
 
     // Start is called before the first frame update
     void Start()
     {
         lootGrabber = GetComponent<LootGrabber>();
-
+        // so there is a change
         originalTimeUntilScoreIncrease = timeUntilScoreIncrease;
     }
 
@@ -36,6 +38,7 @@ public class GemMechanic : MonoBehaviour
                 if (timeUntilScoreIncrease <= 0.0f)
                 {
                     lootGrabber.loot += gemPointIncrease;
+                    ScoreTextPopUp();
                     lootGrabber.score.text = lootGrabber.loot.ToString();
                     timeUntilScoreIncrease = originalTimeUntilScoreIncrease;
                 }
@@ -77,5 +80,10 @@ public class GemMechanic : MonoBehaviour
             isGem = true;
             PickUpGem();
         }
+    }
+
+    void ScoreTextPopUp()
+    {
+        Instantiate(scorePopUp, transform.position, scorePopUp.transform.rotation);
     }
 }

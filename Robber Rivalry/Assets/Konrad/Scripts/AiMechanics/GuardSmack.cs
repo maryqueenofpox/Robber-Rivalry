@@ -8,9 +8,12 @@ public class GuardSmack : MonoBehaviour
     [SerializeField]
     Transform guardSpawner;
 
+    public Transform guardTeleportTo { get; private set; }
+
     private void Start()
     {
         originalPos = transform.position;
+        guardTeleportTo = guardSpawner;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -19,14 +22,22 @@ public class GuardSmack : MonoBehaviour
         {
             ForceField ff = collision.gameObject.GetComponent<ForceField>();
             LootGrabber lg = collision.gameObject.GetComponent<LootGrabber>();
+            PlayerControls pc = collision.gameObject.GetComponent<PlayerControls>();
 
             if (ff.enabled)
             {
                 ff.enabled = false;
-                transform.position = originalPos;
+                transform.position = guardSpawner.position;
+            }
+            else if (pc.vulnerable)
+            {
+                pc.vulnerable = false;
+                lg.transform.position = lg.respawnpoint.position;
             }
             else
-                lg.transform.position = lg.respawnpoint.position;
+            {
+                return;
+            }
         }
     }
 

@@ -11,9 +11,9 @@ AnimatorState:
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -5776934833372846678}
   - {fileID: -1482054120300295247}
   - {fileID: 286069812502653817}
+  - {fileID: -5776934833372846678}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -23,7 +23,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1010827680615582975, guid: dee86c382eb3b6141be4c75d39fd74a8, type: 3}
+  m_Motion: {fileID: 5522812681064789136, guid: bf4bc5fc3e8d1d14896fc8ac1cf79ee6, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -193,7 +193,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: slap_kicker
-  m_Speed: 2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3718530844062879937}
@@ -208,7 +208,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 2084806909082748203, guid: 05358eddb52ea9f4d8af6795e0f3c309, type: 3}
+  m_Motion: {fileID: -1940874470099042787, guid: 7fbe6f8580c08b54291e7ee07ddbbe3e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -289,7 +289,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -5864544783995034239, guid: 5441a580488a90046894a9c0ae2276e3, type: 3}
+  m_Motion: {fileID: -3100369314251171874, guid: 890072dbb10235a4da81eedc471439d2, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -375,6 +375,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 6016598346722369796}
     m_Position: {x: 400, y: 470, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8849931186683164003}
+    m_Position: {x: 435, y: 535, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 7368505926974742560}
@@ -436,7 +439,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1400759852345024854, guid: e792a5bf23a6c164da94f837857a0c7d, type: 3}
+  m_Motion: {fileID: 1473411086280352358, guid: 91ad1a4285d0d7c4ab9ef4bfcaad3321, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -509,7 +512,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Slap
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5666335828720831293}
@@ -522,7 +525,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1802160221508681449, guid: 6b01d21acd48e614bbfa7193742e8691, type: 3}
+  m_Motion: {fileID: -5707388414607448521, guid: f9f744e42b4da594d98fff65f2551b2b, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -578,3 +581,29 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &8849931186683164003
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CountdownAnim
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 17424a3fdc083cf49be90dd06c3123ab, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 

@@ -18,7 +18,7 @@ public class LootSpawner : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "LootReplenish")
         {

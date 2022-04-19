@@ -42,7 +42,7 @@ public class MeteorGeode : MonoBehaviour
         }
         else if (other.gameObject.tag == "Loot")
         {
-            xspeed = 0;
+           // xspeed = 0;
 
         }
         else

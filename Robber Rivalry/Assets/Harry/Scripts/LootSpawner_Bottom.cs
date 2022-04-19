@@ -11,7 +11,7 @@ public class LootSpawner_Bottom : MonoBehaviour
         
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "LootReplenish")
         {
@@ -25,6 +25,8 @@ public class LootSpawner_Bottom : MonoBehaviour
             }
         }
     }
+
+   
 
     // Update is called once per frame
     void Update()

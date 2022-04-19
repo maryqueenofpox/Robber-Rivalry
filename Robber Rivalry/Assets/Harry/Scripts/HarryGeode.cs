@@ -15,6 +15,7 @@ public class HarryGeode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (rigidTIme > 0)
         {
             rigidTIme -= Time.deltaTime;

@@ -48,7 +48,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""id"": ""61a60055-6319-4318-b605-7df2c1296645"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Press(behavior=1)""
                 },
                 {
                     ""name"": ""MainMenu"",
@@ -207,7 +207,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""1479b399-d55c-498d-8274-7f24557d501f"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Slap"",
@@ -229,7 +229,7 @@ public class @RobberRivalry : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""86e5c3b6-64fb-41fc-8892-4059755fae8b"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Slap"",
