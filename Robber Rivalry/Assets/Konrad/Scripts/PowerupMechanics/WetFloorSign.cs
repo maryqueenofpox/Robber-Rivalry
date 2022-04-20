@@ -12,6 +12,9 @@ public class WetFloorSign : MonoBehaviour
     RaycastHit hit;
     RaycastHit hit2;
 
+    [SerializeField] float stretchSpeed;
+    [SerializeField] float maxStretchDistance;
+
     // Start is called before the first frame update
     void Start()
     {

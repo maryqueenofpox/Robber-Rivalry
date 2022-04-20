@@ -50,8 +50,9 @@ public class LootGrabber : MonoBehaviour
                 Debug.Log("THE AODSIBHRFO£WBGTIUGB£EI(U£EBGTIU£WGBTBW£IUW£BU(WE");
                 PlayAudio();
                 Transform clone;
-                gemMechanic.DropGem();
-                playerControlsScript.vulnerable = false;
+                //gemMechanic.DropGem();
+                //playerControlsScript.vulnerable = false;
+                //playerControlsScript.canDoStuff = false;
 
                 if (loot > 0)
                 {
@@ -91,6 +92,7 @@ public class LootGrabber : MonoBehaviour
         if (other.transform.tag == "Killzone")
         {
             transform.position = respawnpoint.position;
+            playerControlsScript.canDoStuff = false;
             if (loot > 0)
             {
                 float pointsToRemove = Mathf.Ceil((loot * percentageToRemoveSpace) / 100);

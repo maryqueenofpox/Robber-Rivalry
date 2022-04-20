@@ -65,7 +65,7 @@ public class GemMechanic : MonoBehaviour
     {
         if (isCarryingGem)
         {
-            gemChild.localPosition = transform.TransformDirection(Vector3.forward * 1);
+            gemChild.localPosition = transform.TransformDirection(Vector3.forward * 1.5f);
             gemChild.localPosition = new Vector3(gemChild.localPosition.x, 1f, gemChild.localPosition.z);
             gemChild.parent = null;
             isCarryingGem = false;

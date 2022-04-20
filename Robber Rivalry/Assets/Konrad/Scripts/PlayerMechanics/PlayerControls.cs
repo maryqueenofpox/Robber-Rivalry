@@ -14,12 +14,16 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] GameObject DashTrail;
     float originalStunDuration;
     public bool isStunned;
-    
+
     public bool vulnerable { get; set; }
     [SerializeField] float vulnerableTimer = 2f;
     float originalVulnerableTimer;
 
     public bool gotShot { get; set; }
+
+    [SerializeField] float spawningDuration = 1f;
+    float originalSpawningDuration;
+    [HideInInspector] public bool canDoStuff;
 
     //public bool slapOncePleaseForTheLoveOfGod;
 
@@ -32,19 +36,40 @@ public class PlayerControls : MonoBehaviour
         vulnerable = true;
         gotShot = false;
 
-        //slapOncePleaseForTheLoveOfGod = true;
+        originalSpawningDuration = spawningDuration;
+        canDoStuff = true;
+
+        //GetComponent<MeshRenderer>().material.e
     }
 
     private void Update()
     {
-        //Debug.Log("slapOncePleaseForTheLoveOfGod: " + slapOncePleaseForTheLoveOfGod);
-        
+        if (!canDoStuff)
+        {
+            spawningDuration -= Time.deltaTime;
+            playerMovementScript.movementInput = new Vector2(0, 0);
+
+            foreach(SkinnedMeshRenderer skinnedMeshRenderer in GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                skinnedMeshRenderer.enabled = false;
+            }
+
+            if (spawningDuration <= 0)
+            {
+                canDoStuff = true;
+                foreach (SkinnedMeshRenderer skinnedMeshRenderer in GetComponentsInChildren<SkinnedMeshRenderer>())
+                {
+                    skinnedMeshRenderer.enabled = true;
+                }
+                spawningDuration = originalSpawningDuration;
+            }
+        }
+
         if (gotShot)
         {
             stunDuration = gotShotStunDuration;
             gotShot = false;
         }
-
 
         if (isStunned)
         {
@@ -72,14 +97,23 @@ public class PlayerControls : MonoBehaviour
                 vulnerable = true;
             }
         }
+
+
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        if (!isStunned)
-            playerMovementScript.movementInput = ctx.ReadValue<Vector2>();
-        else
+        if (!canDoStuff)
+        {
             return;
+        }
+        else
+        {
+            if (!isStunned)
+                playerMovementScript.movementInput = ctx.ReadValue<Vector2>();
+            else
+                return;
+        }
     }
 
     public void OpenOrCloseMenuPanel(InputAction.CallbackContext ctx)
@@ -89,37 +123,56 @@ public class PlayerControls : MonoBehaviour
 
     public void Ability(InputAction.CallbackContext ctx)
     {
-        if (!isStunned)
-            playerAbilitiesScript.Ability();
-        else
+        if (!canDoStuff)
+        {
             return;
+        }
+        else
+        {
+            if (!isStunned)
+                playerAbilitiesScript.Ability();
+            else
+                return;
+        }
     }
 
     public void Dash(InputAction.CallbackContext ctx)
     {
-        if (!isStunned)
-            if (ctx.performed && playerMovementScript.canDash)
-                playerMovementScript.isDashing = true;
-            else
-            {
-                playerMovementScript.isDashing = false;
-            }
-        else
+        if (!canDoStuff)
+        {
             return;
+        }
+        else
+        {
+            if (!isStunned)
+                if (ctx.performed && playerMovementScript.canDash)
+                    playerMovementScript.isDashing = true;
+                else
+                {
+                    playerMovementScript.isDashing = false;
+                }
+            else
+                return;
+        }
     }
 
     public void Slap(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (!canDoStuff)
         {
-            if (!isStunned && !slapMechanicScript.doingSlap)
+            return;
+        }
+        else
+        {
+            if (ctx.performed)
             {
-                slapMechanicScript.DoTheSlap();
-                //slapMechanicScript.doTheSlap = true;
-                //slapOncePleaseForTheLoveOfGod = false;
+                if (!isStunned && !slapMechanicScript.doingSlap)
+                {
+                    slapMechanicScript.DoTheSlap();
+                }
+                else
+                    return;
             }
-            else
-                return;
         }
     }
 

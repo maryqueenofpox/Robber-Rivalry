@@ -86,7 +86,10 @@ public class PlayerMovement : MonoBehaviour
                 
         }
         else // keeping this if statement for the variable below
+        {
             rb.velocity = Vector3.zero;
+            movementInput = new Vector2(0,0);
+        }
 
 
         if (rb.velocity != Vector3.zero)

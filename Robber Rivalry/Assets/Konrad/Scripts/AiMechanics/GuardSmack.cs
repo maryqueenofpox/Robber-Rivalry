@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GuardSmack : MonoBehaviour
 {
-    Vector3 originalPos;
     [SerializeField]
     Transform guardSpawner;
 
@@ -12,7 +11,6 @@ public class GuardSmack : MonoBehaviour
 
     private void Start()
     {
-        originalPos = transform.position;
         guardTeleportTo = guardSpawner;
     }
 
@@ -23,6 +21,8 @@ public class GuardSmack : MonoBehaviour
             ForceField ff = collision.gameObject.GetComponent<ForceField>();
             LootGrabber lg = collision.gameObject.GetComponent<LootGrabber>();
             PlayerControls pc = collision.gameObject.GetComponent<PlayerControls>();
+            GemMechanic gm = collision.gameObject.GetComponent<GemMechanic>();
+
 
             if (ff.enabled)
             {
@@ -32,6 +32,8 @@ public class GuardSmack : MonoBehaviour
             else if (pc.vulnerable)
             {
                 pc.vulnerable = false;
+                pc.canDoStuff = false;
+                gm.DropGem();
                 lg.transform.position = lg.respawnpoint.position;
             }
             else
