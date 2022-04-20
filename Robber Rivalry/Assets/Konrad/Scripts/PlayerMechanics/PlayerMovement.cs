@@ -89,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             isDashing = false;
+            canDash = false;
             movementInput = new Vector2(0,0);
         }
 
