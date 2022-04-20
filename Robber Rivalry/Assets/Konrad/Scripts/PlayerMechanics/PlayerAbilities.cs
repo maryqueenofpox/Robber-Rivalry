@@ -23,6 +23,7 @@ public class PlayerAbilities : MonoBehaviour
     public int randomAbility { get; set; }
 
     [SerializeField] AudioSource powerUpAudio;
+    [SerializeField] AudioSource rayShoot;
 
     ForceField forceFieldScript;
 
@@ -136,7 +137,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             GameObject bullet;
             bullet = Instantiate(rayBullet, rayGun.transform.position, transform.rotation);
-
+            rayShoot.Play();
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletVelocity * 0.3f);
 
             rayGun.SetActive(false);

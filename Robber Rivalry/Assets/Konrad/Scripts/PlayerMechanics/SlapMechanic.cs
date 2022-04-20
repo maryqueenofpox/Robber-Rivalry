@@ -13,6 +13,8 @@ public class SlapMechanic : MonoBehaviour
     [SerializeField] GameObject SlapTrail;
     [SerializeField] GameObject SlapTrail2;
 
+    [SerializeField] AudioSource slapAudio;
+
     PlayerAnimations playerAnimationsScript;
 
     PlayerMovement playerMovement;
@@ -89,6 +91,7 @@ public class SlapMechanic : MonoBehaviour
 
         if (canSlap)
         {
+            slapAudio.Play();
             doingSlap = true;
             playerAnimationsScript.IsSlappingAnimation(true);
             SlapTrail.SetActive(true);
