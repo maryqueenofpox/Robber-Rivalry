@@ -103,8 +103,10 @@ public class SlapMechanic : MonoBehaviour
                 if (gemMechanic.isCarryingGem)
                 {
                     gemMechanic.DropGem();
-                    playerMovement.transform.Find("Gem").transform.parent = null;
+                    //playerMovement.transform.Find("Gem").transform.parent = null;
                     gemMechanic.isCarryingGem = false;
+                    canSlap = false;
+                    doingSlap = false;
                 }
 
                 canSlap = false;
