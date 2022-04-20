@@ -25,11 +25,49 @@ public class LootGrabber : MonoBehaviour
     [SerializeField] GameObject scorePopUp;
 
     PlayerControls playerControlsScript;
+    public bool doDropLoot;
 
     private void Start()
     {
         gemMechanic = GetComponent<GemMechanic>();
         playerControlsScript = GetComponent<PlayerControls>();
+        doDropLoot = false;
+    }
+
+    private void Update()
+    {
+        if (doDropLoot)
+        {
+            Debug.Log("THE AODSIBHRFO£WBGTIUGB£EI(U£EBGTIU£WGBTBW£IUW£BU(WE");
+            //PlayAudio();
+            Transform clone;
+            //gemMechanic.DropGem();
+            //playerControlsScript.vulnerable = false;
+            //playerControlsScript.canDoStuff = false;
+
+            if (loot > 0)
+            {
+                float pointsToRemove = Mathf.Ceil((loot * percentageToRemoveGuard) / 100);
+                Debug.Log("Points to Remove: " + pointsToRemove);
+                for (int i = 0; i < pointsToRemove; i++)
+                {
+                    Debug.Log("Loop is being called");
+                    clone = Instantiate(Loot, new Vector3(transform.position.x + Random.Range(-1f, 2f), transform.position.y + 2f, transform.position.z + Random.Range(-1f, 2f)), Loot.rotation);
+                    clone.gameObject.tag = "Loot";
+
+                    clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
+                    clone.gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
+                    loot--;
+                    score.text = loot.ToString();
+                }
+                Debug.Log("Outside Loop Debug function");
+                doDropLoot=false;
+            }
+            else if (loot <= 0)
+            {
+                loot = 0;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -42,52 +80,7 @@ public class LootGrabber : MonoBehaviour
             Destroy(other.gameObject);
             ScoreTextPopUp();
         }
-
-        if (other.transform.tag == "Guard")
-        {
-            if (playerControlsScript.vulnerable)
-            {
-                Debug.Log("THE AODSIBHRFO£WBGTIUGB£EI(U£EBGTIU£WGBTBW£IUW£BU(WE");
-                //PlayAudio();
-                Transform clone;
-                //gemMechanic.DropGem();
-                //playerControlsScript.vulnerable = false;
-                //playerControlsScript.canDoStuff = false;
-
-                if (loot > 0)
-                {
-                    float pointsToRemove = Mathf.Ceil((loot * percentageToRemoveGuard) / 100);
-
-                    for (int i = 0; i < pointsToRemove; i++)
-                    {
-                        clone = Instantiate(Loot, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Loot.rotation);
-                        clone.gameObject.tag = "Loot";
-
-                        clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
-                        loot--;
-                        score.text = loot.ToString();
-                    }
-                }
-                else if (loot <= 0)
-                {
-                    loot = 0;
-                }
-            }
-        }
     }
-
-    /*
-    void PlayAudio()
-    {
-        Debug.Log("AUDIO IS BEING PLAYED DUMB DUMB");
-        bonkAudio.Play();
-        bonkAudio.Play();
-        bonkAudio.Play();
-        bonkAudio.Play();
-        bonkAudio.Play();
-        bonkAudio.Play();
-    }
-    */
 
     private void OnTriggerEnter(Collider other)
     {
