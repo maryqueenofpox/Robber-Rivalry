@@ -43,18 +43,12 @@ public class SlapMechanic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Doing Slap: " + doingSlap);
-
         if (playerAnimationsScript.anim.GetBool("isSlapping") == true)
         {
             timeToSetSlapToFalse -= Time.deltaTime;
-            Debug.Log("if playeranimationscscript"); // 17 times
-            //if (timeToSetSlapToFalse <= 0.1f)
-            //YeetThePlayer();
 
             if (timeToSetSlapToFalse <= 0f)
             {
-                Debug.Log("timeToSetSlapToFalse");
                 timeToSetSlapToFalse = originalSlapToFalse;
                 playerAnimationsScript.IsSlappingAnimation(false);
                 SlapTrail.SetActive(false);
@@ -66,29 +60,17 @@ public class SlapMechanic : MonoBehaviour
         if (!canSlap)
         {
             slapCooldown -= Time.deltaTime;
-            Debug.Log("!canSlap");
             if (slapCooldown <= 0.0f)
             {
-                Debug.Log("!canSlap, slapCooldown");
                 canSlap = true;
                 doingSlap = false;
                 slapCooldown = originalSlapCooldown;
             }
         }
-
-        /*
-        if (doTheSlap)
-        {
-            DoTheSlap();
-            //controls.slapOncePleaseForTheLoveOfGod = true;
-        }
-        */
     }
 
     public void DoTheSlap()
     {
-        Debug.Log("DoTheSlap");
-
         if (canSlap)
         {
             slapAudio.Play();
@@ -103,8 +85,6 @@ public class SlapMechanic : MonoBehaviour
 
     void YeetThePlayer()
     {
-        Debug.Log("YeetThePlayer");
-
         if (isPlayer && controls.vulnerable)
         {
             if (forceField.enabled == true)

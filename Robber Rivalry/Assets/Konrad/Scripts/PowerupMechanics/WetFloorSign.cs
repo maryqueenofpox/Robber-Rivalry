@@ -12,9 +12,7 @@ public class WetFloorSign : MonoBehaviour
     RaycastHit hit;
     RaycastHit hit2;
 
-    [SerializeField] float stretchSpeed = 5f;
     [SerializeField] float maxStretchDistance = 2f;
-    bool isScaling = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +40,7 @@ public class WetFloorSign : MonoBehaviour
             gameObject.GetComponentInChildren<Rigidbody>().isKinematic = true;
             if (!doOnce)
             {
-                DoRayCast();
-                StartCoroutine(scaleOverTime());
+                ChangeScale();
                 doOnce = true;
             }
         }
@@ -55,51 +52,30 @@ public class WetFloorSign : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, Vector3.right);
-        Debug.DrawRay(transform.position, Vector3.right * 2);
-    }
-
-    void DoRayCast()
-    {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, Vector3.right, out hit))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
+            Debug.Log("Distance: " + hit.distance);
+            Debug.Log("Name: " + hit.collider.name);
         }
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit2, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, Vector3.left, out hit2))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit2.distance, Color.white);
+            Debug.Log("Distance 2: " + hit2.distance);
         }
-    }
-
-    IEnumerator scaleOverTime()
-    {
-        //Make sure there is only one instance of this function running
-        if (isScaling)
-        {
-            yield break; ///exit if this is still running
-        }
-        isScaling = true;
-
-        float counter = 0;
-
-        //Get the current scale of the object to be moved
-        Vector3 startScaleSize = transform.localScale;
-
-        while (counter < 5)
-        {
-            counter += Time.deltaTime;
-            transform.localScale = Vector3.Lerp(startScaleSize, new Vector3((hit.distance), transform.localScale.y, transform.localScale.z), counter / 5);
-            yield return null;
-        }
-
-        isScaling = false;
     }
 
     void ChangeScale()
     {
-        transform.localScale = new Vector3((hit.distance + hit2.distance), transform.localScale.y, transform.localScale.z);
+        float distance;
+
+        if ((hit.distance + hit2.distance) > maxStretchDistance)
+            distance = maxStretchDistance;
+        else
+            distance = (hit.distance + hit2.distance);
+
+        transform.localScale = new Vector3(distance, transform.localScale.y, transform.localScale.z);
         AstarPath.active.Scan();
     }
 

@@ -18,7 +18,7 @@ public class LootGrabber : MonoBehaviour
     public float percentageToRemoveGuard = 10;
     public float percentageToRemoveSpace = 20;
 
-    [SerializeField] AudioSource bonkAudio;
+    //[SerializeField] AudioSource bonkAudio;
     [SerializeField] AudioSource lootAudio;
 
     GemMechanic gemMechanic;
@@ -48,7 +48,7 @@ public class LootGrabber : MonoBehaviour
             if (playerControlsScript.vulnerable)
             {
                 Debug.Log("THE AODSIBHRFO£WBGTIUGB£EI(U£EBGTIU£WGBTBW£IUW£BU(WE");
-                PlayAudio();
+                //PlayAudio();
                 Transform clone;
                 //gemMechanic.DropGem();
                 //playerControlsScript.vulnerable = false;
@@ -76,6 +76,7 @@ public class LootGrabber : MonoBehaviour
         }
     }
 
+    /*
     void PlayAudio()
     {
         Debug.Log("AUDIO IS BEING PLAYED DUMB DUMB");
@@ -86,6 +87,7 @@ public class LootGrabber : MonoBehaviour
         bonkAudio.Play();
         bonkAudio.Play();
     }
+    */
 
     private void OnTriggerEnter(Collider other)
     {

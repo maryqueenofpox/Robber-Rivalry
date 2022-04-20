@@ -7,6 +7,8 @@ public class GuardSmack : MonoBehaviour
     [SerializeField]
     Transform guardSpawner;
 
+    [SerializeField] AudioSource bonkSource;
+
     public Transform guardTeleportTo { get; private set; }
 
     private void Start()
@@ -26,6 +28,7 @@ public class GuardSmack : MonoBehaviour
 
             if (ff.enabled)
             {
+                bonkSource.Play();
                 ff.enabled = false;
                 transform.position = guardSpawner.position;
             }
@@ -33,6 +36,7 @@ public class GuardSmack : MonoBehaviour
             {
                 pc.vulnerable = false;
                 pc.canDoStuff = false;
+                bonkSource.Play();
                 gm.DropGem();
                 lg.transform.position = lg.respawnpoint.position;
             }

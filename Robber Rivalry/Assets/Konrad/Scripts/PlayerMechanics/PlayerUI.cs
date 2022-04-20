@@ -103,7 +103,6 @@ public class PlayerUI : MonoBehaviour
                     case 3:
                         Shield(true);
                         Shield_Effect.SetActive(true);
-                        Debug.Log("am called");
                         pleaseDoOnce = false;
                         break;
                     case 4:
@@ -157,7 +156,6 @@ public class PlayerUI : MonoBehaviour
             ShieldETimer -= Time.deltaTime;
             if (ShieldETimer < 0)
             {
-                Debug.Log("Setting shiled to false you plebian, srry Ican't spill");
                 Shield_Effect.SetActive(false);
             }
         }

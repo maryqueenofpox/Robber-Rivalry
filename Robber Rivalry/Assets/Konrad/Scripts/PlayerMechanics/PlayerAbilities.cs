@@ -55,7 +55,7 @@ public class PlayerAbilities : MonoBehaviour
             canUseAbility = true;
             playerUIScript.pleaseDoOnce = true;
 
-            randomAbility = 1;
+            //randomAbility = 1;
 
             if (randomAbility == 0)
                 rayGun.SetActive(true);
