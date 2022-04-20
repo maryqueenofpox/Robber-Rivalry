@@ -26,6 +26,7 @@ public class LootGrabber : MonoBehaviour
 
     PlayerControls playerControlsScript;
     public bool doDropLoot;
+    public Vector3 dropLootAtThisPosition;
 
     private void Start()
     {
@@ -52,7 +53,7 @@ public class LootGrabber : MonoBehaviour
                 for (int i = 0; i < pointsToRemove; i++)
                 {
                     Debug.Log("Loop is being called");
-                    clone = Instantiate(Loot, new Vector3(transform.position.x + Random.Range(-1f, 2f), transform.position.y + 2f, transform.position.z + Random.Range(-1f, 2f)), Loot.rotation);
+                    clone = Instantiate(Loot, new Vector3(dropLootAtThisPosition.x + Random.Range(-1f, 2f), dropLootAtThisPosition.y + 2f, dropLootAtThisPosition.z + Random.Range(-1f, 2f)), Loot.rotation);
                     clone.gameObject.tag = "Loot";
 
                     clone.gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
