@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         else // keeping this if statement for the variable below
         {
             rb.velocity = Vector3.zero;
+            isDashing = false;
             movementInput = new Vector2(0,0);
         }
 
