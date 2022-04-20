@@ -25,6 +25,8 @@ public class SlapMechanic : MonoBehaviour
 
     public bool doingSlap;
 
+    [SerializeField] AudioSource slapSoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +101,7 @@ public class SlapMechanic : MonoBehaviour
                 playerMovement.rb.AddForce(transform.forward * slapFoce);
                 playerMovement.rb.AddForce(transform.up * 1000000f);
                 controls.isStunned = true;
+                slapSoundEffect.Play();
 
                 if (gemMechanic.isCarryingGem)
                 {
