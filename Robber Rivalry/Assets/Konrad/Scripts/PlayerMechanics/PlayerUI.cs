@@ -10,6 +10,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Canvas canvas;
     //[SerializeField] GameObject powerUpUI;
     [SerializeField] Image sprintBar;
+    [SerializeField] Image sprintBarRed;
+    [SerializeField] SpriteRenderer sprintBorder;
 
     [HideInInspector] public bool pleaseDoOnce = true;
 
@@ -27,6 +29,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image shieldImage;
     [SerializeField] Image magnetImage;
     [SerializeField] Image honeyImage;
+
     public int number { get; set; }
     float ShieldETimer = 2;
     float RaygunTimer = 1.7f;
@@ -54,15 +57,27 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         sprintBar.fillAmount = playerMovement.dashDuration / playerMovement.maxDashTime;
-        if ((!playerMovement.canDash))
-            sprintBar.color = Color.red;
-        else
-            sprintBar.color = Color.green;
+        sprintBarRed.fillAmount = sprintBar.fillAmount;
 
-        if (playerMovement.dashDuration < playerMovement.maxDashTime)
-            sprintBar.enabled = true;
-        else
+        if ((!playerMovement.canDash))
+        {
+            sprintBarRed.enabled = true;
             sprintBar.enabled = false;
+            sprintBorder.enabled = true;
+        }
+        else
+        {
+            sprintBarRed.enabled = false;
+            sprintBar.enabled = true;
+            sprintBorder.enabled = true;
+        }
+
+        if (playerMovement.dashDuration >= playerMovement.maxDashTime)
+        {
+            sprintBarRed.enabled = false;
+            sprintBar.enabled = false;
+            sprintBorder.enabled = false;
+        }
 
         if (playerAbilities.canUseAbility)
         {
