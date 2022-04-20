@@ -9,17 +9,19 @@ public class setCountDown : MonoBehaviour
 
     private void Start()
     {
+        gm = GameObject.Find("EventSystem").GetComponent<GameManager>();
+
         gameObject.SetActive(true);
         anim = gameObject.GetComponent<Animator>();
         anim.Play("Image", -1, 0f);
 
+        gm.SetTimeScale();
     }
 
     public void SetCountDown()
     {
-        gm = GameObject.Find("EventSystem").GetComponent<GameManager>();
-
         gm.counDownDone = true;
+        gm.SetTimeScale();
 
         gameObject.SetActive(false);
     }

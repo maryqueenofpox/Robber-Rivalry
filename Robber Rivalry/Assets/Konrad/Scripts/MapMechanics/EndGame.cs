@@ -120,7 +120,7 @@ public class EndGame : MonoBehaviour
         playOnce = false;
         doGemAddOnce = true;
         fuse.enabled = false;
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
 
         arrayOfArrays[3] = playerSpritesCrown;
         arrayOfArrays[2] = playerSpritesSecond;
