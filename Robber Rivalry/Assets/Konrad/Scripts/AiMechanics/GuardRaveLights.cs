@@ -25,7 +25,6 @@ public class GuardRaveLights : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("I AM BEING CALLED BITCH");
             currentMaterials = GetComponent<Renderer>().material;
 
             currentMaterials = emissionMap2;

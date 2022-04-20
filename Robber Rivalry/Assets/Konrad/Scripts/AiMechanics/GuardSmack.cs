@@ -34,6 +34,7 @@ public class GuardSmack : MonoBehaviour
             }
             else if (pc.vulnerable)
             {
+                lg.doDropLoot = true;
                 pc.vulnerable = false;
                 pc.canDoStuff = false;
                 bonkSource.Play();
