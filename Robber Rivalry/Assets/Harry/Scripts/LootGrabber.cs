@@ -98,6 +98,7 @@ public class LootGrabber : MonoBehaviour
         if (other.transform.tag == "Killzone")
         {
             transform.position = respawnpoint.position;
+            playerControlsScript.RespawnAnimation();
             playerControlsScript.canDoStuff = false;
             if (loot > 0)
             {

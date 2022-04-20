@@ -24,6 +24,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float spawningDuration = 1f;
     float originalSpawningDuration;
     [HideInInspector] public bool canDoStuff;
+    [SerializeField] GameObject respawnAnimation;
+    float respawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName = 2f;
+    float originalrespawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName;
 
     //public bool slapOncePleaseForTheLoveOfGod;
 
@@ -38,8 +41,8 @@ public class PlayerControls : MonoBehaviour
 
         originalSpawningDuration = spawningDuration;
         canDoStuff = true;
-
-        //GetComponent<MeshRenderer>().material.e
+        respawnAnimation.SetActive(true);
+        originalrespawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName = respawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName;
     }
 
     private void Update()
@@ -98,7 +101,21 @@ public class PlayerControls : MonoBehaviour
             }
         }
 
+        if (respawnAnimation.activeSelf)
+        {
+            respawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName -= Time.deltaTime;
 
+            if (respawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName <= 0f)
+            {
+                respawnAnimation.SetActive(false);
+                respawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName = originalrespawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName;
+            }
+        }
+    }
+
+    public void RespawnAnimation()
+    {
+        respawnAnimation.SetActive(true);
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
