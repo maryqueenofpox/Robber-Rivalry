@@ -40,7 +40,12 @@ public class GuardSmack : MonoBehaviour
                 pc.canDoStuff = false;
                 bonkSource.Play();
                 gm.DropGem();
+
+               
                 lg.transform.position = lg.respawnpoint.position;
+                lg.spawnRespawnOrb();
+
+
             }
             else
             {
