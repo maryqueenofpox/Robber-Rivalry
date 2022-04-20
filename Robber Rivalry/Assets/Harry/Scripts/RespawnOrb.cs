@@ -13,6 +13,7 @@ public class RespawnOrb : MonoBehaviour
     private float pullSpeed = 30f;
 
     bool moveToPlatform = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,18 +43,30 @@ public class RespawnOrb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (waitTime > 0)
+        /*
+        if (waitTime > 0) // 1 or more
         {
             waitTime -= Time.deltaTime;
         }
-
-        else if (waitTime > 0 && waitTime < 1)
+        else if (waitTime > 0.00f && waitTime < 1.00f)
         {
             transform.position = Vector3.MoveTowards(platform.transform.position, transform.position, pullSpeed * Time.deltaTime);
         }
         else
         {
             waitTime = 2;
+            Destroy(gameObject);
+        }
+        */
+
+        if (waitTime > 0)
+        {
+            waitTime -= Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, platform.transform.position, pullSpeed * Time.deltaTime);
+        }
+        else
+        {
+            waitTime = 2f;
             Destroy(gameObject);
         }
     }

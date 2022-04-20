@@ -30,6 +30,7 @@ public class LootGrabber : MonoBehaviour
     PlayerControls playerControlsScript;
     public bool doDropLoot;
     public Vector3 dropLootAtThisPosition;
+    public Vector3 guardPosForOrb;
 
     private void Start()
     {
@@ -76,9 +77,10 @@ public class LootGrabber : MonoBehaviour
 
     public void spawnRespawnOrb()
     {
-        respawnOrb = Instantiate(respawnOrb, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), transform.rotation);
+        Instantiate(respawnOrb, new Vector3(guardPosForOrb.x, guardPosForOrb.y + 0.5f, guardPosForOrb.z), transform.rotation);
 
     }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.transform.tag == "Loot")

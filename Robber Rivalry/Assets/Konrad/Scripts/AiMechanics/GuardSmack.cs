@@ -43,6 +43,7 @@ public class GuardSmack : MonoBehaviour
 
                
                 lg.transform.position = lg.respawnpoint.position;
+                lg.guardPosForOrb = transform.position;
                 lg.spawnRespawnOrb();
 
 
