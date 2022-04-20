@@ -152,7 +152,10 @@ public class PlayerControls : MonoBehaviour
                     playerMovementScript.isDashing = false;
                 }
             else
+            {
+                
                 return;
+            }
         }
     }
 
