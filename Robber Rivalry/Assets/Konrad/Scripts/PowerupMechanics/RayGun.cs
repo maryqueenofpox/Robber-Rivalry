@@ -39,6 +39,7 @@ public class RayGun : MonoBehaviour
         if (other.CompareTag("Guard"))
         {
             GuardSmack guardTP = other.GetComponent<GuardSmack>();
+            guardTP.PlayGuardAnimation();
             other.transform.position = guardTP.guardTeleportTo.position;
         }
     }

@@ -41,7 +41,7 @@ public class PlayerControls : MonoBehaviour
 
         originalSpawningDuration = spawningDuration;
         canDoStuff = true;
-        respawnAnimation.SetActive(true);
+        respawnAnimation.SetActive(false);
         originalrespawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName = respawnTimerAnimationDisableThisPleaseCauseIAmTiredAndBoredLolLolHeyGuysKonradHereWithYetAnotherLongVariableName;
     }
 

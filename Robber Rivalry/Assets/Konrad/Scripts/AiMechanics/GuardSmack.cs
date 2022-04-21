@@ -10,10 +10,35 @@ public class GuardSmack : MonoBehaviour
     [SerializeField] AudioSource bonkSource;
 
     public Transform guardTeleportTo { get; private set; }
+    [SerializeField] GameObject guardSpawnAnimation;
+
+    float guardSpawnAnimationTimer = 2f;
+    float originalGuardSpawnAnimationTimer;
 
     private void Start()
     {
         guardTeleportTo = guardSpawner;
+        guardSpawnAnimation.SetActive(false);
+        originalGuardSpawnAnimationTimer = guardSpawnAnimationTimer;
+    }
+
+    private void Update()
+    {
+        if (guardSpawnAnimation.activeSelf)
+        {
+            guardSpawnAnimationTimer -= Time.deltaTime;
+
+            if (guardSpawnAnimationTimer <= 0)
+            {
+                guardSpawnAnimation.SetActive(false);
+                guardSpawnAnimationTimer = originalGuardSpawnAnimationTimer;
+            }
+        }
+    }
+
+    public void PlayGuardAnimation()
+    {
+        guardSpawnAnimation.SetActive(true);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,6 +55,7 @@ public class GuardSmack : MonoBehaviour
             {
                 bonkSource.Play();
                 ff.enabled = false;
+                PlayGuardAnimation();
                 transform.position = guardSpawner.position;
             }
             else if (pc.vulnerable)
@@ -60,6 +86,7 @@ public class GuardSmack : MonoBehaviour
     {
         if (other.transform.tag == "Killzone")
         {
+            PlayGuardAnimation();
             transform.position = guardSpawner.position;
         }
     }
