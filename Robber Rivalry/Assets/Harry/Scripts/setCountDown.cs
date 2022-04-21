@@ -15,11 +15,16 @@ public class setCountDown : MonoBehaviour
 
         gameObject.SetActive(true);
         anim = gameObject.GetComponent<Animator>();
-        StartCoroutine(PlayAudioForCountDown());
-        anim.Play("Image", -1, 0f);
+        //StartCoroutine(PlayAudioForCountDown());
+        
 
         audioSource.pitch = 0.36f;
         gm.SetTimeScale();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(PlayAudioForCountDown());
     }
 
     public void SetCountDown()
@@ -32,6 +37,7 @@ public class setCountDown : MonoBehaviour
 
     IEnumerator PlayAudioForCountDown()
     {
+        //anim.Play("Image", -1, 0f);
         audioSource.Play();
 
         yield return new WaitForSecondsRealtime(audioTimerPlayDelay);
