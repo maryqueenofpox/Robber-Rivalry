@@ -33,18 +33,18 @@ public class setCountDown : MonoBehaviour
     {
         audioSource.Play();
 
-        yield return new WaitForSeconds(audioTimerPlayDelay);
+        yield return new WaitForSecondsRealtime(audioTimerPlayDelay);
 
         audioSource.Play();
 
-        yield return new WaitForSeconds(audioTimerPlayDelay);
+        yield return new WaitForSecondsRealtime(audioTimerPlayDelay);
 
         audioSource.Play();
 
-        yield return new WaitForSeconds(audioTimerPlayDelay);
+        yield return new WaitForSecondsRealtime(audioTimerPlayDelay);
 
         audioSource.Play();
 
-        yield return new WaitForSeconds(audioTimerPlayDelay);
+        yield return new WaitForSecondsRealtime(audioTimerPlayDelay);
     }
 }
