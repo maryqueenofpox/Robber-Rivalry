@@ -18,6 +18,7 @@ public class setCountDown : MonoBehaviour
         StartCoroutine(PlayAudioForCountDown());
         anim.Play("Image", -1, 0f);
 
+        audioSource.pitch = 0.36f;
         gm.SetTimeScale();
     }
 
@@ -43,6 +44,7 @@ public class setCountDown : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(audioTimerPlayDelay);
 
+        audioSource.pitch = 1f;
         audioSource.Play();
 
         yield return new WaitForSecondsRealtime(audioTimerPlayDelay);
