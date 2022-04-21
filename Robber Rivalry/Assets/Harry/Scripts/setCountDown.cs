@@ -6,6 +6,8 @@ public class setCountDown : MonoBehaviour
 {
     private GameManager gm;
     private Animator anim;
+    [SerializeField] float audioTimerPlayDelay = 1f;
+    [SerializeField] AudioSource audioSource;
 
     private void Start()
     {
@@ -13,6 +15,7 @@ public class setCountDown : MonoBehaviour
 
         gameObject.SetActive(true);
         anim = gameObject.GetComponent<Animator>();
+        StartCoroutine(PlayAudioForCountDown());
         anim.Play("Image", -1, 0f);
 
         gm.SetTimeScale();
@@ -24,5 +27,24 @@ public class setCountDown : MonoBehaviour
         gm.SetTimeScale();
 
         gameObject.SetActive(false);
+    }
+
+    IEnumerator PlayAudioForCountDown()
+    {
+        audioSource.Play();
+
+        yield return new WaitForSeconds(audioTimerPlayDelay);
+
+        audioSource.Play();
+
+        yield return new WaitForSeconds(audioTimerPlayDelay);
+
+        audioSource.Play();
+
+        yield return new WaitForSeconds(audioTimerPlayDelay);
+
+        audioSource.Play();
+
+        yield return new WaitForSeconds(audioTimerPlayDelay);
     }
 }
